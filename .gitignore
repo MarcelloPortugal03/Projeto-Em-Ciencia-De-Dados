@@ -14,6 +14,7 @@ kaggle.json
 # --- Jupyter & Notebooks ---
 .ipynb_checkpoints/
 */.ipynb_checkpoints/*
+
 # --- Gestão de Dados (Estrutura UC) ---
 # Ignorar os dados reais para não ultrapassar o limite de 100MB do GitHub.
 # Os dados devem estar no Kaggle ou num link externo.
