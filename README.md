@@ -1,4 +1,4 @@
-# [Título do Projeto de Ciência de Dados]
+# Classificação de Qualidade de Vinhos (Indústria Alimentar)
 ## Identificação da Equipa
 * **Grupo nº:** 4
 * **Membros:**
