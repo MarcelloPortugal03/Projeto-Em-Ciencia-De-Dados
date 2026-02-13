@@ -25,8 +25,14 @@ No fundo, trata-se de criar uma ferramenta de apoio à decisão que ajude a gara
 * **Objetivo 2:** Identificar quais são os principais fatores físico-químicos (ex: Álcool, Acidez Volátil) que mais influenciam positiva ou negativamente a classificação final da qualidade.
 * **Objetivo 3:** Analisar as diferenças estruturais entre as variantes tinto e branco para perceber se os padrões de qualidade se mantêm consistentes entre ambos.
 ### Fonte de Dados
-* **Dataset:** [Link para a fonte ou descrição dos ficheiros]
-* **Dimensão:** [Ex: 10.000 linhas, 15 colunas]
+* **Dataset:** https://archive.ics.uci.edu/dataset/186/wine+quality
+* **Dimensão:** Total de linhas 6.497 / Total de colunas 12
+  
+    Vinho Tinto: 1.599 instâncias (linhas).
+  
+    Vinho Branco: 4.898 instâncias (linhas).
+
+    Atributos: 12 colunas em ambos os ficheiros (11 variáveis físico-químicas de entrada + 1 variável de saída sensorial).
 ## 2. Exploração (Milestone 2)
 ### Limpeza e Preparação
 * [Breve resumo das ações de limpeza tomadas. Detalhes em `docs/M2_exploracao.md`]
