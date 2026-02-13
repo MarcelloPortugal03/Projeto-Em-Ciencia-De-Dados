@@ -32,7 +32,7 @@ No fundo, trata-se de criar uma ferramenta de apoio à decisão que ajude a gara
   
     Vinho Branco: 4.898 instâncias (linhas).
 
-    Atributos: 12 colunas em ambos os ficheiros (11 variáveis físico-químicas de entrada + 1 variável de saída sensorial).
+    Atributos: 12 colunas em ambos os ficheiros (11 variáveis de entrada + 1 variável de saída).
 ## 2. Exploração (Milestone 2)
 ### Limpeza e Preparação
 * [Breve resumo das ações de limpeza tomadas. Detalhes em `docs/M2_exploracao.md`]
