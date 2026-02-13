@@ -15,7 +15,7 @@ A estrutura deste projeto segue as boas práticas de Ciência de Dados e Engenha
 * **`requirements.txt`**: Ficheiro de configuração com as bibliotecas necessárias.
 ## 1. Iniciação (Milestone 1)
 ### Contexto e Problema de Negócio
-A forma tradicional de avaliar a qualidade de um vinho depende muito de provas sensoriais feitas por especialistas. O problema é que este processo é subjetivo(o que agrada a um especialista pode não agradar a outro) e tem um custo elevado para os produtores. O objetivo deste projeto é perceber se conseguimos prever a qualidade de um vinho (neste caso, o Vinho Verde português) utilizando apenas dados laboratoriais.
+A forma tradicional de avaliar a qualidade de um vinho depende muito de provas sensoriais feitas por especialistas. O problema é que este processo é subjetivo (o que agrada a um especialista pode não agradar a outro) e tem um custo elevado para os produtores. O objetivo deste projeto é perceber se conseguimos prever a qualidade de um vinho (neste caso, o Vinho Verde português) utilizando apenas dados laboratoriais.
 ### Objetivos do Projeto
 * **Objetivo 1:** [Ex: Prever a rotatividade de clientes]
 * **Objetivo 2:** [Ex: Identificar os principais fatores de influência]
