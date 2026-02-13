@@ -16,6 +16,9 @@ A estrutura deste projeto segue as boas práticas de Ciência de Dados e Engenha
 ## 1. Iniciação (Milestone 1)
 ### Contexto e Problema de Negócio
 A forma tradicional de avaliar a qualidade de um vinho depende muito de provas sensoriais feitas por especialistas. O problema é que este processo é subjetivo (o que agrada a um especialista pode não agradar a outro) e tem um custo elevado para os produtores. O objetivo deste projeto é perceber se conseguimos prever a qualidade de um vinho (neste caso, o Vinho Verde português) utilizando apenas dados laboratoriais.
+A relevância deste desafio reside na procura por um padrão de qualidade que seja constante. Na produção em larga escala, as variações químicas naturais podem alterar o perfil do vinho de lote para lote. Ao conseguirmos correlacionar estas métricas (como o pH, a densidade ou os sulfatos) com a aceitação do consumidor final, permitimos que a empresa tome decisões mais seguras antes mesmo do vinho chegar à garrafa.
+
+No fundo, trata-se de criar uma ferramenta de apoio à decisão que ajude a garantir a qualidade dos vinhos, otimize os custos de prova e permita uma resposta mais rápida às exigências do mercado, transformando dados químicos complexos em informação estratégica para o negócio.
 ### Objetivos do Projeto
 * **Objetivo 1:** Desenvolver um modelo preditivo capaz de estimar a pontuação de qualidade do vinho (tinto e branco) com base nos seus componentes químicos.
 * **Objetivo 2:** Identificar quais são os principais fatores físico-químicos (ex: Álcool, Acidez Volátil) que mais influenciam positiva ou negativamente a classificação final da qualidade.
