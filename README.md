@@ -23,7 +23,7 @@ No fundo, trata-se de criar uma ferramenta de apoio à decisão que ajude a gara
 ### Objetivos do Projeto
 * **Objetivo 1:** Desenvolver um modelo preditivo capaz de estimar a pontuação de qualidade do vinho (tinto e branco) com base nos seus componentes químicos.
 * **Objetivo 2:** Identificar quais são os principais fatores físico-químicos (ex: Álcool, Acidez Volátil) que mais influenciam positiva ou negativamente a classificação final da qualidade.
-* **Objetivo 3:** Analisar as diferenças estruturais entre as variantes tinto e branco para perceber se os padrões de qualidade se mantêm consistentes entre ambos.
+* **Objetivo 3:** Comparar as distribuições químicas entre vinhos tintos e brancos através de visualizações estatísticas, concluindo esta análise até ao final da Milestone 2
 ### Fonte de Dados
 * **Dataset:** https://archive.ics.uci.edu/dataset/186/wine+quality
 * **Dimensão:** Total de linhas 6.497 / Total de colunas 12
