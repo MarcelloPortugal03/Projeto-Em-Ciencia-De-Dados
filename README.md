@@ -21,9 +21,9 @@ A relevância deste desafio reside na procura por um padrão de qualidade que se
 
 No fundo, trata-se de criar uma ferramenta de apoio à decisão que ajude a garantir a qualidade dos vinhos, otimize os custos de prova e permita uma resposta mais rápida às exigências do mercado, transformando dados químicos complexos em informação estratégica para o negócio.
 ### Objetivos do Projeto
-* **Objetivo 1:** Desenvolver um modelo preditivo capaz de estimar a pontuação de qualidade do vinho (tinto e branco) com base nos seus componentes químicos.
-* **Objetivo 2:** Identificar quais são os principais fatores físico-químicos (ex: Álcool, Acidez Volátil) que mais influenciam positiva ou negativamente a classificação final da qualidade.
-* **Objetivo 3:** Comparar as distribuições químicas entre vinhos tintos e brancos através de visualizações estatísticas, concluindo esta análise até ao final da Milestone 2
+* **Objetivo 1:** Desenvolver um modelo de classificação para prever a qualidade do vinho (dataset UCI Wine Quality) atingindo uma Accuracy superior a 75%, concluindo a tarefa até à entrega da Milestone 3.
+* **Objetivo 2:** Identificar quais são os principais fatores físico-químicos (ex: Álcool, Ácido Volátil) que mais influenciam a qualidade, validando a sua importância estatística até ao final da Milestone 2.
+* **Objetivo 3:** Comparar as distribuições químicas entre vinhos tintos e brancos através de estatísticas e visualizações, concluindo esta análise até ao final da Milestone 2.
 ### Fonte de Dados
 * **Dataset:** https://archive.ics.uci.edu/dataset/186/wine+quality
 * **Dimensão:** Total de linhas 6.497 / Total de colunas 12
