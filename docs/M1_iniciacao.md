@@ -1,7 +1,14 @@
 # Milestone 1: Iniciação e Definição do Projeto
 ## 1. Descrição Detalhada do Problema
-[Expandir a descrição do README. Explicar o contexto do setor (ex: retalho, banca, saúde) e
-porque é que este problema é relevante no momento atual.]
+O projeto insere-se no setor da Indústria Vinícola, especificamente na produção de Vinho Verde no norte de Portugal. A qualidade do vinho é tradicionalmente avaliada através de testes sensoriais (provas) realizados por especialistas humanos. No entanto, este método apresenta desafios críticos: é subjetivo, dispendioso, lento e sujeito a inconsistências individuais.
+
+No cenário atual de produção em larga escala e exportação global, a manutenção de um padrão de qualidade rigoroso é fundamental para a competitividade das empresas. A relevância deste problema reside na necessidade de digitalizar o controlo de qualidade. Ao correlacionar variáveis físico-químicas (como acidez volátil, cloretos e álcool) com as pontuações de qualidade, é possível criar um sistema de apoio à decisão que:
+
+- Antecipe a classificação do vinho antes da etapa sensorial.
+- Detete anomalias químicas que possam comprometer lotes inteiros.
+- Otimize os custos operacionais ao reduzir a dependência exclusiva de provadores para todas as fases da produção.
+
+Desta forma, o problema deixa de ser apenas uma questão de paladar e passa a ser uma questão de análise preditiva de dados laboratoriais para garantir a consistência do produto final.
 ## 2. Objetivos SMART
 *Defina os objetivos do projeto seguindo a lógica SMART (Específico, Mensurável, Atingível,
 Relevante e Temporal):*
@@ -10,9 +17,8 @@ Relevante e Temporal):*
 clustering.]
 ## 3. Metodologia de Gestão (PBL)
 * **Divisão de Tarefas:**
- * **Membro A:** Responsável pela Engenharia de Dados.
- * **Membro B:** Responsável pela Modelação Estatística.
- * **Membro C:** Responsável pela Visualização e Documentação.
+ * **Afonso Carvalho:** Responsável pela Engenharia de Dados e Visualização.
+ * **Marcello Portugal:** Responsável pela Modelação Estatística e Documentação.
 * **Ferramentas de Colaboração:** [Ex: GitHub Projects para Kanban, reuniões semanais via
 Teams/Discord].
 ## 4. Análise de Viabilidade dos Dados
