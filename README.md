@@ -3,7 +3,7 @@
 * **Grupo nº:** 4
 * **Membros:**
  * Afonso Carvalho - a2023132594
- * Marcello Portugal - 2022136899
+ * Marcello Portugal - a2022136899
 
 ## Organização do Repositório
 A estrutura deste projeto segue as boas práticas de Ciência de Dados e Engenharia de Software:
