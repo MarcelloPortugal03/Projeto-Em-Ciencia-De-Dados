@@ -21,9 +21,14 @@ A relevância deste desafio reside na procura por um padrão de qualidade que se
 
 No fundo, trata-se de criar uma ferramenta de apoio à decisão que ajude a garantir a qualidade dos vinhos, otimize os custos de prova e permita uma resposta mais rápida às exigências do mercado, transformando dados químicos complexos em informação estratégica para o negócio.
 ### Objetivos do Projeto
-* **Objetivo 1:** Desenvolver um modelo preditivo capaz de estimar a pontuação de qualidade do vinho (tinto e branco) com base nos seus componentes químicos.
-* **Objetivo 2:** Identificar quais são os principais fatores físico-químicos (ex: Álcool, Acidez Volátil) que mais influenciam positiva ou negativamente a classificação final da qualidade.
-* **Objetivo 3:** Analisar as diferenças estruturais entre as variantes tinto e branco para perceber se os padrões de qualidade se mantêm consistentes entre ambos.
+**Objetivo SMART:** Desenvolver um modelo de Machine Learning, através de métricas de regressão para prever a qualidade sensorial do Vinho Verde (escala 0-10) com base em 11 variáveis físico-químicas, atingindo um erro médio absoluto (MAE) inferior a 0.5 pontos até ao final da Milestone 3 deste projeto.
+  
+**Perguntas de Investigação:** *PI 1: Qual é a capacidade de previsão de um modelo baseado apenas em dados físico-químicos?*
+
+*PI 2: Quais são as 3 variáveis físico-químicas que mais contribuem para a previsão de um vinho de "Alta Qualidade" (nota ≥ 7)?*
+
+*PI 3: Existem diferenças críticas nos padrões de qualidade entre vinhos tintos e vinhos brancos?*
+  
 ### Fonte de Dados
 * **Dataset:** https://archive.ics.uci.edu/dataset/186/wine+quality
 * **Dimensão:** Total de linhas 6.497 / Total de colunas 12
@@ -32,7 +37,7 @@ No fundo, trata-se de criar uma ferramenta de apoio à decisão que ajude a gara
   
     Vinho Branco: 4.898 instâncias (linhas).
 
-    Atributos: 12 colunas em ambos os ficheiros (11 variáveis de entrada + 1 variável de saída).
+    Atributos: 13 colunas em ambos os ficheiros (11 variáveis de entrada + 1 variável de saída + 1 variável binária).
 ## 2. Exploração (Milestone 2)
 ### Limpeza e Preparação
 * [Breve resumo das ações de limpeza tomadas. Detalhes em `docs/M2_exploracao.md`]
