@@ -27,7 +27,7 @@ O projeto pretende responder às seguintes questões de forma a validar a utilid
  * **Afonso Carvalho:** Responsável pela Engenharia de Dados e Visualização.
  * **Marcello Portugal:** Responsável pela Modelação Estatística e Documentação.
 * **Ferramentas de Colaboração:** Utilizamos o GitHub Projects (Kanban), o Kaggle para o desenvolvimento do código e o Discord/WhatsApp para a comunicação diária do projeto.
-## 4. Estrutura e Preparação dos Dados
+## 5. Estrutura e Preparação dos Dados
 
 Após a importação dos dados originais, o primeiro passo consistiu na unificação dos ficheiros de vinhos tintos e brancos através do comando `pd.concat()`. Esta junção resultou num conjunto de dados robusto com 6.497 amostras, consolidando todas as variáveis físico-químicas num único objeto de análise. Durante este processo, foi fundamental validar a integridade do dataset; a execução do comando `df.isnull().sum()` confirmou a ausência total de valores nulos, o que assegura que não haverá necessidade de realizar limpezas ou imputações de dados nas fases seguintes.
 
@@ -55,12 +55,12 @@ Através do comando `df.describe()`, observámos que a variável alvo (`quality`
 | **`quality`** | **Int64** | **Alvo** | **Pontuação de 0 a 10.** | **[3 - 9]** |
 | `type` | Object | Identificação | Texto (red/white). | [N/A] |
 | `is_red` | Int64 | Identificação | Binário (1=T / 0=B). | [0 - 1] |
-## 5. Viabilidade e Confiança nos Dados
+## 6. Viabilidade e Confiança nos Dados
 Validada a estrutura dos dados no ponto anterior, a continuidade do trabalho é assegurada pelos seguintes requisitos técnicos e éticos:
 * **Disponibilidade:** Os dados foram obtidos através do repositório oficial da UCI e a sua integração foi validada com sucesso no ambiente de trabalho Kaggle.
 * **Fiabilidade:** A integridade dos dados e a ausência de valores nulos permitem que o desenvolvimento se foque diretamente na criação e otimização dos modelos, prevenindo a necessidade de correções ou limpezas complexas durante o processo.
 * **Ética e Citação:** O projeto cumpre as normas de proteção de dados e privacidade, uma vez que apenas estão disponíveis variáveis físico-químicas e sensoriais, sem qualquer informação sobre marcas ou produtores. Conforme solicitado pelos autores (P. Cortez et al., 2009), a utilização destes dados para fins de investigação será devidamente creditada através da citação do artigo original publicado na revista Decision Support Systems.
-## 6. Cronograma Interno
+## 7. Cronograma Interno
 | Fase | Data Limite | Entregável Esperado |
 | :--- | :--- | :--- |
 | M1: Iniciação | [Data] | Repositório estruturado e Plano de Projeto. |
