@@ -21,7 +21,7 @@ A relevância deste desafio reside na procura por um padrão de qualidade que se
 
 No fundo, trata-se de criar uma ferramenta de apoio à decisão que ajude a garantir a qualidade dos vinhos, otimize os custos de prova e permita uma resposta mais rápida às exigências do mercado, transformando dados químicos complexos em informação estratégica para o negócio.
 ### Objetivos SMART
-Desenvolver um modelo de Machine Learning com métricas de regressão para prever a qualidade sensorial do Vinho Verde (escala 0-10) com base em 11 variáveis físico-químicas, atingindo um erro médio absoluto (MAE) inferior a 0.5 pontos até ao final da Milestone 3 deste projeto.
+Desenvolver um modelo de Aprendizagem Automática com métricas de regressão para prever a qualidade sensorial do Vinho Verde (escala 0-10) com base em 11 variáveis físico-químicas, atingindo um erro médio absoluto (MAE) inferior a 0.5 pontos até ao final da Milestone 3 deste projeto.
 
 ### Perguntas de Investigação: 
 *PI 1: Qual é a capacidade de previsão de um modelo baseado apenas em dados físico-químicos?*
@@ -39,7 +39,7 @@ Desenvolver um modelo de Machine Learning com métricas de regressão para preve
 ### Ferramentas e Bibliotecas Python
 * **Pandas & NumPy:** Para manipulação e tratamento estatístico dos dados.
 * **Seaborn & Matplotlib:** Para a criação de gráficos e análise visual.
-* **Scikit-learn:** Para a construção e avaliação dos modelos de Machine Learning.
+* **Scikit-learn:** Para a construção e avaliação dos modelos de Aprendizagem Automática.
 
 ## 2. Exploração (Milestone 2)
 ### Limpeza e Preparação
