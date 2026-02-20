@@ -23,11 +23,15 @@ O projeto pretende responder às seguintes questões de forma a validar a utilid
   O objetivo é identificar, entre os 11 atributos físico-químicos, quais funcionam como os principais indicadores de excelência.
 * **PI 3: Existem diferenças críticas nos padrões de qualidade entre vinhos tintos e vinhos brancos?**
   Utilizando a variável `is_red`, o projeto irá testar se um modelo treinado numa variante de vinho mantém a eficácia ao prever a qualidade da outra.
-## 4. Metodologia de Gestão (PBL)
+## 4. Ferramentas e Bibliotecas Python
+Pandas & NumPy: Para manipulação e tratamento estatístico dos dados.
+Seaborn & Matplotlib: Para a criação de gráficos e análise visual.
+Scikit-learn: Para a construção e avaliação dos modelos de Aprendizagem Automática.
+## 5. Metodologia de Gestão (PBL)
  * **Afonso Carvalho:** Responsável pela Engenharia de Dados e Visualização.
  * **Marcello Portugal:** Responsável pela Modelação Estatística e Documentação.
 * **Ferramentas de Colaboração:** Utilizamos o GitHub Projects (Kanban), o Kaggle para o desenvolvimento do código e o Discord/WhatsApp para a comunicação diária do projeto.
-## 5. Estrutura e Preparação dos Dados
+## 6. Estrutura e Preparação dos Dados
 
 Após a importação dos dados originais, o primeiro passo consistiu na unificação dos ficheiros de vinhos tintos e brancos através do comando `pd.concat()`. Esta junção resultou num conjunto de dados robusto com 6.497 amostras, consolidando todas as variáveis físico-químicas num único objeto de análise. Durante este processo, foi fundamental validar a integridade do dataset; a execução do comando `df.isnull().sum()` confirmou a ausência total de valores nulos, o que assegura que não haverá necessidade de realizar limpezas ou imputações de dados nas fases seguintes.
 
@@ -55,12 +59,12 @@ Através do comando `df.describe()`, observámos que a variável alvo (`quality`
 | **`quality`** | **Int64** | **Alvo** | **Pontuação de 0 a 10.** | **[3 - 9]** |
 | `type` | Object | Identificação | Texto (red/white). | [N/A] |
 | `is_red` | Int64 | Identificação | Binário (1=T / 0=B). | [0 - 1] |
-## 6. Viabilidade e Confiança nos Dados
+## 7. Viabilidade e Confiança nos Dados
 Validada a estrutura dos dados no ponto anterior, a continuidade do trabalho é assegurada pelos seguintes requisitos técnicos e éticos:
 * **Disponibilidade:** Os dados foram obtidos através do repositório oficial da UCI e a sua integração foi validada com sucesso no ambiente de trabalho Kaggle.
 * **Fiabilidade:** A integridade dos dados e a ausência de valores nulos permitem que o desenvolvimento se foque diretamente na criação e otimização dos modelos, prevenindo a necessidade de correções ou limpezas complexas durante o processo.
 * **Ética e Citação:** O projeto cumpre as normas de proteção de dados e privacidade, uma vez que apenas estão disponíveis variáveis físico-químicas e sensoriais, sem qualquer informação sobre marcas ou produtores. Conforme solicitado pelos autores (P. Cortez et al., 2009), a utilização destes dados para fins de investigação será devidamente creditada através da citação do artigo original publicado na revista Decision Support Systems.
-## 7. Cronograma Interno
+## 8. Cronograma Interno
 | Fase | Data Limite | Entregável Esperado |
 | :--- | :--- | :--- |
 | M1: Iniciação | [Data] | Repositório estruturado e Plano de Projeto. |
