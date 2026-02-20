@@ -13,7 +13,17 @@ Desta forma, o problema deixa de ser apenas uma questão de paladar e passa a se
 O objetivo principal deste projeto é avaliar até que ponto as características químicas de um vinho podem substituir ou apoiar as avaliações sensoriais humanas, que são muitas vezes subjetivas e dispendiosas. Optou-se pela utilização de modelos de regressão, uma vez que a variável de qualidade está definida numa escala numérica de 0 a 10. Desta forma, o modelo não se limita a classificar o vinho em categorias, mas tenta prever com exatidão a pontuação que seria atribuída pelos especialistas.
 
 A meta de alcançar um Erro Médio Absoluto (MAE) inferior a 0.5 justifica-se pela necessidade de precisão no setor vitivinícola. Na prática, um desvio superior a meio ponto poderia levar a uma classificação incorreta do perfil de um lote, afetando o seu posicionamento no mercado. Por exemplo, prever uma nota 6 para um vinho que é, na verdade, um 7, poderia desvalorizar um produto de qualidade superior. Assim, este limite de erro garante que as previsões sejam fiáveis e úteis para o controlo de qualidade. Este percurso de otimização será realizado até ao final da Milestone 3, permitindo testar e ajustar os algoritmos para cumprir este rigor técnico.
-## 3. Metodologia de Gestão (PBL)
+## 3. Perguntas de Investigação
+
+O projeto pretende responder às seguintes questões de forma a validar a utilidade prática do modelo:
+
+* **PI 1: Qual é a capacidade de previsão de um modelo baseado apenas em dados físico-químicos?**
+  Pretende-se verificar se é possível apoiar/substituir a avaliação sensorial humana através de um algoritmo com uma margem de erro aceitável.
+* **PI 2: Quais são as 3 variáveis físico-químicas que mais contribuem para a previsão de um vinho de "Alta Qualidade" (nota ≥ 7)?**
+  O objetivo é identificar, entre os 11 atributos físico-químicos, quais funcionam como os principais indicadores de excelência.
+* **PI 3: Existem diferenças críticas nos padrões de qualidade entre vinhos tintos e vinhos brancos?**
+  Utilizando a variável `is_red`, o projeto irá testar se um modelo treinado numa variante de vinho mantém a eficácia ao prever a qualidade da outra.
+## 4. Metodologia de Gestão (PBL)
  * **Afonso Carvalho:** Responsável pela Engenharia de Dados e Visualização.
  * **Marcello Portugal:** Responsável pela Modelação Estatística e Documentação.
 * **Ferramentas de Colaboração:** Utilizamos o GitHub Projects (Kanban), o Kaggle para o desenvolvimento do código e o Discord/WhatsApp para a comunicação diária do projeto.
