@@ -23,10 +23,16 @@ O projeto pretende responder às seguintes questões de forma a validar a utilid
   O objetivo é identificar, entre os 11 atributos físico-químicos, quais funcionam como os principais indicadores de excelência.
 * **PI 3: Existem diferenças críticas nos padrões de qualidade entre vinhos tintos e vinhos brancos?**
   Utilizando a variável `is_red`, o projeto irá testar se um modelo treinado numa variante de vinho mantém a eficácia ao prever a qualidade da outra.
-## 4. Ferramentas e Bibliotecas Python
-Pandas & NumPy: Para manipulação e tratamento estatístico dos dados.
-Seaborn & Matplotlib: Para a criação de gráficos e análise visual.
-Scikit-learn: Para a construção e avaliação dos modelos de Aprendizagem Automática.
+## 4. Ferramentas e Bibliotecas Utilizadas
+
+O ambiente de trabalho foi configurado através do Kaggle Kernels, permitindo-nos processar o código em nuvem com acesso direto aos ficheiros de dados. Para garantir que tudo se mantém organizado, o Kaggle está conectado ao GitHub, o que facilita a sincronização do código e o controlo das versões que vamos produzindo.
+
+A gestão e o desenvolvimento foram assegurados pelas seguintes ferramentas:
+
+* **Gestão:** Para gerir as tarefas, utilizámos o GitHub Projects com um quadro Kanban, enquanto a comunicação rápida e as decisões de equipa foram feitas através do Discord e WhatsApp.
+* **Desenvolvimento:** Nesta fase, a biblioteca Pandas foi a nossa ferramenta central e a única que utilizámos efetivamente para carregar os ficheiros, unificar os dados dos vinhos e realizar a primeira inspeção.
+
+Embora bibliotecas como NumPy, Matplotlib e Seaborn já tenham sido importadas no início do nosso notebook, ainda não as chamámos para nenhuma operação nesta etapa inicial. Estas ferramentas ficam reservadas para as fases de análise visual e modelação que se seguem.
 ## 5. Metodologia de Gestão (PBL)
  * **Afonso Carvalho:** Responsável pela Engenharia de Dados e Visualização.
  * **Marcello Portugal:** Responsável pela Modelação Estatística e Documentação.
