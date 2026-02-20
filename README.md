@@ -31,20 +31,11 @@ Desenvolver um modelo de Machine Learning com métricas de regressão para preve
 *PI 3: Existem diferenças críticas nos padrões de qualidade entre vinhos tintos e vinhos brancos?*
   
 ### Fonte de Dados
-* **Dataset:** https://archive.ics.uci.edu/dataset/186/wine+quality
+* **Dataset:** [UCI Wine Quality](https://archive.ics.uci.edu/dataset/186/wine+quality)
+* **Dataset Original:** 6.497 registos (1.599 tintos / 4.898 brancos) | 12 atributos.
+* **Dataset Processado:** 6.497 registos | 14 atributos.
+* **Variável Alvo:** `quality` (Pontuação de 0 a 10, onde valores mais altos indicam melhor qualidade sensorial).
   
-**Dataset Original:**
-* **Registos:** 6.497 (1.599 vinhos tintos e 4.898 vinhos brancos).
-* **Atributos:** 12 (11 preditores físico-químicos e 1 variável alvo: `quality`).
-
-**Dataset Processado:** 6.497 registos | 14 atributos
-
-* **Variáveis de Entrada:** 11 atributos físico-químicos.
-* **Variável Alvo:** `quality`
-* **Variável Categórica:** `type`
-* **Variável Binária:** `is_red`
-
-
 ### Ferramentas e Bibliotecas Python
 * **Pandas & NumPy:** Para manipulação e tratamento estatístico dos dados.
 * **Seaborn & Matplotlib:** Para a criação de gráficos e análise visual.
