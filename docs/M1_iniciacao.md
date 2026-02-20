@@ -72,9 +72,9 @@ Validada a estrutura dos dados no ponto anterior, a continuidade do trabalho é 
 ## 8. Cronograma Interno
 | Fase | Data Limite | Entregável Esperado |
 | :--- | :--- | :--- |
-| M1: Iniciação | 24/02/2026 | Repositório estruturado e Plano de Projeto. |
-| M2: Exploração | [Data] | Notebook de EDA e Dados Processados. |
-| M3: Modelação | [Data] | Comparação de algoritmos e métricas. |
-| M4: Finalização| [Data] | Pitch e Relatório Final. |
+| M1: Iniciação | [24/02/2026]  | Repositório estruturado e Plano de Projeto. |
+| M2: Exploração | [24/03/2026] | Notebook de EDA e Dados Processados. |
+| M3: Modelação | [21/04/2026] | Comparação de algoritmos e métricas. |
+| M4: Finalização| [21/05/2026] | Pitch e Relatório Final. |
 ---
-*Data de última atualização: 20/02/2026*
+*Data de última atualização: [20/02/2026]*
