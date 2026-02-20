@@ -21,11 +21,7 @@ A relevância deste desafio reside na procura por um padrão de qualidade que se
 
 No fundo, trata-se de criar uma ferramenta de apoio à decisão que ajude a garantir a qualidade dos vinhos, otimize os custos de prova e permita uma resposta mais rápida às exigências do mercado, transformando dados químicos complexos em informação estratégica para o negócio.
 ### Objetivos SMART
-- [ ] **S (Específico):** Prever a nota de qualidade sensorial do vinho numa escala de 0 a 10.
-- [ ] **M (Mensurável):** Avaliar o desempenho do modelo através do Erro Médio Absoluto (MAE), com a meta de atingir um erro inferior a 0.5 pontos.
-- [ ] **A (Atingível):** Utilização de um dataset real e robusto com 6.497 registos (vinhos tintos e brancos) sem valores em falta.
-- [ ] **R (Relevante):** Aplicação direta na indústria vinícola para otimizar o controlo de qualidade e reduzir a dependência exclusiva de provas sensoriais dispendiosas.
-- [ ] **T (Temporal):** Desenvolvimento, teste e avaliação final do modelo até ao final da Milestone 3 deste projeto.
+Desenvolver um modelo de Machine Learning com métricas de regressão para prever a qualidade sensorial do Vinho Verde (escala 0-10) com base em 11 variáveis físico-químicas, atingindo um erro médio absoluto (MAE) inferior a 0.5 pontos até ao final da Milestone 3 deste projeto.
 
 ### Perguntas de Investigação: 
 *PI 1: Qual é a capacidade de previsão de um modelo baseado apenas em dados físico-químicos?*
@@ -36,15 +32,21 @@ No fundo, trata-se de criar uma ferramenta de apoio à decisão que ajude a gara
   
 ### Fonte de Dados
 * **Dataset:** https://archive.ics.uci.edu/dataset/186/wine+quality
-* **Dimensão:** Total de linhas 6.497 / Total de colunas 12
+* **Dimensão (Dataset original):** Total de linhas 6.497 / Total de colunas 12
   
   Vinho Tinto: 1.599 instâncias (linhas).
   
   Vinho Branco: 4.898 instâncias (linhas).
 
   Atributos: 12 colunas em ambos os ficheiros (11 variáveis de entrada + 1 variável de saída).
+* **Dimensão (Dataset processado):** Total de linhas 6.497 / Total de colunas 14
+  
+  Vinho Tinto: 1.599 instâncias (linhas).
+  
+  Vinho Branco: 4.898 instâncias (linhas).
 
-### Tratamento de Dados
+  Atributos: 12 colunas em ambos os ficheiros (11 variáveis de entrada + 1 variável de saída + 1 variável binária +    1 variável categórica).
+
 
 ### Ferramentas e Bibliotecas Python
 * **Pandas & NumPy:** Para manipulação e tratamento estatístico dos dados.
@@ -67,6 +69,11 @@ do método ganho de informação]
 [Resumo da solução e como ela gera valor para o negócio.]
 ### Recomendações de Inovação
 1. [Sugestão prática baseada nos resultados]
+
+## 5. Refêrencias
+1. P. Cortez, A. Cerdeira, F. Almeida, T. Matos and J. Reis. Modeling wine preferences by data mining from physicochemical properties. In Decision Support Systems, Elsevier, 47(4):547-553. ISSN: 0167-9236.
+
+
 ## Como Reproduzir este Projeto
 1. Clone o repositório: `git clone [url-do-repo]`
 2. Instale as dependências: `pip install -r requirements.txt`
