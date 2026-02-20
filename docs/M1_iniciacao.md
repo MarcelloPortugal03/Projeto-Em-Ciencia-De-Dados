@@ -33,10 +33,9 @@ A gestão e o desenvolvimento foram assegurados pelas seguintes ferramentas:
 * **Desenvolvimento:** Nesta fase, a biblioteca Pandas foi a nossa ferramenta central e a única que utilizámos efetivamente para carregar os ficheiros, unificar os dados dos vinhos e realizar a primeira inspeção.
 
 Embora bibliotecas como NumPy, Matplotlib e Seaborn já tenham sido importadas no início do nosso notebook, ainda não as chamámos para nenhuma operação nesta etapa inicial. Estas ferramentas ficam reservadas para as fases de análise visual e modelação que se seguem.
-## 5. Metodologia de Gestão (PBL)
+## 5. Gestão das Tarefas
  * **Afonso Carvalho:** Responsável pela Engenharia de Dados e Visualização.
  * **Marcello Portugal:** Responsável pela Modelação Estatística e Documentação.
-* **Ferramentas de Colaboração:** Utilizamos o GitHub Projects (Kanban), o Kaggle para o desenvolvimento do código e o Discord/WhatsApp para a comunicação diária do projeto.
 ## 6. Estrutura e Preparação dos Dados
 
 Após a importação dos dados originais, o primeiro passo consistiu na unificação dos ficheiros de vinhos tintos e brancos através do comando `pd.concat()`. Esta junção resultou num conjunto de dados robusto com 6.497 amostras, consolidando todas as variáveis físico-químicas num único objeto de análise. Durante este processo, foi fundamental validar a integridade do dataset; a execução do comando `df.isnull().sum()` confirmou a ausência total de valores nulos, o que assegura que não haverá necessidade de realizar limpezas ou imputações de dados nas fases seguintes.
