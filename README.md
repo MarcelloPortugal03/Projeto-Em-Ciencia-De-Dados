@@ -32,20 +32,17 @@ Desenvolver um modelo de Machine Learning com métricas de regressão para preve
   
 ### Fonte de Dados
 * **Dataset:** https://archive.ics.uci.edu/dataset/186/wine+quality
-* **Dimensão (Dataset original):** Total de linhas 6.497 / Total de colunas 12
   
-  Vinho Tinto: 1.599 instâncias (linhas).
-  
-  Vinho Branco: 4.898 instâncias (linhas).
+**Dataset Original:**
+* **Registos:** 6.497 (1.599 vinhos tintos e 4.898 vinhos brancos).
+* **Atributos:** 12 (11 preditores físico-químicos e 1 variável alvo: `quality`).
 
-  Atributos: 12 colunas em ambos os ficheiros (11 variáveis de entrada + 1 variável de saída).
-* **Dimensão (Dataset processado):** Total de linhas 6.497 / Total de colunas 14
-  
-  Vinho Tinto: 1.599 instâncias (linhas).
-  
-  Vinho Branco: 4.898 instâncias (linhas).
+**Dataset Processado:** 6.497 registos | 14 atributos
 
-  Atributos: 12 colunas em ambos os ficheiros (11 variáveis de entrada + 1 variável de saída + 1 variável binária +    1 variável categórica).
+* **Variáveis de Entrada:** 11 atributos físico-químicos.
+* **Variável Alvo:** `quality`
+* **Variável Categórica:** `type`
+* **Variável Binária:** `is_red`
 
 
 ### Ferramentas e Bibliotecas Python
