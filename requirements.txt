@@ -1,1 +1,18 @@
 
+pandas
+numpy
+scipy
+matplotlib
+seaborn
+scikit-learn
+ipython
+jupyter
+notebook
+tqdm
+watermark
+python-dotenv
+pytest
+coverage
+engarde
+nbdime
+runipy
