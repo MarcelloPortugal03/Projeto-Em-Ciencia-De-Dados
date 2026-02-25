@@ -62,7 +62,7 @@ Através do comando `df.describe()`, observámos que a variável alvo (`quality`
 | `sulphates` | Float64 | Preditiva | Aditivos antioxidantes. | [0.22 - 2.0] |
 | `alcohol` | Float64 | Preditiva | Teor alcoólico (%). | [8.0 - 14.9] |
 | **`quality`** | **Int64** | **Alvo** | **Pontuação de 0 a 10.** | **[3 - 9]** |
-| `type` | Object | Identificação | Texto (red/white). | [N/A] |
+| `type` | Category | Identificação | Texto (red/white). | [N/A] |
 | `is_red` | Int64 | Identificação | Binário (1=T / 0=B). | [0 - 1] |
 ## 7. Viabilidade e Confiança nos Dados
 Validada a estrutura dos dados no ponto anterior, a continuidade do trabalho é assegurada pelos seguintes requisitos técnicos e éticos:
