@@ -6,7 +6,7 @@ A variável alvo deste projeto é a `quality`, que representa a pontuação atri
 
 * **Concentração Central:** A grande maioria dos vinhos no nosso dataset concentra-se nas notas intermédias, especificamente entre os valores 5, 6 e 7. Isto indica que temos uma base sólida para prever vinhos de qualidade média.
 * **Escassez de Extremos:** Observamos que existem poucos registos nos extremos da escala (notas 3, 4, 8 e 9). Isto é algo que poderá vir a exigir uma atenção especial na fase de treino, uma vez que o modelo terá menos exemplos desses para aprender as características de vinhos de qualidade muito baixa ou de excelência.
-Escassez de Extremos: Observamos que existem poucos registos nos extremos da escala (notas 3, 4, 8 e 9). Isto é algo que poderá vir a exigir uma atenção especial na fase de treino, uma vez que o modelo terá menos exemplos desses para aprender as características de vinhos de qualidade muito baixa ou de excelência.
+
 
 ### 1.2. Análise Univariada
 
