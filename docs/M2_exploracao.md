@@ -10,7 +10,20 @@ A variável alvo deste projeto é a `quality`, que representa a pontuação atri
 * **Concentração Central:** A grande maioria dos vinhos no nosso dataset concentra-se nas notas intermédias, especificamente entre os valores 5, 6 e 7. Isto indica que temos uma base sólida para prever vinhos de qualidade média.
 * **Escassez de Extremos:** Observamos que existem poucos registos nos extremos da escala (notas 3, 4, 8 e 9). Isto é algo que poderá vir a exigir uma atenção especial na fase de treino, uma vez que o modelo terá menos exemplos desses para aprender as características de vinhos de qualidade muito baixa ou de excelência.
 Escassez de Extremos: Observamos que existem poucos registos nos extremos da escala (notas 3, 4, 8 e 9). Isto é algo que poderá vir a exigir uma atenção especial na fase de treino, uma vez que o modelo terá menos exemplos desses para aprender as características de vinhos de qualidade muito baixa ou de excelência.
-### 1.2. Correlações Relevantes
+
+### 1.2. Análise Univariada
+
+Nesta etapa, analisamos individualmente cada atributo do dataset para identificar padrões de distribuição, presença de valores atípicos e o equilíbrio entre os tipos de vinho.
+
+**Variáveis Categóricas (Tipo de Vinho):**
+* **Predomínio de Vinhos Brancos:** O dataset apresenta um desequilíbrio acentuado entre os tipos de vinho. Os vinhos brancos compõem cerca de 75,39% da amostra (4898 registos), enquanto os vinhos tintos representam apenas 24,61% (1599 registos). Esta disparidade indica que o modelo será treinado com uma base muito mais vasta de perfis químicos de vinhos brancos.
+
+**Variáveis Numéricas (Físico-Químicas):**
+* **Assimetria e Distribuição:** A maioria das variáveis apresenta uma distribuição positivamente assimétrica (cauda longa à direita). Atributos como `residual sugar`, `chlorides` e `free sulfur dioxide` mostram picos de concentração em valores baixos, com uma dispersão longa para valores mais elevados.
+* **Presença de Outliers:** Através dos boxplots, é possível observar uma quantidade significativa de outliers em quase todas as variáveis, com especial destaque para `residual sugar` e `chlorides`. Estes valores extremos refletem vinhos com características químicas muito fora da média, o que exigirá um tratamento de escala ou limpeza para evitar o enviesamento dos algoritmos de regressão.
+* **Proximidade à Normalidade:** Variáveis como o `pH` e a `density` são as que mais se aproximam de uma distribuição gaussiana, apresentando uma forma mais simétrica e centrada em comparação com as restantes.
+  
+### 1.3. Correlações Relevantes
 *Quais as variáveis que têm maior relação com o problema? Incluam referências a gráficos que
 geraram no Kaggle.*
 * **Atributo A vs. Alvo:** (Ex: "Notámos que quanto maior a idade, menor a probabilidade de
