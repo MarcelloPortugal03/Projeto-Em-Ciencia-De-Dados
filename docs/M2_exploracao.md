@@ -27,12 +27,34 @@ Ao cruzarmos as visualizações com as estatísticas descritivas, selecionámos 
 * **pH:** Os números reforçam a estabilidade do pH, que apresenta um desvio padrão muito baixo (0.16). Com a média (3.22) praticamente igual à mediana (3.21), confirmamos que esta é a variável com o comportamento mais previsível e simétrico do conjunto.
   
 ### 1.3. Análise Bivariada e Correlações Relevantes
-*Quais as variáveis que têm maior relação com o problema? Incluam referências a gráficos que
-geraram no Kaggle.*
-* **Atributo A vs. Alvo:** (Ex: "Notámos que quanto maior a idade, menor a probabilidade de
-cancelamento.")
-* **Atributo B vs. Alvo:** (Ex: "O tipo de contrato mensal está fortemente ligado à saída de
-clientes.")
+
+## 1.3. Análise Bivariada e Correlações Relevantes
+
+Nesta etapa, analisamos a força e a direção das relações entre as variáveis do dataset, focando no impacto sobre a qualidade e na identificação de redundâncias (**multicolinearidade**).
+
+### 1.3.1. Visão Geral: Matriz de Correlação (Heatmap)
+O **Heatmap de Pearson** é a nossa ferramenta de triagem principal. Através da intensidade das cores e dos coeficientes numéricos, observamos que:
+* **Complexidade do Dataset:** Não existe uma única variável que determine a qualidade isoladamente com uma correlação perfeita (próxima de 1). 
+* **Distribuição de Força:** A maioria das variáveis apresenta correlações fracas (entre -0.1 e 0.1), o que justifica a necessidade de um modelo de Machine Learning que combine múltiplos fatores para obter previsões precisas.
+
+### 1.3.2. Análise dos Atributos vs. Alvo (Qualidade)
+Embora tenhamos gerado múltiplos gráficos, focámos a análise detalhada nos preditores que demonstraram maior significância estatística:
+
+* **Os Preditores Mais Fortes:**
+    * **Teor Alcoólico ($r = 0.44$):** É a variável com maior impacto positivo. Visualmente, a linha de regressão é a mais inclinada, confirmando que o álcool é o fator que mais "empurra" a nota final para cima.
+    * **Acidez Volátil ($r = -0.27$):** É o principal detrator da qualidade. Escolhemos este gráfico porque ele explica a maior parte da variação negativa; quanto mais o vinho "avinagra" (ácido acético), mais a qualidade desce de forma linear.
+
+* **Os Preditores Irrelevantes (Correlações Fracas):**
+    * Variáveis como **Açúcar Residual ($r = 0.01$)** e **pH ($r = -0.05$)** apresentam linhas de regressão praticamente horizontais. Isto indica que, isoladamente, estas características têm quase influência nula na percepção de qualidade, podendo ser candidatas a exclusão para simplificar o modelo.
+
+### 1.3.3. Interdependência e Multicolinearidade
+Para garantir a estabilidade do modelo, analisámos como as variáveis independentes interagem entre si, destacando-se três relações fundamentais:
+
+1.  **Álcool vs. Densidade ($r = -0.69$):** A relação mais forte de todo o dataset. Fisicamente, o álcool reduz a densidade do vinho, criando uma correlação inversa muito nítida.
+2.  **Açúcar Residual vs. Densidade ($r = 0.55$):** O açúcar aumenta a massa volúmica, contrabalançando o efeito do álcool.
+3.  **Acidez Fixa vs. pH ($r = -0.25$):** Uma relação química básica que valida a integridade dos dados (maior acidez fixa baixa o pH).
+
+> **Estratégia de Modelagem:** A redundância extrema entre **Álcool** e **Densidade** pode confundir o algoritmo. Dado que o Álcool tem uma relação muito mais forte com a Qualidade (0.44 vs -0.17), optaremos por priorizar o Álcool e possivelmente descartar a Densidade para evitar o *overfitting*.
 ## 2. Qualidade dos Dados e Limpeza
 ### 2.1. Tratamento de Dados em Falta (Missing Data)
 * **Colunas afetadas:** [Lista de colunas]
