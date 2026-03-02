@@ -28,9 +28,8 @@ Ao cruzarmos as visualizações com as estatísticas descritivas, selecionámos 
   
 ### 1.3. Análise Bivariada e Correlações Relevantes
 
-## 1.3. Análise Bivariada e Correlações Relevantes
 
-Nesta etapa, analisamos a força e a direção das relações entre as variáveis do dataset, focando no impacto sobre a qualidade e na identificação de redundâncias (**multicolinearidade**).
+Nesta fase, avaliámos a intensidade e a direção das correlações entre as variáveis do dataset, com foco no seu impacto na qualidade e na deteção de possíveis problemas de multicolinearidade.
 
 ### 1.3.1. Visão Geral: Matriz de Correlação (Heatmap)
 O **Heatmap de Pearson** é a nossa ferramenta de triagem principal. Através da intensidade das cores e dos coeficientes numéricos, observamos que:
