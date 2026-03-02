@@ -53,7 +53,6 @@ Para garantir a estabilidade do modelo, analisámos como as variáveis independe
 2.  **Açúcar Residual vs. Densidade ($r = 0.55$):** O açúcar aumenta a massa volúmica, contrabalançando o efeito do álcool.
 3.  **Acidez Fixa vs. pH ($r = -0.25$):** Uma relação química básica que valida a integridade dos dados (maior acidez fixa baixa o pH).
 
-> **Estratégia de Modelagem:** A redundância extrema entre **Álcool** e **Densidade** pode confundir o algoritmo. Dado que o Álcool tem uma relação muito mais forte com a Qualidade (0.44 vs -0.17), optaremos por priorizar o Álcool e possivelmente descartar a Densidade para evitar o *overfitting*.
 ## 2. Qualidade dos Dados e Limpeza
 ### 2.1. Tratamento de Dados em Falta (Missing Data)
 * **Colunas afetadas:** [Lista de colunas]
