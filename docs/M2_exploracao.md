@@ -22,7 +22,7 @@ Nesta etapa, analisamos individualmente cada atributo do dataset para identifica
 #### 1.2.1. Análise de Métricas Relevantes
 Ao cruzarmos as visualizações com as estatísticas descritivas, selecionámos os indicadores mais significativos para fundamentar as observações feitas anteriormente:
 
-* **Açúcar Residual:** A amplitude desta variável é enorme, variando entre 0.6 e 65.8. O facto de o desvio padrão (4.76) ser quase tão alto quanto a média (5.44) confirma que os vinhos neste dataset têm perfis de doçura muito distintos entre si.
+* **Açúcar Residual:** A amplitude desta variável é consideravelmente alta, variando entre 0.6 e 65.8. O facto de o desvio padrão (4.76) ser quase tão alto quanto a média (5.44) confirma que os vinhos neste dataset têm perfis de doçura muito distintos entre si.
 * **Cloretos:** Embora 75% dos vinhos tenham valores de cloretos abaixo de 0.065, o valor máximo chega aos 0.611. Esta diferença de quase dez vezes prova que os outliers que vimos nos gráficos são, de facto, desvios extremos que precisam de atenção.
 * **pH:** Os números reforçam a estabilidade do pH, que apresenta um desvio padrão muito baixo (0.16). Com a média (3.22) praticamente igual à mediana (3.21), confirmamos que esta é a variável com o comportamento mais previsível e simétrico do conjunto.
   
@@ -44,10 +44,10 @@ Embora tenhamos gerado múltiplos gráficos, focámos a análise detalhada nos p
     * **Acidez Volátil ($r = -0.27$):** É o principal detrator da qualidade. Escolhemos este gráfico porque ele explica a maior parte da variação negativa; quanto mais o vinho "avinagra" (ácido acético), mais a qualidade desce de forma linear.
 
 * **Os Preditores Irrelevantes (Correlações Fracas):**
-    * Variáveis como **Açúcar Residual ($r = 0.01$)** e **pH ($r = -0.05$)** apresentam linhas de regressão praticamente horizontais. Isto indica que, isoladamente, estas características têm quase influência nula na percepção de qualidade, podendo ser candidatas a exclusão para simplificar o modelo.
+    * Variáveis como Açúcar Residual ($r = 0.01$) e pH ($r = -0.05$) apresentam linhas de regressão praticamente horizontais. Isto indica que, isoladamente, estas características têm quase influência nula na percepção de qualidade, podendo ser candidatas a exclusão para simplificar o modelo.
 
 ### 1.3.3. Interdependência e Multicolinearidade
-Para garantir a estabilidade do modelo, analisámos como as variáveis independentes interagem entre si, destacando-se três relações fundamentais:
+Para garantir a estabilidade do modelo e evitar a redundância de dados (multicolinearidade), analisámos a forma como as variáveis comunicam entre si. Em vez de testarmos todas as combinações, focámo-nos em três relações específicas. Esta escolha foi intencional: selecionámos os pares que apresentaram as correlações mais fortes no nosso Heatmap e que, simultaneamente, possuem uma explicação lógica na química do vinho:
 
 1.  **Álcool vs. Densidade ($r = -0.69$):** A relação mais forte de todo o dataset. Fisicamente, o álcool reduz a densidade do vinho, criando uma correlação inversa muito nítida.
 2.  **Açúcar Residual vs. Densidade ($r = 0.55$):** O açúcar aumenta a massa volúmica, contrabalançando o efeito do álcool.
