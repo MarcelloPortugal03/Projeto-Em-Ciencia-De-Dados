@@ -54,11 +54,39 @@ Para garantir a estabilidade do modelo e evitar a redundância de dados (multico
 3.  **Acidez Fixa vs. pH ($r = -0.25$):** Uma relação química básica que valida a integridade dos dados (maior acidez fixa baixa o pH).
 
 ## 2. Qualidade dos Dados e Limpeza
-### 2.1. Tratamento de Dados em Falta (Missing Data)
-* **Colunas afetadas:** [Lista de colunas]
-* **Estratégia adotada:** (Ex: "Substituímos os nulos da coluna 'Salário' pela mediana para
-evitar o impacto de outliers.")
-### 2.2. Outliers e Inconsistências
+
+Nesta fase, auditamos a integridade do dataset para garantir que a modelagem futura não seja enviesada por dados ausentes ou inconsistentes.
+
+### 2.1. Diagnóstico de Valores Nulos
+Utilizámos o método `isnull().sum()` para verificar a presença de lacunas em todas as variáveis físico-químicas e na variável alvo.
+
+| Coluna | Percentagem de Nulos | Estado |
+| :--- | :--- | :--- |
+| fixed acidity | 0% | OK |
+| volatile acidity | 0% | OK |
+| citric acid | 0% | OK |
+| residual sugar | 0% | OK |
+| chlorides | 0% | OK |
+| free sulfur dioxide | 0% | OK |
+| total sulfur dioxide | 0% | OK |
+| density | 0% | OK |
+| pH | 0% | OK |
+| sulphates | 0% | OK |
+| alcohol | 0% | OK |
+| quality | 0% | OK |
+
+**Resultado:** A inspeção confirmou que o dataset apresenta **0% de valores nulos** em todas as colunas. 
+
+### 2.2. Definição da Estratégia de Limpeza
+Embora o dataset atual esteja completo, estabelecemos o seguinte protocolo de qualidade para assegurar a reprodutibilidade do projeto em novos carregamentos de dados:
+
+1.  **Tratamento de Nulos:** Caso surgissem valores ausentes em variáveis numéricas, a estratégia prioritária seria a **Imputação pela Mediana**, dado que o `df.describe()` revelou um desvio padrão considerável e a presença de potenciais *outliers* em colunas como `residual sugar`.
+2.  **Integridade de Tipos:** A inspeção via `df.info()` confirmou que todos os preditores são numéricos (`float64` ou `int64`), o que é ideal para o processamento matemático sem necessidade de conversões complexas nesta fase.
+
+### 2.3. Documentação da Decisão Final
+* **Estratégia Adotada:** Manutenção integral do dataset original.
+* **Justificação:** Como não foram detetados valores nulos ou tipos de dados incongruentes, optámos por não aplicar algoritmos de imputação ou eliminação de linhas, preservando a variância natural e a distribuição original dos dados químicos.
+### 2.4. Outliers e Inconsistências
 *Descrevam se encontraram valores impossíveis (ex: idade = 200) e como os resolveram.*
 ## 3. Engenharia de Atributos (Feature Engineering)
 ### 3.1. Transformações Realizadas
