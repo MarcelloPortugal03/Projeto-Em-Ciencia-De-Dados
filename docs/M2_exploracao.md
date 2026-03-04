@@ -53,6 +53,13 @@ Para garantir a estabilidade do modelo e evitar a redundância de dados (multico
 2.  **Açúcar Residual vs. Densidade ($r = 0.55$):** O açúcar aumenta a massa volúmica, contrabalançando o efeito do álcool.
 3.  **Acidez Fixa vs. pH ($r = -0.25$):** Uma relação química básica que valida a integridade dos dados (maior acidez fixa baixa o pH).
 
+### 1.4. Principais Insights da EDA
+
+Para finalizar a Análise Exploratória de Dados (EDA), consolidamos as descobertas mais importantes que vão guiar a construção do nosso modelo preditivo.
+
+* **1. O Peso do Álcool e da Acidez:** O teor alcoólico é o melhor indicador para prever notas altas, enquanto a acidez volátil (o sabor avinagrado) é a principal causa de notas baixas. O nosso futuro modelo de Aprendizagem Automática terá, obrigatoriamente, de dar um peso significativo a estas duas forças opostas.
+* **2. A (Ir)relevância da Cor do Vinho:** Apesar de o dataset ter uma maioria esmagadora de vinhos brancos, a variável `is_red` provou ter um impacto estatístico quase nulo na avaliação de qualidade. A qualidade, neste conjunto de dados, é definida pela química e não pela cor.
+
 ## 2. Qualidade dos Dados e Limpeza
 
 Nesta fase, auditamos a integridade do dataset para garantir que a modelagem futura não seja enviesada por dados ausentes ou inconsistentes.
