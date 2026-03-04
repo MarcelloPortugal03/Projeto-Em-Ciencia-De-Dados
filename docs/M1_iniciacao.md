@@ -46,24 +46,22 @@ Através do comando `df.describe()`, observámos que a variável alvo (`quality`
 
 
 
-### Dicionário de Variáveis e Intervalos Observados
+### Dicionário de Variáveis e Intervalos Observados (Dataset Original)
 
 | Variável | Tipo | Natureza | Descrição | Intervalo [Mín - Máx] |
 | :--- | :--- | :--- | :--- | :--- |
-| `fixed acidity` | Float64 | Preditiva | Ácidos fixos do vinho. | [3.8 - 15.9] |
-| `volatile acidity` | Float64 | Preditiva | Ácidos voláteis (aroma). | [0.08 - 1.58] |
-| `citric acid` | Float64 | Preditiva | Confere frescura. | [0.0 - 1.66] |
-| `residual sugar` | Float64 | Preditiva | Açúcar pós-fermentação. | [0.6 - 65.8] |
-| `chlorides` | Float64 | Preditiva | Teor de sais. | [0.009 - 0.611] |
-| `free sulfur dioxide` | Float64 | Preditiva | SO2 na forma livre. | [1.0 - 289.0] |
-| `total sulfur dioxide` | Float64 | Preditiva | Teor total de SO2. | [6.0 - 440.0] |
-| `density` | Float64 | Preditiva | Densidade da amostra. | [0.987 - 1.039] |
-| `pH` | Float64 | Preditiva | Nível de acidez. | [2.72 - 4.01] |
-| `sulphates` | Float64 | Preditiva | Aditivos antioxidantes. | [0.22 - 2.0] |
-| `alcohol` | Float64 | Preditiva | Teor alcoólico (%). | [8.0 - 14.9] |
-| **`quality`** | **Int64** | **Alvo** | **Pontuação de 0 a 10.** | **[3 - 9]** |
-| `type` | Category | Identificação | Texto (red/white). | [N/A] |
-| `is_red` | Int64 | Identificação | Binário (1=T / 0=B). | [0 - 1] |
+| `fixed acidity` | Numérica | Preditiva | Ácidos fixos do vinho. | [3.8 - 15.9] |
+| `volatile acidity` | Numérica | Preditiva | Ácidos voláteis (aroma). | [0.08 - 1.58] |
+| `citric acid` | Numérica | Preditiva | Confere frescura. | [0.0 - 1.66] |
+| `residual sugar` | Numérica | Preditiva | Açúcar pós-fermentação. | [0.6 - 65.8] |
+| `chlorides` | Numérica | Preditiva | Teor de sais. | [0.009 - 0.611] |
+| `free sulfur dioxide` | Numérica | Preditiva | SO2 na forma livre. | [1.0 - 289.0] |
+| `total sulfur dioxide` | Numérica | Preditiva | Teor total de SO2. | [6.0 - 440.0] |
+| `density` | Numérica | Preditiva | Densidade da amostra. | [0.987 - 1.039] |
+| `pH` | Numérica | Preditiva | Nível de acidez. | [2.72 - 4.01] |
+| `sulphates` | Numérica | Preditiva | Aditivos antioxidantes. | [0.22 - 2.0] |
+| `alcohol` | Numérica | Preditiva | Teor alcoólico (%). | [8.0 - 14.9] |
+| **`quality`** | **Numérica** | **Alvo** | **Pontuação de 0 a 10.** | **[3 - 9]** |
 ## 7. Viabilidade e Confiança nos Dados
 Validada a estrutura dos dados no ponto anterior, a continuidade do trabalho é assegurada pelos seguintes requisitos técnicos e éticos:
 * **Disponibilidade:** Os dados foram obtidos através do repositório oficial da UCI e a sua integração foi validada com sucesso no ambiente de trabalho Kaggle.
