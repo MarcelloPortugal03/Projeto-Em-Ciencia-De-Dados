@@ -93,8 +93,24 @@ Embora o dataset atual esteja completo, estabelecemos o seguinte protocolo de qu
 ### 2.3. Documentação da Decisão Final
 * **Estratégia Adotada:** Manutenção integral do dataset original.
 * **Justificação:** Como não foram detetados valores nulos ou tipos de dados incongruentes, optámos por não aplicar algoritmos de imputação ou eliminação de linhas, preservando a variância natural e a distribuição original dos dados químicos.
-### 2.4. Outliers e Inconsistências
-*Descrevam se encontraram valores impossíveis (ex: idade = 200) e como os resolveram.*
+### 2.4. Tratamento de Outliers e Erros nos Dados
+
+Nesta etapa do projeto, dadas as verificações prévias de valores nulos, o foco incidiu na validação dos tipos de dados e no tratamento de valores anómalos que pudessem enviesar a modelagem preditiva.
+
+#### 2.4.1. Correção e Validação de Tipos de Dados
+Erros na fase de importação frequentemente forçam colunas numéricas a serem lidas como texto (`object`) devido a gralhas de digitação ou formatações perdidas.
+* Ação: Para prevenir falhas no algoritmo, forçámos a conversão de todas as propriedades químico-físicas para o formato numérico contínuo (`float64`) utilizando a função `pd.to_numeric(errors='coerce')`.
+* Resultado: Não foram gerados novos nulos durante a conversão, o que comprova que não existiam letras ou erros tipográficos ocultos nos dados. Adicionalmente, a variável categórica do tipo de vinho já se encontra perfeitamente codificada em formato binário numérico (`is_red`), cumprindo o pré-requisito para modelos de Machine Learning.
+
+#### 2.4.2. Outliers e Inconsistências
+Procurámos ativamente por anomalias nos dados, distinguindo rigorosamente entre erros de registo (impossibilidades físicas) e valores estatisticamente extremos (*outliers*).
+* Inconsistências e Valores Impossíveis: Através da análise estatística descritiva (`df.describe()`), validámos os limites de cada variável. Não foram detetados valores fisicamente impossíveis (ex: não existem valores negativos em densidade ou concentrações de açúcar, e os valores de pH estão dentro da escala enológica normal).
+* Deteção de Outliers: A análise visual por Boxplots e o método IQR confirmaram a presença de outliers, especialmente **no** açúcar residual e **nos** cloretos. Estas variáveis apresentam caudas longas à direita, onde a predominância de vinhos secos é contrastada por uma pequena percentagem de vinhos doces que desvia significativamente a distribuição para valores elevados.
+
+#### 2.4.3. Estratégia de Tratamento (Capping)
+* Decisão Adotada: Limitação dos valores extremos (*Capping*).
+* Justificação: No contexto da enologia, concentrações excecionalmente elevadas de açúcar ou acidez representam características reais de vinhos atípicos (ex: colheitas tardias) e não erros de medição. Optámos por não remover as linhas para evitar a perda de dados cruciais para a aprendizagem do modelo.
+* Aplicação Técnica: Utilizámos a função `.clip()` do Pandas para limitar os valores extremos às fronteiras máximas e mínimas aceitáveis (calculadas pela fórmula IQR). Desta forma, preservámos a totalidade das 6497 observações, mas anulámos o efeito de enviesamento que estes picos teriam no modelo preditivo.
 ## 3. Engenharia de Atributos (Feature Engineering)
 ### 3.1. Transformações Realizadas
 * **Encoding:** (Ex: "Convertemos a variável 'Género' em numérica usando One-Hot Encoding.")
