@@ -99,7 +99,7 @@ Nesta etapa do projeto, dadas as verificações prévias de valores nulos, o foc
 
 #### 2.4.1. Correção e Validação de Tipos de Dados
 Erros na fase de importação frequentemente forçam colunas numéricas a serem lidas como texto (`object`) devido a gralhas de digitação ou formatações perdidas.
-* Ação: Para prevenir falhas no algoritmo, forçámos a conversão de todas as propriedades químico-físicas para o formato numérico contínuo (`float64`) utilizando a função `pd.to_numeric(errors='coerce')`.
+* Ação: Para prevenir falhas no algoritmo, forçámos a conversão de todas as propriedades químico-físicas para o formato numérico contínuo  utilizando a função `pd.to_numeric(errors='coerce')`.
 * Resultado: Não foram gerados novos nulos durante a conversão, o que comprova que não existiam letras ou erros tipográficos ocultos nos dados. Adicionalmente, a variável categórica do tipo de vinho já se encontra perfeitamente codificada em formato binário numérico (`is_red`), cumprindo o pré-requisito para modelos de Machine Learning.
 
 #### 2.4.2. Outliers e Inconsistências
