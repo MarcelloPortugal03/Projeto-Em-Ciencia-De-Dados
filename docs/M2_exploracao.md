@@ -116,7 +116,7 @@ Procurámos ativamente por anomalias nos dados, distinguindo rigorosamente entre
 
 #### 3.1. Transformações Realizadas
 
-* **Encoding (Codificação Categórica):** A variável original `type` foi convertida na variável numérica binária `is_red`. Esta operação permitiu transformar dados qualitativos (texto) em valores numéricos (**1** para vinho tinto e **0** para vinho branco), viabilizando o processamento matemático pelos modelos de aprendizagem automática.
+* ***Encoding:*** A variável original `type` foi convertida na variável numérica binária `is_red`. Esta operação permitiu transformar dados qualitativos em valores numéricos (**1** para vinho tinto e **0** para vinho branco), viabilizando o processamento matemático pelos modelos de aprendizagem automática.
 
 
 
