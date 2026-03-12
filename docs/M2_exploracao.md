@@ -34,7 +34,7 @@ Nesta fase, avaliámos a intensidade e a direção das correlações entre as va
 ### 1.3.1. Visão Geral: Matriz de Correlação (Heatmap)
 O **Heatmap de Pearson** é a nossa ferramenta de triagem principal. Através da intensidade das cores e dos coeficientes numéricos, observamos que:
 * **Complexidade do Dataset:** Não existe uma única variável que determine a qualidade isoladamente com uma correlação perfeita (próxima de 1). 
-* **Distribuição de Força:** A maioria das variáveis apresenta correlações fracas (entre -0.1 e 0.1), o que justifica a necessidade de um modelo de Machine Learning que combine múltiplos fatores para obter previsões precisas.
+* **Distribuição de Força:** A maioria das variáveis apresenta correlações fracas (entre -0.1 e 0.1), o que justifica a necessidade de um modelo de Aprendizagem Automática que combine múltiplos fatores para obter previsões precisas.
 
 ### 1.3.2. Análise dos Atributos vs. Alvo (Qualidade)
 Embora tenhamos gerado múltiplos gráficos, focámos a análise detalhada nos preditores que demonstraram maior significância estatística:
@@ -67,20 +67,20 @@ Nesta fase, auditamos a integridade do dataset para garantir que a modelagem fut
 ### 2.1. Diagnóstico de Valores Nulos
 Utilizámos o método `isnull().sum()` para verificar a presença de lacunas em todas as variáveis físico-químicas e na variável alvo.
 
-| Coluna | Percentagem de Nulos | Estado |
+| Coluna | Total de Nulos | Estado |
 | :--- | :--- | :--- |
-| fixed acidity | 0% | OK |
-| volatile acidity | 0% | OK |
-| citric acid | 0% | OK |
-| residual sugar | 0% | OK |
-| chlorides | 0% | OK |
-| free sulfur dioxide | 0% | OK |
-| total sulfur dioxide | 0% | OK |
-| density | 0% | OK |
-| pH | 0% | OK |
-| sulphates | 0% | OK |
-| alcohol | 0% | OK |
-| quality | 0% | OK |
+| fixed acidity | 0 | Pronto |
+| volatile acidity | 0 | Pronto |
+| citric acid | 0 | Pronto |
+| residual sugar | 0 | Pronto |
+| chlorides | 0 | Pronto |
+| free sulfur dioxide | 0 | Pronto |
+| total sulfur dioxide | 0 | Pronto |
+| density | 0 | Pronto |
+| pH | 0 | Pronto |
+| sulphates | 0 | Pronto |
+| alcohol | 0 | Pronto |
+| quality | 0 | Pronto |
 
 **Resultado:** A inspeção confirmou que o dataset apresenta **0% de valores nulos** em todas as colunas. 
 
