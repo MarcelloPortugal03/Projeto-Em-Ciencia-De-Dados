@@ -114,16 +114,21 @@ Procurámos ativamente por anomalias nos dados, distinguindo rigorosamente entre
 ### 3. Engenharia de Atributos (Feature Engineering)
 
 ### 3. Engenharia de Atributos (Feature Engineering)
+### 3. Engenharia de Atributos (Feature Engineering)
 
 #### 3.1. Transformações Realizadas
 
-* **Encoding de Variáveis Categóricas:** A variável original `type` (texto) foi transformada na variável numérica binária `is_red`. Esta conversão é essencial para que o modelo consiga processar a distinção entre vinho tinto (1) e branco (0) através de operações matemáticas.
-* **Padronização de Atributos (Scaling):** Aplicámos o `StandardScaler` em todas as variáveis físico-químicas. Esta transformação reajusta os dados para uma escala comum (Média = 0, Desvio Padrão = 1), prevenindo que variáveis com ordens de magnitude superiores dominem o treino do modelo.
+* **Encoding (Codificação Categórica):** A variável original `type` foi convertida na variável numérica binária `is_red`. Esta operação permitiu transformar dados qualitativos (texto) em valores numéricos (**1** para vinho tinto e **0** para vinho branco), viabilizando o processamento matemático pelos modelos de aprendizagem automática.
+
+
+
+* **Escalonamento (Standardization):** Foi aplicado o método `StandardScaler` em todos os atributos físico-químicos contínuos. Esta transformação padronizou os dados para uma escala comum (Média = 0, Desvio Padrão = 1), assegurando que variáveis com magnitudes distintas (como o dióxido de enxofre em comparação com o pH) tenham o mesmo peso relativo durante o ajuste do modelo.
+
+
 
 #### 3.2. Criação de Novos Atributos
 
-* **`total_acidity` (Acidez Total):** Criámos este novo atributo através da soma da `fixed acidity` e da `volatile acidity`. 
-    * **Objetivo:** Esta nova métrica fornece uma visão holística da concentração ácida do vinho. Em termos enológicos, a acidez total pode ser um indicador mais robusto da qualidade e do equilíbrio do vinho do que as suas componentes analisadas isoladamente, oferecendo ao modelo uma *feature* mais rica em informação.
+* À exceção da variável `is_red`, criada especificamente para o *encoding* do tipo de vinho, não foram gerados novos atributos derivados nesta fase. A estratégia atual foca-se em avaliar a performance do modelo utilizando as métricas originais como ponto de partida (baseline). Caso os resultados iniciais fiquem aquém do esperado, a exploração de variáveis derivadas será considerada numa etapa posterior de otimização do modelo.
 ## 4. Dicionário de Dados Final (Pós-Processamento)
 *Listagem final das variáveis que serão entregues ao modelo na Fase 3.*
 | Atributo | Tipo | Descrição |
