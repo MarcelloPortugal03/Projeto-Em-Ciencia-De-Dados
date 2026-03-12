@@ -111,9 +111,7 @@ Procurámos ativamente por anomalias nos dados, distinguindo rigorosamente entre
 * Decisão Adotada: Limitação dos valores extremos (*Capping*).
 * Justificação: No contexto da enologia, concentrações excecionalmente elevadas de açúcar ou acidez representam características reais de vinhos atípicos (ex: colheitas tardias) e não erros de medição. Optámos por não remover as linhas para evitar a perda de dados cruciais para a aprendizagem do modelo.
 * Aplicação Técnica: Utilizámos a função `.clip()` do Pandas para limitar os valores extremos às fronteiras máximas e mínimas aceitáveis (calculadas pela fórmula IQR). Desta forma, preservámos a totalidade das 6497 observações, mas anulámos o efeito de enviesamento que estes picos teriam no modelo preditivo.
-### 3. Engenharia de Atributos (Feature Engineering)
 
-### 3. Engenharia de Atributos (Feature Engineering)
 ### 3. Engenharia de Atributos (Feature Engineering)
 
 #### 3.1. Transformações Realizadas
