@@ -111,15 +111,19 @@ Procurámos ativamente por anomalias nos dados, distinguindo rigorosamente entre
 * Decisão Adotada: Limitação dos valores extremos (*Capping*).
 * Justificação: No contexto da enologia, concentrações excecionalmente elevadas de açúcar ou acidez representam características reais de vinhos atípicos (ex: colheitas tardias) e não erros de medição. Optámos por não remover as linhas para evitar a perda de dados cruciais para a aprendizagem do modelo.
 * Aplicação Técnica: Utilizámos a função `.clip()` do Pandas para limitar os valores extremos às fronteiras máximas e mínimas aceitáveis (calculadas pela fórmula IQR). Desta forma, preservámos a totalidade das 6497 observações, mas anulámos o efeito de enviesamento que estes picos teriam no modelo preditivo.
-## 3. Engenharia de Atributos (Feature Engineering)
-### 3.1. Transformações Realizadas
-* **Encoding:** (Ex: "Convertemos a variável 'Género' em numérica usando One-Hot Encoding.")
-* **Escalonamento:** (Ex: "Aplicámos o StandardScaler nas variáveis numéricas para que todas
-fiquem na mesma escala.")
-### 3.2. Criação de Novos Atributos
-*Descrevam as variáveis que criaram para ajudar o modelo.*
-* **Nova Variável [Nome]:** (Ex: "Criámos a 'Tenure_Per_Year' que divide o tempo de contrato
-pela idade do cliente.")
+### 3. Engenharia de Atributos (Feature Engineering)
+
+### 3. Engenharia de Atributos (Feature Engineering)
+
+#### 3.1. Transformações Realizadas
+
+* **Encoding de Variáveis Categóricas:** A variável original `type` (texto) foi transformada na variável numérica binária `is_red`. Esta conversão é essencial para que o modelo consiga processar a distinção entre vinho tinto (1) e branco (0) através de operações matemáticas.
+* **Padronização de Atributos (Scaling):** Aplicámos o `StandardScaler` em todas as variáveis físico-químicas. Esta transformação reajusta os dados para uma escala comum (Média = 0, Desvio Padrão = 1), prevenindo que variáveis com ordens de magnitude superiores dominem o treino do modelo.
+
+#### 3.2. Criação de Novos Atributos
+
+* **`total_acidity` (Acidez Total):** Criámos este novo atributo através da soma da `fixed acidity` e da `volatile acidity`. 
+    * **Objetivo:** Esta nova métrica fornece uma visão holística da concentração ácida do vinho. Em termos enológicos, a acidez total pode ser um indicador mais robusto da qualidade e do equilíbrio do vinho do que as suas componentes analisadas isoladamente, oferecendo ao modelo uma *feature* mais rica em informação.
 ## 4. Dicionário de Dados Final (Pós-Processamento)
 *Listagem final das variáveis que serão entregues ao modelo na Fase 3.*
 | Atributo | Tipo | Descrição |
