@@ -2,8 +2,8 @@
 ## Identificação da Equipa
 * **Grupo nº:** 4
 * **Membros:**
- * Afonso Carvalho - a2023132594
- * Marcello Portugal - a2022136899
+     Afonso Carvalho - a2023132594
+     Marcello Portugal - a2022136899
 
 ## Organização do Repositório
 A estrutura deste projeto segue as boas práticas de Ciência de Dados e Engenharia de Software:
@@ -66,8 +66,12 @@ do método ganho de informação]
 1. Clone o repositório: `git clone [url-do-repo]`
 2. Instale as dependências: `pip install -r requirements.txt`
 3. Execute os notebooks na pasta `notebooks/` seguindo a ordem numérica.
-**Instituição:** Coimbra Business School | ISCAC
-**Curso:** Licenciatura em Ciência de Dados para a Gestão
-**Unidade Curricular:** Projeto em Ciência de Dados
-**Professor Responsável:** Dora Melo (dmelo@iscac.pt) 
+
+   **Instituição:** Coimbra Business School | ISCAC
+
+   **Curso:** Licenciatura em Ciência de Dados para a Gestão
+
+   **Unidade Curricular:** Projeto em Ciência de Dados
+
+   **Professor Responsável:** Dora Melo (dmelo@iscac.pt) 
   
