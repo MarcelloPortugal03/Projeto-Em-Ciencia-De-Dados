@@ -31,12 +31,12 @@ Ao cruzarmos as visualizações com as estatísticas descritivas, selecionámos 
 
 Nesta fase, avaliámos a intensidade e a direção das correlações entre as variáveis do dataset, com foco no seu impacto na qualidade e na deteção de possíveis problemas de multicolinearidade.
 
-### 1.3.1. Visão Geral: Matriz de Correlação (Heatmap)
+#### 1.3.1. Visão Geral: Matriz de Correlação (Heatmap)
 O **Heatmap de Pearson** é a nossa ferramenta de triagem principal. Através da intensidade das cores e dos coeficientes numéricos, observamos que:
 * **Complexidade do Dataset:** Não existe uma única variável que determine a qualidade isoladamente com uma correlação perfeita (próxima de 1). 
 * **Distribuição de Força:** A maioria das variáveis apresenta correlações fracas (entre -0.1 e 0.1), o que justifica a necessidade de um modelo de Aprendizagem Automática que combine múltiplos fatores para obter previsões precisas.
 
-### 1.3.2. Análise dos Atributos vs. Alvo (Qualidade)
+#### 1.3.2. Análise dos Atributos vs. Alvo (Qualidade)
 Embora tenhamos gerado múltiplos gráficos, focámos a análise detalhada nos preditores que demonstraram maior significância estatística:
 
 * **Os Preditores Mais Fortes:**
@@ -46,7 +46,7 @@ Embora tenhamos gerado múltiplos gráficos, focámos a análise detalhada nos p
 * **Os Preditores Irrelevantes (Correlações Fracas):**
     * Variáveis como Açúcar Residual ($r = 0.01$) e pH ($r = -0.05$) apresentam linhas de regressão praticamente horizontais. Isto indica que, isoladamente, estas características têm quase influência nula na percepção de qualidade, podendo ser candidatas a exclusão para simplificar o modelo.
 
-### 1.3.3. Interdependência e Multicolinearidade
+#### 1.3.3. Interdependência e Multicolinearidade
 Para garantir a estabilidade do modelo e evitar a redundância de dados (multicolinearidade), analisámos a forma como as variáveis comunicam entre si. Em vez de testarmos todas as combinações, focámo-nos em três relações específicas. Esta escolha foi intencional: selecionámos os pares que apresentaram as correlações mais fortes no nosso Heatmap e que, simultaneamente, possuem uma explicação lógica na química do vinho:
 
 1.  **Álcool vs. Densidade ($r = -0.69$):** A relação mais forte de todo o dataset. Fisicamente, o álcool reduz a densidade do vinho, criando uma correlação inversa muito nítida.
@@ -112,7 +112,7 @@ Procurámos ativamente por anomalias nos dados, distinguindo rigorosamente entre
 * Justificação: No contexto da enologia, concentrações excecionalmente elevadas de açúcar ou acidez representam características reais de vinhos atípicos (ex: colheitas tardias) e não erros de medição. Optámos por não remover as linhas para evitar a perda de dados cruciais para a aprendizagem do modelo.
 * Aplicação Técnica: Utilizámos a função `.clip()` do Pandas para limitar os valores extremos às fronteiras máximas e mínimas aceitáveis (calculadas pela fórmula IQR). Desta forma, preservámos a totalidade das 6497 observações, mas anulámos o efeito de enviesamento que estes picos teriam no modelo preditivo.
 
-### 3. Engenharia de Atributos (Feature Engineering)
+## 3. Engenharia de Atributos (Feature Engineering)
 
 #### 3.1. Transformações Realizadas
 
@@ -126,7 +126,36 @@ Procurámos ativamente por anomalias nos dados, distinguindo rigorosamente entre
 
 #### 3.2. Criação de Novos Atributos
 
-* À exceção da variável `is_red`, criada especificamente para o *encoding* do tipo de vinho, não foram gerados novos atributos derivados nesta fase. A estratégia atual foca-se em avaliar a performance do modelo utilizando as métricas originais como ponto de partida (baseline). Caso os resultados iniciais fiquem aquém do esperado, a exploração de variáveis derivadas será considerada numa etapa posterior de otimização do modelo.
+Nesta etapa, procedeu-se à criação de novas variáveis para capturar interações físico-químicas complexas que influenciam a percepção sensorial do vinho. De acordo com **Zheng e Casari (2018)**, a utilização de rácios permite que os modelos de Aprendizagem Automática identifiquem padrões de desequilíbrio que variáveis isoladas poderiam mascarar.
+
+Com base na literatura enológica (**Waterhouse et al., 2016**), foram implementados os seguintes atributos:
+
+1.  **Rácio de Dióxido de Enxofre (`so2_ratio`):** Calculado como `free sulfur dioxide / total sulfur dioxide`. Este rácio mede a eficiência da conservação, indicando a percentagem de sulfitos que permanece em estado livre para combater a oxidação.
+2.  **Rácio de Acidez Volátil (`volatile_acidity_ratio`):** Calculado como `volatile acidity / fixed acidity`. Este indicador é fundamental para detetar desequilíbrios estruturais, uma vez que uma elevada proporção de acidez volátil face à acidez fixa é um indicador clássico de baixa qualidade e presença de defeitos.
+
+---
+
+#### 3.3. Análise de Correlação e Validação Estatística
+
+A validade das novas variáveis foi testada através do cálculo da matriz de correlação de *Pearson* e da análise de densidade por categoria de qualidade.
+
+#### 1. Resultados da Correlação de *Pearson*
+A análise matemática revelou que o `volatile_acidity_ratio` apresenta uma **correlação negativa de (-0.22) com a variável alvo (`quality`). Este resultado valida a hipótese inicial: vinhos com uma maior proporção de acidez volátil tendem a receber pontuações significativamente mais baixas. 
+
+O rácio de SO2 (`so2_ratio`) também demonstrou uma correlação positiva (+0.12), sugerindo que uma melhor gestão dos conservantes livres está associada a vinhos de qualidade superior.
+
+#### 2. Análise de Densidade via *Ridgeline Plot*
+Para observar como esta relação se manifesta na prática, utilizámos um *Ridgeline Plot* baseado na técnica KDE (*Kernel Density Estimation*). Esta técnica permite contrastar o perfil de distribuição da acidez em cada nível de qualidade:
+
+* **Baixa Qualidade (Notas 3-4):** Distribuições dispersas e "achatadas" com caudas longas à direita. Indica instabilidade química e excesso de compostos voláteis.
+* **Excelência (Notas 8-9):** Picos estreitos e altamente concentrados em valores baixos (0.02 - 0.06). Demonstra que a alta qualidade exige um rácio de acidez estrito e reduzido.
+
+---
+
+### Conclusão
+A engenharia destes atributos revelou-se eficaz, uma vez que as novas variáveis apresentam correlações estatisticamente superiores a algumas das variáveis originais. Estes dados serão agora utilizados como *inputs* principais para a fase de treino dos algoritmos de classificação.
+
+
 ## 4. Dicionário de Dados Final (Pós-Processamento)
 *Listagem final das variáveis que serão entregues ao modelo na Fase 3.*
 | Atributo | Tipo | Descrição |
