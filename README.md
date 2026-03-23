@@ -1,10 +1,9 @@
 # Classificação de Qualidade de Vinhos (Indústria Alimentar)
 ## Identificação da Equipa
-* **Grupo nº:** 4
-* **Membros:**
-     Afonso Carvalho - a2023132594
-     Marcello Portugal - a2022136899
-
+| Nome | Número de Aluno | Nº Grupo |
+| :--- | :---: | :--- |
+| Afonso Carvalho | 2023132594 | 4 |
+| Marcello Portugal | 2022136899 | 4 |
 ## Organização do Repositório
 A estrutura deste projeto segue as boas práticas de Ciência de Dados e Engenharia de Software:
 * **`data/`**: Armazenamento de dados (dados brutos em `raw/` e processados em `processed/`).
@@ -15,20 +14,16 @@ A estrutura deste projeto segue as boas práticas de Ciência de Dados e Engenha
 * **`requirements.txt`**: Ficheiro de configuração com as bibliotecas necessárias.
 ## 1. Iniciação (Milestone 1)
 ### Contexto e Problema de Negócio
-A forma tradicional de avaliar a qualidade de um vinho depende muito de provas sensoriais feitas por especialistas. O problema é que este processo é subjetivo (o que agrada a um especialista pode não agradar a outro) e tem um custo elevado para os produtores. O objetivo deste projeto é perceber se conseguimos prever a qualidade de um vinho (neste caso, o Vinho Verde português) utilizando apenas dados laboratoriais.
-
-A relevância deste desafio reside na procura por um padrão de qualidade que seja constante. Na produção em larga escala, as variações químicas naturais podem alterar o perfil do vinho de lote para lote. Ao conseguirmos correlacionar estas métricas (como o pH, a densidade ou os sulfatos) com a aceitação do consumidor final, permitimos que a empresa tome decisões mais seguras antes mesmo do vinho chegar à garrafa.
-
-No fundo, trata-se de criar uma ferramenta de apoio à decisão que ajude a garantir a qualidade dos vinhos, otimize os custos de prova e permita uma resposta mais rápida às exigências do mercado, transformando dados químicos complexos em informação estratégica para o negócio.
+A avaliação da qualidade do vinho é tradicionalmente um processo sensorial, subjetivo e demorado. O problema de negócio consiste em otimizar este processo, utilizando dados de testes laboratoriais (propriedades físico-químicas) para prever de forma rápida e objetiva a qualidade final do vinho, auxiliando os produtores na tomada de decisão e no controlo de qualidade.
 ### Objetivos SMART
-Desenvolver um modelo de Aprendizagem Automática com métricas de regressão para prever a qualidade sensorial do Vinho Verde (escala 0-10) com base em 11 variáveis físico-químicas, atingindo um erro médio absoluto (MAE) inferior a 0.5 pontos até ao final da Milestone 3 deste projeto.
+Desenvolver um modelo de Aprendizagem Automática (baseado em algoritmos de regressão) para prever a qualidade sensorial do Vinho Verde (escala 0 a 10) utilizando variáveis físico-químicas, com a meta de atingir um Erro Médio Absoluto (MAE) inferior a 0.5 pontos até ao final da Milestone 3.
 
 ### Perguntas de Investigação: 
 *PI 1: Qual é a capacidade de previsão de um modelo baseado apenas em dados físico-químicos?*
 
 *PI 2: Quais são as 3 variáveis físico-químicas que mais contribuem para a previsão de um vinho de "Alta Qualidade" (nota ≥ 7)?*
 
-*PI 3: Existem diferenças críticas nos padrões de qualidade entre vinhos tintos e vinhos brancos?*
+*PI 3: Existem diferenças estatisticamente significativas nas variáveis que determinam a qualidade quando comparamos modelos treinados exclusivamente para vinhos tintos versus vinhos brancos?*
   
 ### Fonte de Dados
 * **Dataset:** [UCI Wine Quality](https://archive.ics.uci.edu/dataset/186/wine+quality)
