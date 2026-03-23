@@ -1,17 +1,10 @@
-pandas
-numpy
-scipy
-matplotlib
-seaborn
-scikit-learn
-ipython
-jupyter
-notebook
-tqdm
-watermark
-python-dotenv
-pytest
-coverage
-engarde
-nbdime
-runipy
+pandas          # Manipulação, limpeza e análise de dados tabulares (DataFrames)
+numpy           # Computação numérica e operações matemáticas com arrays
+scipy           # Funções matemáticas, científicas e testes estatísticos avançados
+matplotlib      # Criação de gráficos e visualizações de dados base
+seaborn         # Criação de gráficos estatísticos avançados e visualmente apelativos
+scikit-learn    # Ferramentas de pré-processamento e algoritmos de Machine Learning
+ipython         # Terminal interativo otimizado para Python
+jupyter         # Plataforma web para criar e executar notebooks interativos
+notebook        # Motor base que permite o funcionamento dos Jupyter Notebooks
+watermark       # Registo das versões das bibliotecas para garantir reprodutibilidade
