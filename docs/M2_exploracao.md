@@ -155,25 +155,31 @@ A engenharia destes atributos revelou-se eficaz, uma vez que as novas variáveis
 
 | Atributo | Tipo | Descrição |
 | :--- | :--- | :--- |
-| `fixed acidity` | Numeric | Quantidade de ácidos fixos (ex: tartárico), essenciais para a estrutura, frescura e estabilidade química do vinho. |
-| `citric acid` | Numeric | Ácido orgânico que confere aroma cítrico, frescura ao paladar e atua como conservante natural secundário. |
-| `residual sugar` | Numeric | Concentração de açúcares naturais que permanecem na bebida após a interrupção da fermentação alcoólica. |
-| `chlorides` | Numeric | Nível de cloretos (sais) presentes, que influenciam significativamente a perceção de salinidade e o corpo do vinho. |
-| `total sulfur dioxide` | Numeric | Quantidade total de dióxido de enxofre (SO2), atuando como o principal antioxidante e agente antimicrobiano. |
-| `density` | Numeric | Densidade do líquido, que varia em função do teor alcoólico e da concentração de açúcares residuais. |
-| `pH` | Numeric | Medida da acidez ativa do vinho, crucial para o equilíbrio dos sabores, intensidade da cor e eficácia dos conservantes. |
-| `sulphates` | Numeric | Aditivo mineral que contribui para a formação de gás SO2, protegendo o vinho contra a oxidação indesejada. |
-| `alcohol` | Numeric | Teor alcoólico volumétrico (%), que afeta diretamente o peso (corpo), a textura e a perceção aromática. |
-| `is_red` | Binary | Indicador matemático que categoriza o tipo de vinho (1 para Tinto, 0 para Branco). |
-| `so2_ratio` | Numeric | Proporção de SO2 livre face ao total, avalia a eficácia real da proteção química ativa do vinho. |
-| `volatile_acidity_ratio`| Numeric | Rácio entre acidez volátil e fixa, indicador fiável para detetar desequilíbrios estruturais ou potenciais defeitos. |
-| `quality` | Int64 | Classificação sensorial final atribuída por um júri de enólogos, medida numa escala discreta (3 a 9). |
+| `fixed acidity` | Numérica | Quantidade de ácidos fixos (ex: tartárico), essenciais para a estrutura, frescura e estabilidade química do vinho. |
+| `citric acid` | Numérica | Ácido orgânico que confere aroma cítrico, frescura ao paladar e atua como conservante natural secundário. |
+| `residual sugar` | Numérica | Concentração de açúcares naturais que permanecem na bebida após a interrupção da fermentação alcoólica. |
+| `chlorides` | Numérica | Nível de cloretos (sais) presentes, que influenciam significativamente a perceção de salinidade e o corpo do vinho. |
+| `total sulfur dioxide` | Numérica| Quantidade total de dióxido de enxofre (SO2), atuando como o principal antioxidante e agente antimicrobiano. |
+| `density` | Numérica | Densidade do líquido, que varia em função do teor alcoólico e da concentração de açúcares residuais. |
+| `pH` | Numérica | Medida da acidez ativa do vinho, crucial para o equilíbrio dos sabores, intensidade da cor e eficácia dos conservantes. |
+| `sulphates` | Numérica | Aditivo mineral que contribui para a formação de gás SO2, protegendo o vinho contra a oxidação indesejada. |
+| `alcohol` | Numérica | Teor alcoólico volumétrico (%), que afeta diretamente o peso (corpo), a textura e a perceção aromática. |
+| `is_red` | Binária | Indicador matemático que categoriza o tipo de vinho (1 para Tinto, 0 para Branco). |
+| `so2_ratio` | Numérica | Proporção de SO2 livre face ao total, avalia a eficácia real da proteção química ativa do vinho. |
+| `volatile_acidity_ratio`| Numérica | Rácio entre acidez volátil e fixa, indicador fiável para detetar desequilíbrios estruturais ou potenciais defeitos. |
+| `quality` | Numérica | Classificação sensorial final atribuída por um júri de enólogos, medida numa escala discreta (3 a 9). |
 
 
 ## 5. Conclusões da Fase de Exploração e Pré-processamento
 
 ### 5.1. O que aprendemos sobre o dataset que não sabíamos no final do Milestone 1?
-Nesta fase, começámos por confirmar na prática que os modelos não sabem ler texto, o que nos obrigou a transformar logo a coluna `type` numa variável numérica binária (`is_red`). De seguida, percebemos que o *dataset* original tinha algumas variáveis químicas que transmitiam informação repetida (multicolinearidade), como foi o caso da `volatile acidity` e do `free sulfur dioxide`. Para resolver isto, decidimos que era mais vantajoso criar novas *features* (como os nossos rácios de SO2 e acidez) para captar melhor a química do vinho, em vez de mantermos as variáveis originais.
+A principal lição desta fase foi perceber que a qualidade do vinho é ditada exclusivamente pelo seu equilíbrio químico e não pela sua categoria, uma vez que a análise provou que a cor do vinho (is_red) tem um impacto estatístico quase nulo na avaliação final.
+
+Através da análise univariada, descobrimos o maior desafio para a nossa modelação futura: a escassez de vinhos com notas extremas (excelentes ou muito fracos), estando o dataset fortemente concentrado em notas médias (5, 6 e 7). Percebemos também que variáveis como o açúcar residual e os cloretos possuem uma vasta quantidade de outliers naturais, o que nos obrigou a aplicar técnicas de limitação _(capping)_ para evitar o enviesamento dos algoritmos.
+
+Com a análise bivariada e de correlação, identificámos os verdadeiros "motores" da qualidade: o teor alcoólico é o fator que mais impulsiona avaliações positivas, enquanto a acidez volátil (sabor avinagrado) atua como a principal detratora. Adicionalmente, o diagnóstico de multicolinearidade (informação interdependente entre variáveis como densidade, álcool e açúcar) revelou-nos que utilizar variáveis de forma isolada seria limitativo.
+
+Foi esta aprendizagem que justificou a nossa abordagem na Engenharia de Atributos: em vez de mantermos o dataset original intacto, decidimos criar novas métricas compostas (como os rácios de acidez e SO2) que provaram captar a estabilidade química do vinho de forma muito mais eficaz e com maior correlação face à qualidade do que as variáveis originais.
 
 ### 5.2. Os dados são suficientes para avançar para a modelação?
 Sim, os dados estão prontos. Cumprimos todos os requisitos necessários: não temos valores nulos por tratar, eliminámos as colunas redundantes que iam prejudicar as previsões e garantimos que todas as variáveis finais são numéricas. O *dataset* está limpo, simplificado e preparado para treinarmos os modelos de Aprendizagem Automática.
