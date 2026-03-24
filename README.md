@@ -37,12 +37,24 @@ Desenvolver um modelo de Aprendizagem Automática (baseado em algoritmos de regr
 * **Scikit-learn:** Para a construção e avaliação dos modelos de Aprendizagem Automática.
 
 ## 2. Exploração (Milestone 2)
+
 ### Limpeza e Preparação
-* [Breve resumo das ações de limpeza tomadas. Detalhes em `docs/M2_exploracao.md`]
-### Principais Conclusões (EDA)
-> *Dica: Insere aqui o gráfico mais importante do projeto.*
-* **Ponto-chave:** [Ex: Identificámos que o fator X influencia em 40% o resultado Y, por aplicação
-do método ganho de informação]
+A Fase 2 arrancou com o *dataset* unificado (`data/processed/wine_quality_unificado.csv`), que já inclui nativamente a variável `is_red` e `type` geradas na Fase 1. O foco desta etapa foi garantir a máxima qualidade dos dados para a modelação:
+
+* **Tratamento de Anomalias:** O *dataset* apresentou 0% de nulos. Aplicámos limitação (*capping*) aos *outliers* químicos para evitar enviesamentos, sem perda de informação.
+* **Engenharia de Atributos (*Feature Engineering*):** Normalização dos dados (`StandardScaler`) e criação de novos rácios enológicos (ex: rácio de acidez volátil) para captar desequilíbrios estruturais.
+
+> *Nota: Os detalhes técnicos e o dicionário de dados pós-processamento estão disponíveis no relatório completo: `docs/M2_exploracao.md`*
+
+### Principais Conclusões da Análise Exploratória (*EDA*)
+
+* **Os Motores da Qualidade:** O teor alcoólico é o principal impulsionador de notas altas, enquanto a acidez volátil atua como a principal penalizadora.
+* **A Irrelevância da Cor:** A qualidade é ditada pela química do vinho; a categoria (tinto/branco) tem um impacto estatístico quase nulo na nota final.
+* **O Desafio da Modelação:** Os dados concentram-se fortemente nas notas médias (5, 6 e 7), havendo uma escassez de exemplos extremos (notas muito altas ou baixas) para o modelo aprender.
+> *Nota: Os principais gráficos e visualizações gerados durante a Análise Exploratória de Dados encontram-se disponíveis na pasta `reports/figures/`.*
+> 
+### Estado dos Dados:
+Após as análises e tratamentos descritos, os dados encontram-se totalmente limpos, normalizados e enriquecidos com atributos estratégicos. O *dataset* final (`wine_quality_model_ready.csv`) está, assim, 100% pronto para alimentar a fase de modelação.
 ## 3. Modelação (Milestone 3)
 ### Abordagem Técnica
 * **Modelos:** [Ex: Random Forest e XGBoost]
