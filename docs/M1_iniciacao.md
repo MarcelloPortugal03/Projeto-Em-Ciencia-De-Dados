@@ -17,11 +17,11 @@ A meta de alcançar um Erro Médio Absoluto (MAE) inferior a 0.5 justifica-se pe
 
 O projeto pretende responder às seguintes questões de forma a validar a utilidade prática do modelo:
 
-* **PI 1: Qual é a capacidade de previsão de um modelo baseado apenas em dados físico-químicos?**
+* PI 1: Qual é a capacidade de previsão de um modelo baseado apenas em dados físico-químicos?
   Pretende-se verificar se é possível apoiar/substituir a avaliação sensorial humana através de um algoritmo com uma margem de erro aceitável.
-* **PI 2: Quais são as 3 variáveis físico-químicas que mais contribuem para a previsão de um vinho de "Alta Qualidade" (nota ≥ 7)?**
+* PI 2: Quais são as 3 variáveis físico-químicas que mais contribuem para a previsão de um vinho de "Alta Qualidade" (nota ≥ 7)?
   O objetivo é identificar, entre os 11 atributos físico-químicos, quais funcionam como os principais indicadores de excelência.
-* **PI 3: Existem diferenças críticas nos padrões de qualidade entre vinhos tintos e vinhos brancos?**
+* PI 3: Existem diferenças críticas nos padrões de qualidade entre vinhos tintos e vinhos brancos?
   Utilizando a variável `is_red`, o projeto irá testar se um modelo treinado numa variante de vinho mantém a eficácia ao prever a qualidade da outra.
 ## 4. Ferramentas e Bibliotecas Utilizadas
 
@@ -29,13 +29,13 @@ O ambiente de trabalho foi configurado através do Kaggle Kernels, permitindo-no
 
 A gestão e o desenvolvimento foram assegurados pelas seguintes ferramentas:
 
-* **Gestão:** Para gerir as tarefas, utilizámos o GitHub Projects com um quadro Kanban, enquanto a comunicação rápida e as decisões de equipa foram feitas através do Discord e WhatsApp.
-* **Desenvolvimento:** Nesta fase, a biblioteca Pandas foi a nossa ferramenta central e a única que utilizámos efetivamente para carregar os ficheiros, unificar os dados dos vinhos e realizar a primeira inspeção.
+* Gestão: Para gerir as tarefas, utilizámos o GitHub Projects com um quadro Kanban, enquanto a comunicação rápida e as decisões de equipa foram feitas através do Discord e WhatsApp.
+* Desenvolvimento: Nesta fase, a biblioteca Pandas foi a nossa ferramenta central e a única que utilizámos efetivamente para carregar os ficheiros, unificar os dados dos vinhos e realizar a primeira inspeção.
 
 Embora bibliotecas como NumPy, Matplotlib e Seaborn já tenham sido importadas no início do nosso notebook, ainda não as chamámos para nenhuma operação nesta etapa inicial. Estas ferramentas ficam reservadas para as fases de análise visual e modelação que se seguem.
 ## 5. Gestão das Tarefas
- * **Afonso Carvalho:** Responsável pela Engenharia de Dados e Visualização.
- * **Marcello Portugal:** Responsável pela Modelação Estatística e Documentação.
+ * Afonso Carvalho: Responsável pela Engenharia de Dados e Visualização.
+ * Marcello Portugal: Responsável pela Modelação Estatística e Documentação.
 ## 6. Estrutura e Preparação dos Dados
 
 Após a importação dos dados originais, o primeiro passo consistiu na unificação dos ficheiros de vinhos tintos e brancos através do comando `pd.concat()`. Esta junção resultou num conjunto de dados robusto com 6.497 amostras, consolidando todas as variáveis físico-químicas num único objeto de análise. Durante este processo, foi fundamental validar a integridade do dataset; a execução do comando `df.isnull().sum()` confirmou a ausência total de valores nulos, o que assegura que não haverá necessidade de realizar limpezas ou imputações de dados nas fases seguintes.
@@ -64,9 +64,9 @@ Através do comando `df.describe()`, observámos que a variável alvo (`quality`
 | **`quality`** | **Numérica** | **Alvo** | **Pontuação de 0 a 10.** | **[3 - 9]** |
 ## 7. Viabilidade e Confiança nos Dados
 Validada a estrutura dos dados no ponto anterior, a continuidade do trabalho é assegurada pelos seguintes requisitos técnicos e éticos:
-* **Disponibilidade:** Os dados foram obtidos através do repositório oficial da UCI e a sua integração foi validada com sucesso no ambiente de trabalho Kaggle.
-* **Fiabilidade:** A integridade dos dados e a ausência de valores nulos permitem que o desenvolvimento se foque diretamente na criação e otimização dos modelos, prevenindo a necessidade de correções ou limpezas complexas durante o processo.
-* **Ética e Citação:** O projeto cumpre as normas de proteção de dados e privacidade, uma vez que apenas estão disponíveis variáveis físico-químicas e sensoriais, sem qualquer informação sobre marcas ou produtores. Conforme solicitado pelos autores (P. Cortez et al., 2009), a utilização destes dados para fins de investigação será devidamente creditada através da citação do artigo original publicado na revista Decision Support Systems.
+* Disponibilidade: Os dados foram obtidos através do repositório oficial da UCI e a sua integração foi validada com sucesso no ambiente de trabalho Kaggle.
+* Fiabilidade: A integridade dos dados e a ausência de valores nulos permitem que o desenvolvimento se foque diretamente na criação e otimização dos modelos, prevenindo a necessidade de correções ou limpezas complexas durante o processo.
+* Ética e Citação: O projeto cumpre as normas de proteção de dados e privacidade, uma vez que apenas estão disponíveis variáveis físico-químicas e sensoriais, sem qualquer informação sobre marcas ou produtores. Conforme solicitado pelos autores (P. Cortez et al., 2009), a utilização destes dados para fins de investigação será devidamente creditada através da citação do artigo original publicado na revista Decision Support Systems.
 ## 8. Cronograma Interno
 | Fase | Data Limite | Entregável Esperado |
 | :--- | :--- | :--- |
