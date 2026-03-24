@@ -5,7 +5,7 @@
 A variável alvo deste projeto é a `quality`, que representa a pontuação atribuída aos vinhos numa escala de 0 a 10. Como estamos perante um problema de regressão, a análise da dispersão e da forma como estes valores se distribuem é essencial para o sucesso da modelação futura.
 
 * Concentração Central: A grande maioria dos vinhos no nosso dataset concentra-se nas notas intermédias, especificamente entre os valores 5, 6 e 7. Isto indica que temos uma base sólida para prever vinhos de qualidade média.
-* **Escassez de Extremos:** Observamos que existem poucos registos nos extremos da escala (notas 3, 4, 8 e 9). Isto é algo que poderá vir a exigir uma atenção especial na fase de treino, uma vez que o modelo terá menos exemplos desses para aprender as características de vinhos de qualidade muito baixa ou de excelência.
+* Escassez de Extremos: Observamos que existem poucos registos nos extremos da escala (notas 3, 4, 8 e 9). Isto é algo que poderá vir a exigir uma atenção especial na fase de treino, uma vez que o modelo terá menos exemplos desses para aprender as características de vinhos de qualidade muito baixa ou de excelência.
 
 
 ### 1.2. Análise Univariada
@@ -69,18 +69,18 @@ Utilizámos o método `isnull().sum()` para verificar a presença de lacunas em 
 
 | Coluna | Total de Nulos | Estado |
 | :--- | :--- | :--- |
-| ´fixed acidity´ | 0 | Pronto |
-| ´volatile acidity´ | 0 | Pronto |
-| ´citric acid´ | 0 | Pronto |
-| ´residual sugar´ | 0 | Pronto |
-| ´chlorides´ | 0 | Pronto |
-| ´free sulfur dioxide´ | 0 | Pronto |
-| ´total sulfur dioxide´ | 0 | Pronto |
-| ´density´ | 0 | Pronto |
-| ´pH´ | 0 | Pronto |
-| ´sulphates´ | 0 | Pronto |
-| ´alcohol´ | 0 | Pronto |
-| ´quality´ | 0 | Pronto |
+| `fixed acidity` | 0 | Pronto |
+| `volatile acidity` | 0 | Pronto |
+| `citric acid` | 0 | Pronto |
+| `residual sugar` | 0 | Pronto |
+| `chlorides` | 0 | Pronto |
+| `free sulfur dioxide` | 0 | Pronto |
+| `total sulfur dioxide` | 0 | Pronto |
+| `density` | 0 | Pronto |
+| `pH` | 0 | Pronto |
+| `sulphates` | 0 | Pronto |
+| `alcohol` | 0 | Pronto |
+| `quality` | 0 | Pronto |
 
 Resultado: A inspeção confirmou que o dataset apresenta 0% de valores nulos em todas as colunas. 
 
