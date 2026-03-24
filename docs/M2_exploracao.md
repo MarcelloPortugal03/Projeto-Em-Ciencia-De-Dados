@@ -185,4 +185,4 @@ Foi esta aprendizagem que justificou a nossa abordagem na Engenharia de Atributo
 Sim, os dados estão prontos. Cumprimos todos os requisitos necessários: não temos valores nulos por tratar, eliminámos as colunas redundantes que iam prejudicar as previsões e garantimos que todas as variáveis finais são numéricas. O *dataset* está limpo, simplificado e preparado para treinarmos os modelos de Aprendizagem Automática.
 
 ---
-*Data de última atualização: [DD/MM/AAAA]* 
+*Data de última atualização: 24/03/2026* 
