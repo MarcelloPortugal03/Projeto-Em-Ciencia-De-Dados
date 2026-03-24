@@ -139,12 +139,12 @@ Com base na literatura enológica (**Waterhouse et al., 2016**), foram implement
 
 A validade das novas variáveis foi testada através do cálculo da matriz de correlação de *Pearson* e da análise de densidade por categoria de qualidade.
 
-#### 1. Resultados da Correlação de *Pearson*
+##### 3.3.1. Resultados da Correlação de *Pearson*
 A análise matemática revelou que o `volatile_acidity_ratio` apresenta uma **correlação negativa de (-0.22) com a variável alvo (`quality`). Este resultado valida a hipótese inicial: vinhos com uma maior proporção de acidez volátil tendem a receber pontuações significativamente mais baixas. 
 
 O rácio de SO2 (`so2_ratio`) também demonstrou uma correlação positiva (+0.12), sugerindo que uma melhor gestão dos conservantes livres está associada a vinhos de qualidade superior.
 
-#### 2. Análise de Densidade via *Ridgeline Plot*
+##### 3.3.2. Análise de Densidade via *Ridgeline Plot*
 Para observar como esta relação se manifesta na prática, utilizámos um *Ridgeline Plot* baseado na técnica KDE (*Kernel Density Estimation*). Esta técnica permite contrastar o perfil de distribuição da acidez em cada nível de qualidade:
 
 * **Baixa Qualidade (Notas 3-4):** Distribuições dispersas e "achatadas" com caudas longas à direita. Indica instabilidade química e excesso de compostos voláteis.
@@ -155,14 +155,24 @@ Para observar como esta relação se manifesta na prática, utilizámos um *Ridg
 ### Conclusão
 A engenharia destes atributos revelou-se eficaz, uma vez que as novas variáveis apresentam correlações estatisticamente superiores a algumas das variáveis originais. Estes dados serão agora utilizados como *inputs* principais para a fase de treino dos algoritmos de classificação.
 
-
 ## 4. Dicionário de Dados Final (Pós-Processamento)
 *Listagem final das variáveis que serão entregues ao modelo na Fase 3.*
+
 | Atributo | Tipo | Descrição |
 | :--- | :--- | :--- |
-| `cliente_id` | ID | Removido (não preditivo) |
-| `idade_norm` | Float | Idade após normalização |
-| `is_premium` | Binary | 1 para clientes com plano superior |
+| `fixed acidity` | Float | Quantidade de ácidos fixos ou não voláteis no vinho (ex: tartárico). |
+| `citric acid` | Float | Quantidade de ácido cítrico que confere frescura e sabor. |
+| `residual sugar` | Float | Quantidade de açúcar remanescente após o fim da fermentação. |
+| `chlorides` | Float | Quantidade de sal presente no vinho. |
+| `total sulfur dioxide` | Float | Quantidade total de SO2, atua como conservante e antioxidante. |
+| `density` | Float | Densidade do vinho, dependente do álcool e teor de açúcar. |
+| `pH` | Float | Nível de acidez ou alcalinidade do vinho (escala de 0 a 14). |
+| `sulphates` | Float | Aditivo que atua como antimicrobiano e contribui para o SO2. |
+| `alcohol` | Float | Teor alcoólico percentual do vinho. |
+| `is_red` | Binary | 1 para vinho Tinto, 0 para vinho Branco. |
+| `so2_ratio` | Float | Rácio de SO2 livre/total; indica eficiência da conservação. |
+| `volatile_acidity_ratio`| Float | Rácio de acidez volátil/fixa; identifica desequilíbrios. |
+| `quality` | Integer | Nota de qualidade sensorial atribuída por especialistas (3 a 9). |
 ## 5. Conclusões da Fase de Exploração
 *O que aprenderam sobre o dataset que não sabiam no final do Milestone 1? Os dados são suficientes
 para avançar para a modelação?*
