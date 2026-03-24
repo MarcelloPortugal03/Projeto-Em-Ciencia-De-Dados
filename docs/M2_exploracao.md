@@ -40,11 +40,11 @@ O **Heatmap de Pearson** é a nossa ferramenta de triagem principal. Através da
 Embora tenhamos gerado múltiplos gráficos, focámos a análise detalhada nos preditores que demonstraram maior significância estatística:
 
 * **Os Preditores Mais Fortes:**
-    * **Teor Alcoólico ($r = 0.44$):** É a variável com maior impacto positivo. Visualmente, a linha de regressão é a mais inclinada, confirmando que o álcool é o fator que mais "empurra" a nota final para cima.
-    * **Acidez Volátil ($r = -0.27$):** É o principal detrator da qualidade. Escolhemos este gráfico porque ele explica a maior parte da variação negativa; quanto mais o vinho "avinagra" (ácido acético), mais a qualidade desce de forma linear.
+    * **Teor Alcoólico (r = 0.44):** É a variável com maior impacto positivo. Visualmente, a linha de regressão é a mais inclinada, confirmando que o álcool é o fator que mais "empurra" a nota final para cima.
+    * **Acidez Volátil (r = -0.27):** É o principal detrator da qualidade. Escolhemos este gráfico porque ele explica a maior parte da variação negativa; quanto mais o vinho "avinagra" (ácido acético), mais a qualidade desce de forma linear.
 
 * **Os Preditores Irrelevantes (Correlações Fracas):**
-    * Variáveis como Açúcar Residual ($r = 0.01$) e pH ($r = -0.05$) apresentam linhas de regressão praticamente horizontais. Isto indica que, isoladamente, estas características têm quase influência nula na percepção de qualidade, podendo ser candidatas a exclusão para simplificar o modelo.
+    * Variáveis como Açúcar Residual (r = 0.01) e pH (r = -0.05) apresentam linhas de regressão praticamente horizontais. Isto indica que, isoladamente, estas características têm quase influência nula na percepção de qualidade, podendo ser candidatas a exclusão para simplificar o modelo.
 
 #### 1.3.3. Interdependência e Multicolinearidade
 Para garantir a estabilidade do modelo e evitar a redundância de dados (multicolinearidade), analisámos a forma como as variáveis comunicam entre si. Em vez de testarmos todas as combinações, focámo-nos em três relações específicas. Esta escolha foi intencional: selecionámos os pares que apresentaram as correlações mais fortes no nosso Heatmap e que, simultaneamente, possuem uma explicação lógica na química do vinho:
