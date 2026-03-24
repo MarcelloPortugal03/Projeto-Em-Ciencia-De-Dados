@@ -49,9 +49,9 @@ Embora tenhamos gerado múltiplos gráficos, focámos a análise detalhada nos p
 #### 1.3.3. Interdependência e Multicolinearidade
 Para garantir a estabilidade do modelo e evitar a redundância de dados (multicolinearidade), analisámos a forma como as variáveis comunicam entre si. Em vez de testarmos todas as combinações, focámo-nos em três relações específicas. Esta escolha foi intencional: selecionámos os pares que apresentaram as correlações mais fortes no nosso Heatmap e que, simultaneamente, possuem uma explicação lógica na química do vinho:
 
-1.  **Álcool vs. Densidade ($r = -0.69$):** A relação mais forte de todo o dataset. Fisicamente, o álcool reduz a densidade do vinho, criando uma correlação inversa muito nítida.
-2.  **Açúcar Residual vs. Densidade ($r = 0.55$):** O açúcar aumenta a massa volúmica, contrabalançando o efeito do álcool.
-3.  **Acidez Fixa vs. pH ($r = -0.25$):** Uma relação química básica que valida a integridade dos dados (maior acidez fixa baixa o pH).
+1.  **Álcool vs. Densidade (r = -0.69):** A relação mais forte de todo o dataset. Fisicamente, o álcool reduz a densidade do vinho, criando uma correlação inversa muito nítida.
+2.  **Açúcar Residual vs. Densidade (r = 0.55):** O açúcar aumenta a massa volúmica, contrabalançando o efeito do álcool.
+3.  **Acidez Fixa vs. pH (r = -0.25):** Uma relação química básica que valida a integridade dos dados (maior acidez fixa baixa o pH).
 
 ### 1.4. Principais Insights da EDA
 
@@ -82,12 +82,12 @@ Utilizámos o método `isnull().sum()` para verificar a presença de lacunas em 
 | alcohol | 0 | Pronto |
 | quality | 0 | Pronto |
 
-**Resultado:** A inspeção confirmou que o dataset apresenta **0% de valores nulos** em todas as colunas. 
+**Resultado:** A inspeção confirmou que o dataset apresenta 0% de valores nulos em todas as colunas. 
 
 ### 2.2. Definição da Estratégia de Limpeza
 Embora o dataset atual esteja completo, estabelecemos o seguinte protocolo de qualidade para assegurar a reprodutibilidade do projeto em novos carregamentos de dados:
 
-1.  **Tratamento de Nulos:** Caso surgissem valores ausentes em variáveis numéricas, a estratégia prioritária seria a **Imputação pela Mediana**, dado que o `df.describe()` revelou um desvio padrão considerável e a presença de potenciais *outliers* em colunas como `residual sugar`.
+1.  **Tratamento de Nulos:** Caso surgissem valores ausentes em variáveis numéricas, a estratégia prioritária seria a Imputação pela Mediana, dado que o `df.describe()` revelou um desvio padrão considerável e a presença de potenciais *outliers* em colunas como `residual sugar`.
 2.  **Integridade de Tipos:** A inspeção via `df.info()` confirmou que todos os preditores são numéricos (`float64` ou `int64`), o que é ideal para o processamento matemático sem necessidade de conversões complexas nesta fase.
 
 ### 2.3. Documentação da Decisão Final
@@ -100,12 +100,12 @@ Nesta etapa do projeto, dadas as verificações prévias de valores nulos, o foc
 #### 2.4.1. Correção e Validação de Tipos de Dados
 Erros na fase de importação frequentemente forçam colunas numéricas a serem lidas como texto (`object`) devido a gralhas de digitação ou formatações perdidas.
 * Ação: Para prevenir falhas no algoritmo, forçámos a conversão de todas as propriedades químico-físicas para o formato numérico contínuo  utilizando a função `pd.to_numeric(errors='coerce')`.
-* Resultado: Não foram gerados novos nulos durante a conversão, o que comprova que não existiam letras ou erros tipográficos ocultos nos dados. Adicionalmente, a variável categórica do tipo de vinho já se encontra perfeitamente codificada em formato binário numérico (`is_red`), cumprindo o pré-requisito para modelos de Machine Learning.
+* Resultado: Não foram gerados novos nulos durante a conversão, o que comprova que não existiam letras ou erros tipográficos ocultos nos dados. Adicionalmente, a variável categórica do tipo de vinho já se encontra perfeitamente codificada em formato binário numérico (`is_red`), cumprindo o pré-requisito para modelos de Aprendizagem Automática.
 
 #### 2.4.2. Outliers e Inconsistências
 Procurámos ativamente por anomalias nos dados, distinguindo rigorosamente entre erros de registo (impossibilidades físicas) e valores estatisticamente extremos (*outliers*).
 * Inconsistências e Valores Impossíveis: Através da análise estatística descritiva (`df.describe()`), validámos os limites de cada variável. Não foram detetados valores fisicamente impossíveis (ex: não existem valores negativos em densidade ou concentrações de açúcar, e os valores de pH estão dentro da escala enológica normal).
-* Deteção de Outliers: A análise visual por Boxplots e o método IQR confirmaram a presença de outliers, especialmente **no** açúcar residual e **nos** cloretos. Estas variáveis apresentam caudas longas à direita, onde a predominância de vinhos secos é contrastada por uma pequena percentagem de vinhos doces que desvia significativamente a distribuição para valores elevados.
+* Deteção de Outliers: A análise visual por Boxplots e o método IQR confirmaram a presença de outliers, especialmente no açúcar residual e nos cloretos. Estas variáveis apresentam caudas longas à direita, onde a predominância de vinhos secos é contrastada por uma pequena percentagem de vinhos doces que desvia significativamente a distribuição para valores elevados.
 
 #### 2.4.3. Estratégia de Tratamento (Capping)
 * Decisão Adotada: Limitação dos valores extremos (*Capping*).
@@ -116,19 +116,15 @@ Procurámos ativamente por anomalias nos dados, distinguindo rigorosamente entre
 
 #### 3.1. Transformações Realizadas
 
-* ***Encoding:*** A variável original `type` foi convertida na variável numérica binária `is_red`. Esta operação permitiu transformar dados qualitativos em valores numéricos (**1** para vinho tinto e **0** para vinho branco), viabilizando o processamento matemático pelos modelos de aprendizagem automática.
-
-
-
 * **Escalonamento (Standardization):** Foi aplicado o método `StandardScaler` em todos os atributos físico-químicos contínuos. Esta transformação padronizou os dados para uma escala comum (Média = 0, Desvio Padrão = 1), assegurando que variáveis com magnitudes distintas (como o dióxido de enxofre em comparação com o pH) tenham o mesmo peso relativo durante o ajuste do modelo.
 
 
 
 #### 3.2. Criação de Novos Atributos
 
-Nesta etapa, procedeu-se à criação de novas variáveis para capturar interações físico-químicas complexas que influenciam a percepção sensorial do vinho. De acordo com **Zheng e Casari (2018)**, a utilização de rácios permite que os modelos de Aprendizagem Automática identifiquem padrões de desequilíbrio que variáveis isoladas poderiam mascarar.
+Nesta etapa, procedeu-se à criação de novas variáveis para capturar interações físico-químicas complexas que influenciam a percepção sensorial do vinho. De acordo com _Zheng e Casari (2018)_, a utilização de rácios permite que os modelos de Aprendizagem Automática identifiquem padrões de desequilíbrio que variáveis isoladas poderiam mascarar.
 
-Com base na literatura enológica (**Waterhouse et al., 2016**), foram implementados os seguintes atributos:
+Com base na literatura enológica _(Waterhouse et al., 2016)_, foram implementados os seguintes atributos:
 
 1.  **Rácio de Dióxido de Enxofre (`so2_ratio`):** Calculado como `free sulfur dioxide / total sulfur dioxide`. Este rácio mede a eficiência da conservação, indicando a percentagem de sulfitos que permanece em estado livre para combater a oxidação.
 2.  **Rácio de Acidez Volátil (`volatile_acidity_ratio`):** Calculado como `volatile acidity / fixed acidity`. Este indicador é fundamental para detetar desequilíbrios estruturais, uma vez que uma elevada proporção de acidez volátil face à acidez fixa é um indicador clássico de baixa qualidade e presença de defeitos.
@@ -140,7 +136,7 @@ Com base na literatura enológica (**Waterhouse et al., 2016**), foram implement
 A validade das novas variáveis foi testada através do cálculo da matriz de correlação de *Pearson* e da análise de densidade por categoria de qualidade.
 
 ##### 3.3.1. Resultados da Correlação de *Pearson*
-A análise matemática revelou que o `volatile_acidity_ratio` apresenta uma **correlação negativa de (-0.22) com a variável alvo (`quality`). Este resultado valida a hipótese inicial: vinhos com uma maior proporção de acidez volátil tendem a receber pontuações significativamente mais baixas. 
+A análise matemática revelou que o `volatile_acidity_ratio` apresenta uma correlação negativa de (-0.22) com a variável alvo (`quality`). Este resultado valida a hipótese inicial: vinhos com uma maior proporção de acidez volátil tendem a receber pontuações significativamente mais baixas. 
 
 O rácio de SO2 (`so2_ratio`) também demonstrou uma correlação positiva (+0.12), sugerindo que uma melhor gestão dos conservantes livres está associada a vinhos de qualidade superior.
 
