@@ -53,42 +53,111 @@ O problema é de regressão: pretendemos prever um valor numérico contínuo num
 
 O MAE foi escolhido como métrica principal porque está na mesma unidade da variável alvo: pontos de qualidade. É fácil de interpretar, tanto para nós como para quem não trabalha com estatística. Um MAE de 0,5 significa, concretamente, que o modelo erra em média meio ponto na escala de qualidade, o que pode fazer a diferença entre classificar um vinho como "bom" ou "médio" e tem impacto direto na decisão de produção.
 
-O objetivo definido na Milestone 1 é atingir um MAE inferior a 0,5 no conjunto de teste. 
- 
-## 2. Experiências Realizadas 
-### 2.1. Modelo Baseline 
-*O ponto de partida simples.* 
-* **Algoritmo:** (p/ex.: Regressão Logística) 
-* **Resultado:** (p/ex.: Accuracy: 0.72) 
- 
-### 2.2. Modelos Candidatos 
-*Listagem dos algoritmos testados e a justificação da escolha.* 
- 
-| Algoritmo | Parâmetros Base | Métrica (Treino) | Métrica (Teste) | Notas | 
-| :--- | :--- | :--- | :--- | :--- | 
-| Random Forest | n_estimators=100 | 0.95 | 0.82 | Sinais de overfitting | 
-| XGBoost | default | 0.88 | 0.85 | Melhor generalização | 
-| SVM | kernel='rbf' | 0.80 | 0.79 | Lento no treino | 
- 
-## 3. Otimização (Tuning) 
-*Descrevam como melhoraram o melhor modelo.* 
-* **Técnica Utilizada:** (p/ex.: "Utilizámos GridSearchCV para ajustar os hiperparâmetros 
-`max_depth` e `learning_rate`.") 
-* **Melhoria obtida:** (p/ex.: "O F1-Score subiu de 0.85 para 0.88 após o ajuste.") 
- 
-## 4. Avaliação do Modelo Final 
-### 4.1. Matriz de Confusão / Erros 
-*Analisem onde o modelo mais falha.* 
-> **Análise:** (p/ex.: "O modelo ainda confunde a Classe A com a Classe B em 10% dos casos devido 
-à semelhança nos atributos X e Y.") 
- 
-### 4.2. Importância dos Atributos (Feature Importance) 
-*Quais as variáveis que o modelo considerou mais importantes para decidir?* 
-1. [Variável X] 
-2. [Variável Y] 
- 
-## 5. Conclusão da Fase de Modelação 
-*Justifiquem por que razão este modelo está pronto (ou não) para ser apresentado como solução 
-final.* 
- --- 
+O objetivo definido na Milestone 1 é atingir um MAE inferior a 0,5 no conjunto de teste.
+
+---
+
+## 2. Experiências Realizadas
+
+### 2.1. Modelo Baseline
+
+Antes de avançar para algoritmos mais complexos, é necessário perceber qual é o patamar mínimo de desempenho, ou seja, quanto é que um modelo sem qualquer capacidade preditiva real consegue acertar simplesmente por usar a informação mais básica disponível. Treinaram-se dois modelos de referência com complexidades diferentes.
+
+#### B1 — Previsão pela Média
+
+O primeiro baseline prevê sempre a média da variável alvo calculada no conjunto de treino, independentemente das características do vinho. É o cenário de pior caso razoável: qualquer modelo que não supere este resultado não aprendeu nada útil dos dados.
+
+| Parâmetro | Valor |
+| :--- | :--- |
+| Algoritmo | `DummyRegressor(strategy='mean')` |
+| Estratégia | Prevê sempre 5,82 (média de `quality` no treino) |
+| Variáveis utilizadas | Nenhuma |
+
+**Resultados:**
+
+| Métrica | Treino | Teste |
+| :--- | :---: | :---: |
+| MAE | 0,6910 | 0,6691 |
+| RMSE | 0,8766 | 0,8596 |
+| R² | 0,0000 | 0,0000 |
+
+O R² igual a zero confirma que este modelo não explica qualquer variação na qualidade dos vinhos. O MAE de 0,669 no teste representa o erro máximo que aceitamos num modelo candidato: se um algoritmo mais sofisticado não superar este valor, não tem utilidade prática.
+
+---
+
+#### B2 — Regressão Linear
+
+O segundo baseline é o modelo paramétrico mais simples que usa de facto as variáveis físico-químicas para fazer previsões. Ajusta uma relação linear entre cada atributo e a pontuação de qualidade, através do método dos mínimos quadrados ordinários.
+
+| Parâmetro | Valor |
+| :--- | :--- |
+| Algoritmo | `LinearRegression()` |
+| Estratégia | Regressão linear por mínimos quadrados ordinários |
+| Dados de entrada | Dados normalizados com `StandardScaler` (ajustado só no treino) |
+
+**Resultados:**
+
+| Métrica | Treino | Teste | Notas |
+| :--- | :---: | :---: | :--- |
+| MAE | 0,5659 | 0,5607 | Métrica principal |
+| RMSE | 0,7314 | 0,7285 | |
+| R² | 0,3038 | 0,2814 | |
+
+Com um MAE de 0,561 no teste, este modelo já supera claramente o baseline B1, mas fica ainda 0,061 pontos acima do objetivo de 0,5. O R² de 0,28 indica que a regressão linear consegue explicar cerca de 28% da variação na qualidade dos vinhos. Os restantes 72% estão provavelmente associados a interações não lineares entre variáveis ou a padrões que um modelo linear não consegue captar.
+
+Os coeficientes do modelo confirmam as conclusões da análise exploratória da Milestone 2: o teor alcoólico (coeficiente de 0,30) é o atributo com maior peso positivo, enquanto o rácio de acidez volátil (coeficiente de -0,23) e a densidade (-0,23) penalizam a qualidade prevista. A variável `total sulfur dioxide` tem um coeficiente de -0,001, praticamente nulo, o que sugere que pouco contribui para a previsão linear.
+
+A ausência de diferença significativa entre os resultados no treino e no teste (MAE de 0,566 vs 0,561) indica que não há *overfitting* neste modelo.
+
+---
+
+#### Patamar de Referência para as Fases Seguintes
+
+Os resultados dos dois baselines estabelecem os limites para a fase de experimentação da Semana 9. Os modelos candidatos terão de apresentar um MAE inferior a 0,561 no teste para se justificar a sua complexidade adicional, e idealmente abaixo de 0,500 para cumprir o objetivo do projeto.
+
+---
+
+### 2.2. Modelos Candidatos
+
+*Listagem dos algoritmos testados e a justificação da escolha.*
+
+| Algoritmo | Parâmetros Base | Métrica (Treino) | Métrica (Teste) | Notas |
+| :--- | :--- | :--- | :--- | :--- |
+| Random Forest | n_estimators=100 | 0.95 | 0.82 | Sinais de overfitting |
+| XGBoost | default | 0.88 | 0.85 | Melhor generalização |
+| SVM | kernel='rbf' | 0.80 | 0.79 | Lento no treino |
+
+---
+
+## 3. Otimização (Tuning)
+
+*Descrevam como melhoraram o melhor modelo.*
+
+* **Técnica Utilizada:** (p/ex.: "Utilizámos GridSearchCV para ajustar os hiperparâmetros `max_depth` e `learning_rate`.")
+* **Melhoria obtida:** (p/ex.: "O F1-Score subiu de 0.85 para 0.88 após o ajuste.")
+
+---
+
+## 4. Avaliação do Modelo Final
+
+### 4.1. Matriz de Confusão / Erros
+
+*Analisem onde o modelo mais falha.*
+
+> **Análise:** (p/ex.: "O modelo ainda confunde a Classe A com a Classe B em 10% dos casos devido à semelhança nos atributos X e Y.")
+
+### 4.2. Importância dos Atributos (*Feature Importance*)
+
+*Quais as variáveis que o modelo considerou mais importantes para decidir?*
+
+1. [Variável X]
+2. [Variável Y]
+
+---
+
+## 5. Conclusão da Fase de Modelação
+
+*Justifiquem por que razão este modelo está pronto (ou não) para ser apresentado como solução final.*
+
+---
 *Data de última atualização: [DD/MM/AAAA]* 
