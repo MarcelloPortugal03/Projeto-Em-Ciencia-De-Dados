@@ -6,7 +6,7 @@
 
 ### 1.1. Divisão do Conjunto de Dados
 
-Para garantir que o modelo é avaliado em condições realistas, dividimos o conjunto de dados em subconjuntos de treino e de teste, segundo uma proporção de **80% para treino e 20% para teste**, com semente aleatória fixa (`random_state=42`).
+Para garantir que o modelo é avaliado em condições realistas, dividimos o conjunto de dados em subconjuntos de treino e de teste, segundo uma proporção de 80% para treino e 20% para teste, com semente aleatória fixa (`random_state=42`).
 
 | Subconjunto | Registos | Proporção | Função |
 | :--- | :---: | :---: | :--- |
