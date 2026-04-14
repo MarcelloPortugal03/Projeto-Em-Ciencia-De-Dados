@@ -113,19 +113,63 @@ A ausência de diferença significativa entre os resultados no treino e no teste
 
 #### Patamar de Referência para as Fases Seguintes
 
-Os resultados dos dois baselines estabelecem os limites para a fase de experimentação da Semana 9. Os modelos candidatos terão de apresentar um MAE inferior a 0,561 no teste para se justificar a sua complexidade adicional, e idealmente abaixo de 0,500 para cumprir o objetivo do projeto.
+Os resultados dos dois baselines fixam os limites para a fase de experimentação seguinte. Qualquer modelo candidato tem de apresentar um MAE abaixo de 0,561 no teste para justificar a complexidade adicional e, para cumprir o objetivo do projeto, abaixo de 0,500.
 
 ---
 
 ### 2.2. Modelos Candidatos
 
-*Listagem dos algoritmos testados e a justificação da escolha.*
+Testaram-se três algoritmos. O Random Forest e o *XGBoost* são métodos baseados em árvores de decisão que conseguem modelar relações não lineares entre variáveis — algo que a regressão linear não faz. O SVR usa uma abordagem diferente, com base em margens de tolerância. A escolha recaiu sobre estes três porque funcionam bem em dados tabulares e permitem comparar estratégias distintas face ao mesmo problema.
 
-| Algoritmo | Parâmetros Base | Métrica (Treino) | Métrica (Teste) | Notas |
-| :--- | :--- | :--- | :--- | :--- |
-| Random Forest | n_estimators=100 | 0.95 | 0.82 | Sinais de overfitting |
-| XGBoost | default | 0.88 | 0.85 | Melhor generalização |
-| SVM | kernel='rbf' | 0.80 | 0.79 | Lento no treino |
+Para cada um, testaram-se algumas configurações de hiperparâmetros antes de avançar para uma pesquisa mais sistemática.
+
+#### Random Forest
+
+Testou-se a configuração com parâmetros base (`n_estimators=100`) e uma versão mais restrita (`n_estimators=300, max_depth=15, min_samples_split=5, min_samples_leaf=2`). A versão mais restrita reduziu visivelmente o erro de treino mas piorou o resultado no teste (MAE de 0.465 vs 0.441), pelo que se manteve a configuração base.
+
+#### *XGBoost*
+
+Testou-se a configuração base e uma variante com aprendizagem mais lenta (`learning_rate=0.05, n_estimators=300, subsample=0.8`). Os resultados foram praticamente idênticos no teste, pelo que se usou a configuração base.
+
+#### Máquinas de Vetores de Suporte (SVR)
+
+Testaram-se dois valores do parâmetro de regularização: C=1 (MAE Teste = 0.5101) e C=10 (MAE Teste = 0.5061). O valor C=10 deu resultados ligeiramente melhores e foi usado como configuração final.
+
+---
+
+**Resultados comparativos (melhor configuração de cada modelo):**
+
+| Algoritmo | Configuração | MAE (Treino) | RMSE (Treino) | R² (Treino) | MAE (Teste) | RMSE (Teste) | R² (Teste) |
+| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
+| B2 — Regressão Linear | — | 0,5659 | 0,7314 | 0,3038 | 0,5607 | 0,7285 | 0,2814 |
+| Random Forest | n_estimators=100 | 0,1608 | 0,2283 | 0,9322 | **0,4408** | 0,6136 | 0,4902 |
+| *XGBoost* | params. base | 0,1835 | 0,2570 | 0,9140 | 0,4673 | 0,6397 | 0,4460 |
+| SVR | rbf, C=10 | 0,3756 | 0,5656 | 0,5837 | 0,5061 | 0,6778 | 0,3779 |
+
+---
+
+### 2.3. Diagnóstico de Generalização e Seleção do Modelo
+
+#### Análise de Sobreajuste (*Overfitting*) e Subajuste (*Underfitting*)
+
+O diagnóstico é feito comparando o erro de treino com o erro de teste. Uma diferença grande indica que o modelo aprendeu padrões específicos dos dados de treino que não generalizam para dados novos.
+
+| Algoritmo | MAE Treino | MAE Teste | Diferença | Diagnóstico |
+| :--- | :---: | :---: | :---: | :--- |
+| B2 — Regressão Linear | 0,5659 | 0,5607 | 0,005 | Equilibrado — modelo limitado pela linearidade |
+| Random Forest | 0,1608 | 0,4408 | 0,280 | Sobreajuste moderado |
+| *XGBoost* | 0,1835 | 0,4673 | 0,284 | Sobreajuste moderado |
+| SVR (C=10) | 0,3756 | 0,5061 | 0,131 | Sobreajuste leve |
+
+O Random Forest e o *XGBoost* ajustam-se ao ruído dos dados de treino mais do que o SVR, daí a diferença maior entre os dois erros. Mesmo assim, o Random Forest é o que dá melhores resultados no teste.
+
+#### Curvas de Aprendizagem
+
+A curva de aprendizagem do Random Forest foi calculada com validação cruzada de 5 partições, entre 10% e 100% dos dados de treino (ver gráfico no notebook). Com mais dados, o erro no treino sobe ligeiramente e o erro de validação desce. As duas linhas mantêm uma distância considerável mesmo com o conjunto completo, o que confirma o sobreajuste. Mais regularização ou uma pesquisa mais fina de hiperparâmetros podem aproximar as curvas.
+
+#### Seleção do Modelo
+
+O Random Forest (`n_estimators=100`) é o modelo escolhido para a fase de otimização: foi o único a cumprir o objetivo de MAE < 0,5 no teste, com 0,4408. O *XGBoost* ficou próximo (MAE = 0,467) e pode ser reconsiderado durante o tuning. O SVR não atingiu o objetivo.
 
 ---
 
