@@ -244,7 +244,17 @@ O MAE foi calculado separadamente para cada nota de qualidade. As notas centrais
 
 
 ---
+### 4.3. Importância dos Atributos (*Feature Importance*)
 
+A importância das variáveis do modelo final foi extraída a partir dos ganhos de informação agregados de todas as árvores. As variáveis mais relevantes para a previsão da qualidade são:
+
+1. `alcohol` — 17,7% — o teor alcoólico é o preditor mais forte
+2. `volatile_acidity_ratio` — 11,3% — a acidez volátil relativa penaliza a qualidade
+3. `density` — 10,9% — a densidade do vinho
+4. `so2_ratio` — 10,0% — a proporção entre dióxido de enxofre livre e total
+5. `total sulfur dioxide` — 7,9% — o nível total de dióxido de enxofre
+
+A variável `is_red` (tipo de vinho) contribui menos de 0,1% para a previsão. Isto era esperado: as diferenças químicas entre tintos e brancos já estão capturadas pelas restantes variáveis.
 ## 5. Conclusão da Fase de Modelação
 
 *Justifiquem por que razão este modelo está pronto (ou não) para ser apresentado como solução final.*
