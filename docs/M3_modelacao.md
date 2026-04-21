@@ -229,11 +229,14 @@ O desvio padrão de 0,0135 entre os 5 folds é inferior ao limiar de 0,02, o que
 ---
 ## 4. Avaliação do Modelo Final
 
-### 4.1. Matriz de Confusão / Erros
+### 4.1. Matriz de Erros
 
-*Analisem onde o modelo mais falha.*
+Como o nosso problema é de regressão e não de classificação, não temos uma matriz de confusão no sentido tradicional. Adaptámos a análise arredondando as previsões ao inteiro mais próximo e comparando com as notas reais. Isto permite identificar os padrões de erro: em que notas o modelo acerta, em que notas erra, e para que lado erra.
 
-> **Análise:** (p/ex.: "O modelo ainda confunde a Classe A com a Classe B em 10% dos casos devido à semelhança nos atributos X e Y.")
+A matriz resultante (ver *notebook*, Secção 10) permite verificar que a maioria dos erros são de apenas 1 ponto na escala. As notas extremas (3, 4, 8, 9) são as mais difíceis porque têm poucos exemplos no conjunto de dados, o que limita o que o modelo consegue aprender sobre elas.
+
+O erro não é simétrico: o modelo tem maior dificuldade com vinhos de notas baixas (3 e 4) do que com vinhos de notas altas, porque os primeiros representam menos de 5% do conjunto de dados.
+
 
 ### 4.2. Importância dos Atributos (*Feature Importance*)
 
