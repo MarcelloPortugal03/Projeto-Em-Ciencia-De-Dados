@@ -238,12 +238,10 @@ A matriz resultante (ver *notebook*, Secção 10) permite verificar que a maiori
 O erro não é simétrico: o modelo tem maior dificuldade com vinhos de notas baixas (3 e 4) do que com vinhos de notas altas, porque os primeiros representam menos de 5% do conjunto de dados.
 
 
-### 4.2. Importância dos Atributos (*Feature Importance*)
+### 4.2. Análise de Erros por Nota de Qualidade
 
-*Quais as variáveis que o modelo considerou mais importantes para decidir?*
+O MAE foi calculado separadamente para cada nota de qualidade. As notas centrais (5, 6, 7) têm MAE dentro do objetivo (< 0,5), enquanto as notas dos extremos tendem a ter erros maiores. Isto é uma consequência directa da distribuição desequilibrada dos dados: com poucas dezenas de vinhos de nota 3 ou 9, o modelo não tem informação suficiente para prever estas notas com a mesma confiança.
 
-1. [Variável X]
-2. [Variável Y]
 
 ---
 
