@@ -175,10 +175,38 @@ O Random Forest (`n_estimators=100`) é o modelo escolhido para a fase de otimiz
 
 ## 3. Otimização (Tuning)
 
-*Descrevam como melhoraram o melhor modelo.*
+### 3.1. Pesquisa de Hiperparâmetros
 
-* **Técnica Utilizada:** (p/ex.: "Utilizámos GridSearchCV para ajustar os hiperparâmetros `max_depth` e `learning_rate`.")
-* **Melhoria obtida:** (p/ex.: "O F1-Score subiu de 0.85 para 0.88 após o ajuste.")
+A partir do Random Forest base (`n_estimators=100`), usámos `RandomizedSearchCV` para testar 100 combinações aleatórias de hiperparâmetros com validação cruzada de 5 partições. A pesquisa aleatória foi preferida à pesquisa exaustiva (`GridSearchCV`) porque o espaço de configurações é grande e a pesquisa aleatória tende a encontrar boas soluções mais depressa.
+
+| Hiperparâmetro | Espaço de pesquisa |
+| :--- | :--- |
+| `n_estimators` | Inteiro uniforme entre 100 e 500 |
+| `max_depth` | None, 10, 15, 20, 25, 30 |
+| `min_samples_split` | Inteiro uniforme entre 2 e 10 |
+| `min_samples_leaf` | Inteiro uniforme entre 1 e 6 |
+| `max_features` | sqrt, log2, 0.5, 0.7, None |
+
+O `RandomizedSearchCV` avalia cada combinação com validação cruzada de 5 partições (5-Fold CV), usando o MAE negativo como critério de seleção. Isto garante que os parâmetros escolhidos são os que generalizam melhor, e não apenas os que se ajustam bem a uma divisão específica dos dados.
+
+A melhor configuração encontrada foi:
+
+| Hiperparâmetro | Valor encontrado |
+| :--- | :--- |
+| `n_estimators` | 382 |
+| `max_depth` | None (sem limite) |
+| `min_samples_split` | 2 |
+| `min_samples_leaf` | 1 |
+| `max_features` | sqrt |
+
+A comparação entre o modelo base e o modelo otimizado no conjunto de teste (que não foi usado em nenhuma fase da pesquisa) mostra uma melhoria:
+
+| Modelo | MAE Treino | MAE Teste | RMSE Teste | R² Teste |
+| :--- | :---: | :---: | :---: | :---: |
+| Random Forest base (100 árvores) | 0,1608 | 0,4408 | 0,6136 | 0,4902 |
+| **Random Forest otimizado (382 árvores)** | **0,1565** | **0,4319** | **0,6003** | **0,5120** |
+
+A melhoria é de 0,0089 pontos no MAE e de 0,022 no R². O modelo otimizado é superior em todas as métricas e passa a ser o modelo final do projeto.
 
 ---
 
