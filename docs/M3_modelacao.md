@@ -269,8 +269,16 @@ A variável `is_red` (tipo de vinho) contribui menos de 0,1% para a previsão. I
 | Previsões com erro > 1,5 pontos | 34 (2,6%) |
 ## 5. Conclusão da Fase de Modelação
 
+O Random Forest foi o modelo que apresentou melhor capacidade de generalização ao longo de todas as fases de avaliação. O modelo base já cumpria o objetivo SMART do projeto (MAE < 0,5), e a pesquisa de hiperparâmetros com `RandomizedSearchCV` permitiu melhorá-lo: o MAE desceu de 0,4408 para **0,4319** e o R² subiu de 0,4902 para **0,5120**, com uma configuração de 382 árvores e `max_features='sqrt'`.
 
-*Justifiquem por que razão este modelo está pronto (ou não) para ser apresentado como solução final.*
+A validação cruzada de 5 partições confirmou que o MAE é estável (0,4431 ± 0,0135), o que reduz a probabilidade de o resultado ser um artefacto de uma divisão particularmente favorável.
+
+Os pontos fracos do modelo são conhecidos: erra mais nas notas extremas (3, 4, 8 e 9) por falta de exemplos, e mantém algum grau de sobreajuste (diferença de 0,275 entre MAE de treino e teste). Estas limitações não podem ser resolvidas apenas com tuning. Para ir mais longe, seria necessário recolher mais dados nos extremos da escala ou aplicar técnicas de reamostragem.
+
+O modelo está pronto para ser apresentado como solução. O erro médio de 0,43 pontos numa escala de 1 a 10, com base em 11 variáveis químicas, é um resultado que responde à pergunta do projeto: as propriedades físico-químicas de um vinho permitem prever a sua qualidade com um grau de aproximação útil, embora não perfeito.
+
+---
+
 
 ---
 *Data de última atualização: [DD/MM/AAAA]* 
