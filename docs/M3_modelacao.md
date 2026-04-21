@@ -210,6 +210,23 @@ A melhoria é de 0,0089 pontos no MAE e de 0,022 no R². O modelo otimizado é s
 
 ---
 
+### 3.2. Validação Cruzada (K-Fold)
+
+Para confirmar que o resultado do modelo final é estável e não depende de uma divisão particular dos dados, aplicámos validação cruzada de 5 partições ao modelo otimizado. Os dados de treino são divididos em 5 blocos; o modelo treina em 4 blocos e é avaliado no quinto, repetindo o processo 5 vezes.
+
+| Fold | MAE |
+| :---: | :---: |
+| 1 | 0,4395 |
+| 2 | 0,4596 |
+| 3 | 0,4513 |
+| 4 | 0,4453 |
+| 5 | 0,4195 |
+| **Média** | **0,4431** |
+| **Desvio padrão** | **0,0135** |
+
+O desvio padrão de 0,0135 entre os 5 folds é inferior ao limiar de 0,02, o que confirma que o modelo é estável: o MAE reportado não é resultado de uma divisão particularmente favorável dos dados. Todos os folds ficam abaixo do objetivo de 0,5.
+
+---
 ## 4. Avaliação do Modelo Final
 
 ### 4.1. Matriz de Confusão / Erros
