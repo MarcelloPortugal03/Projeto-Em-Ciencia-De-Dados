@@ -255,7 +255,20 @@ A importância das variáveis do modelo final foi extraída a partir dos ganhos 
 5. `total sulfur dioxide` — 7,9% — o nível total de dióxido de enxofre
 
 A variável `is_red` (tipo de vinho) contribui menos de 0,1% para a previsão. Isto era esperado: as diferenças químicas entre tintos e brancos já estão capturadas pelas restantes variáveis.
+
+
+---
+### 4.4. Estatísticas Globais de Erro
+
+| Indicador | Valor |
+| :--- | :---: |
+| Acertos exactos (nota arredondada = nota real) | 866 / 1.300 (66,6%) |
+| Resíduos — média | 0,0043 (praticamente zero — sem viés) |
+| Resíduos — desvio padrão | 0,6003 |
+| Previsões com erro > 1 ponto | 133 (10,2%) |
+| Previsões com erro > 1,5 pontos | 34 (2,6%) |
 ## 5. Conclusão da Fase de Modelação
+
 
 *Justifiquem por que razão este modelo está pronto (ou não) para ser apresentado como solução final.*
 
