@@ -98,7 +98,6 @@ O gráfico de importância de variáveis mostra que as 5 variáveis com maior pe
 A variável `is_red` (tipo de vinho) contribui menos de 0,1%, confirmando que a qualidade depende da composição química e não da cor.
 
 
-
 ## 4. Finalização (Milestone 4)
 
 ### Resposta ao Problema
