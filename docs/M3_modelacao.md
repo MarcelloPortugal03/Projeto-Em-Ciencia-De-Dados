@@ -208,8 +208,6 @@ A comparação entre o modelo base e o modelo otimizado no conjunto de teste (qu
 
 A melhoria é de 0,0089 pontos no MAE e de 0,022 no R². O modelo otimizado é superior em todas as métricas e passa a ser o modelo final do projeto.
 
----
-
 ### 3.2. Validação Cruzada (K-Fold)
 
 Para confirmar que o resultado do modelo final é estável e não depende de uma divisão particular dos dados, aplicámos validação cruzada de 5 partições ao modelo otimizado. Os dados de treino são divididos em 5 blocos; o modelo treina em 4 blocos e é avaliado no quinto, repetindo o processo 5 vezes.
@@ -227,23 +225,21 @@ Para confirmar que o resultado do modelo final é estável e não depende de uma
 O desvio padrão de 0,0135 entre os 5 folds é inferior ao limiar de 0,02, o que confirma que o modelo é estável: o MAE reportado não é resultado de uma divisão particularmente favorável dos dados. Todos os folds ficam abaixo do objetivo de 0,5.
 
 ---
+
 ## 4. Avaliação do Modelo Final
 
 ### 4.1. Matriz de Erros
 
 Como o nosso problema é de regressão e não de classificação, não temos uma matriz de confusão no sentido tradicional. Adaptámos a análise arredondando as previsões ao inteiro mais próximo e comparando com as notas reais. Isto permite identificar os padrões de erro: em que notas o modelo acerta, em que notas erra, e para que lado erra.
 
-A matriz resultante (ver *notebook*, Secção 10) permite verificar que a maioria dos erros são de apenas 1 ponto na escala. As notas extremas (3, 4, 8, 9) são as mais difíceis porque têm poucos exemplos no conjunto de dados, o que limita o que o modelo consegue aprender sobre elas.
+A matriz resultante (ver notebook, Secção 10) permite verificar que a maioria dos erros são de apenas 1 ponto na escala. As notas extremas (3, 4, 8, 9) são as mais difíceis porque têm poucos exemplos no conjunto de dados, o que limita o que o modelo consegue aprender sobre elas.
 
 O erro não é simétrico: o modelo tem maior dificuldade com vinhos de notas baixas (3 e 4) do que com vinhos de notas altas, porque os primeiros representam menos de 5% do conjunto de dados.
-
 
 ### 4.2. Análise de Erros por Nota de Qualidade
 
 O MAE foi calculado separadamente para cada nota de qualidade. As notas centrais (5, 6, 7) têm MAE dentro do objetivo (< 0,5), enquanto as notas dos extremos tendem a ter erros maiores. Isto é uma consequência directa da distribuição desequilibrada dos dados: com poucas dezenas de vinhos de nota 3 ou 9, o modelo não tem informação suficiente para prever estas notas com a mesma confiança.
 
-
----
 ### 4.3. Importância dos Atributos (*Feature Importance*)
 
 A importância das variáveis do modelo final foi extraída a partir dos ganhos de informação agregados de todas as árvores. As variáveis mais relevantes para a previsão da qualidade são:
@@ -256,8 +252,6 @@ A importância das variáveis do modelo final foi extraída a partir dos ganhos 
 
 A variável `is_red` (tipo de vinho) contribui menos de 0,1% para a previsão. Isto era esperado: as diferenças químicas entre tintos e brancos já estão capturadas pelas restantes variáveis.
 
-
----
 ### 4.4. Estatísticas Globais de Erro
 
 | Indicador | Valor |
@@ -267,6 +261,34 @@ A variável `is_red` (tipo de vinho) contribui menos de 0,1% para a previsão. I
 | Resíduos — desvio padrão | 0,6003 |
 | Previsões com erro > 1 ponto | 133 (10,2%) |
 | Previsões com erro > 1,5 pontos | 34 (2,6%) |
+
+### 4.5. Fundamentação da Escolha do Modelo de Produção
+
+A seleção do modelo final considerou três critérios: desempenho preditivo no conjunto de teste, estabilidade dos resultados entre partições e interpretabilidade para o contexto do problema.
+
+**Critério 1 — Desempenho preditivo**
+
+| Modelo | MAE Teste | R² Teste | Cumpre MAE < 0,5? |
+| :--- | :---: | :---: | :---: |
+| Random Forest otimizado | **0,4319** | **0,512** | Sim |
+| XGBoost | 0,4673 | 0,446 | Sim |
+| SVR (C=10) | 0,5061 | 0,378 | Não |
+| Regressão Linear | 0,5607 | 0,281 | Não |
+
+O Random Forest otimizado apresenta o MAE mais baixo entre todos os candidatos (0,4319), 0,035 pontos abaixo do XGBoost e 0,129 abaixo do objetivo. É também o único modelo com R² acima de 0,5, o que significa que explica mais de metade da variação na qualidade dos vinhos.
+
+**Critério 2 — Estabilidade**
+
+A validação cruzada de 5 partições produziu um desvio padrão de 0,0135 entre os MAE dos folds. Todos os folds ficaram abaixo de 0,46 e acima de 0,41. Um desvio inferior a 0,02 é considerado estável, o que confirma que o resultado não depende de uma divisão particular dos dados.
+
+**Critério 3 — Interpretabilidade**
+
+O Random Forest permite extrair a importância de cada variável através da média dos ganhos de informação em todas as árvores. Esta propriedade é relevante para o problema em questão: permite responder às perguntas de investigação sobre quais variáveis químicas mais influenciam a qualidade. O alcohol (17,7%), a acidez volátil relativa (11,3%) e a densidade (10,9%) são os três atributos mais determinantes, o que está alinhado com a literatura enológica e com as conclusões da análise exploratória.
+
+**Decisão:** O Random Forest otimizado (382 árvores, `max_features='sqrt'`) é o modelo de produção. Supera todos os candidatos em desempenho, é estável entre partições e permite interpretação directa dos factores que influenciam a previsão.
+
+---
+
 ## 5. Conclusão da Fase de Modelação
 
 O Random Forest foi o modelo que apresentou melhor capacidade de generalização ao longo de todas as fases de avaliação. O modelo base já cumpria o objetivo SMART do projeto (MAE < 0,5), e a pesquisa de hiperparâmetros com `RandomizedSearchCV` permitiu melhorá-lo: o MAE desceu de 0,4408 para 0,4319 e o R² subiu de 0,4902 para 0,5120, com uma configuração de 382 árvores e `max_features='sqrt'`.
@@ -275,10 +297,7 @@ A validação cruzada de 5 partições confirmou que o MAE é estável (0,4431 �
 
 Os pontos fracos do modelo são conhecidos: erra mais nas notas extremas (3, 4, 8 e 9) por falta de exemplos, e mantém algum grau de sobreajuste (diferença de 0,275 entre MAE de treino e teste). Estas limitações não podem ser resolvidas apenas com tuning. Para ir mais longe, seria necessário recolher mais dados nos extremos da escala ou aplicar técnicas de reamostragem.
 
-O modelo está pronto para ser apresentado como solução. O erro médio de 0,43 pontos numa escala de 1 a 10, com base em 11 variáveis químicas, é um resultado que responde à pergunta do projeto: as propriedades físico-químicas de um vinho permitem prever a sua qualidade com um grau de aproximação útil, embora não perfeito.
+O modelo está pronto para ser apresentado como solução. O erro médio de 0,43 pontos numa escala de 1 a 10, com base em 12 variáveis (11 originais e 2 criadas por engenharia de atributos), é um resultado que responde à pergunta do projeto: as propriedades físico-químicas de um vinho permitem prever a sua qualidade com um grau de aproximação útil, embora não perfeito.
 
 ---
-
-
----
-*Data de última atualização: [DD/MM/AAAA]* 
+*Data de última atualização: 22/04/2026* 
