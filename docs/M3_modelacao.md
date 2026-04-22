@@ -119,7 +119,7 @@ Os resultados dos dois baselines fixam os limites para a fase de experimentaçã
 
 ### 2.2. Modelos Candidatos
 
-Testaram-se três algoritmos. O Random Forest e o *XGBoost* são métodos baseados em árvores de decisão que conseguem modelar relações não lineares entre variáveis — algo que a regressão linear não faz. O SVR usa uma abordagem diferente, com base em margens de tolerância. A escolha recaiu sobre estes três porque funcionam bem em dados tabulares e permitem comparar estratégias distintas face ao mesmo problema.
+Testaram-se três algoritmos. O Random Forest (Breiman, L., 2001, "Random Forests") e o *XGBoost* são métodos baseados em árvores de decisão que conseguem modelar relações não lineares entre variáveis — algo que a regressão linear não faz. O SVR usa uma abordagem diferente, com base em margens de tolerância. A escolha recaiu sobre estes três porque funcionam bem em dados tabulares e permitem comparar estratégias distintas face ao mesmo problema.
 
 Para cada um, testaram-se algumas configurações de hiperparâmetros antes de avançar para uma pesquisa mais sistemática.
 
@@ -177,7 +177,7 @@ O Random Forest (`n_estimators=100`) é o modelo escolhido para a fase de otimiz
 
 ### 3.1. Pesquisa de Hiperparâmetros
 
-A partir do Random Forest base (`n_estimators=100`), usámos `RandomizedSearchCV` para testar 100 combinações aleatórias de hiperparâmetros com validação cruzada de 5 partições. A pesquisa aleatória foi preferida à pesquisa exaustiva (`GridSearchCV`) porque o espaço de configurações é grande e a pesquisa aleatória tende a encontrar boas soluções mais depressa.
+A partir do Random Forest base (`n_estimators=100`), usámos `RandomizedSearchCV` para testar 100 combinações aleatórias de hiperparâmetros com validação cruzada de 5 partições. A pesquisa aleatória foi preferida à pesquisa exaustiva (`GridSearchCV`) porque o espaço de configurações é grande e a pesquisa aleatória tende a encontrar boas soluções mais depressa (Bergstra & Bengio, 2012, "Random Search for Hyper-Parameter Optimization").
 
 | Hiperparâmetro | Espaço de pesquisa |
 | :--- | :--- |
