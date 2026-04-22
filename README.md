@@ -87,7 +87,7 @@ Das 1.300 previsões no conjunto de teste, apenas 133 (10,2%) erraram mais de 1 
 
 ### Variáveis Mais Importantes
 
-O gráfico de importância de variáveis (disponível no notebook `notebooks/2.0_modelacao_treino.ipynb`, Secção 10) mostra que as 5 variáveis com maior peso na previsão são:
+O gráfico de importância de variáveis mostra que as 5 variáveis com maior peso na previsão são:
 
 1. **`alcohol`** (17,7%) — o teor alcoólico é o preditor dominante
 2. **`volatile_acidity_ratio`** (11,3%) — a acidez volátil relativa penaliza a qualidade
