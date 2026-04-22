@@ -85,6 +85,10 @@ Um MAE de 0,43 significa que, em média, o modelo erra menos de meio ponto na es
 
 Das 1.300 previsões no conjunto de teste, apenas 133 (10,2%) erraram mais de 1 ponto e apenas 34 (2,6%) erraram mais de 1,5 pontos. Os erros maiores concentram-se nas notas extremas (3, 4, 8, 9), onde o conjunto de dados tem poucos exemplos.
 
+<div align="center">
+  <img src="reports/figures/2.0_modelacao/M3_matriz_confusao.png" alt="Matriz de Confusão - Erros do Modelo" width="600">
+</div>
+
 ### Variáveis Mais Importantes
 
 O gráfico de importância de variáveis mostra que as 5 variáveis com maior peso na previsão são:
@@ -97,6 +101,9 @@ O gráfico de importância de variáveis mostra que as 5 variáveis com maior pe
 
 A variável `is_red` (tipo de vinho) contribui menos de 0,1%, confirmando que a qualidade depende da composição química e não da cor.
 
+<div align="center">
+  <img src="reports/figures/2.0_modelacao/M3_feature_importance_final.png" alt="Importância das Variáveis no Modelo Final" width="600">
+</div>
 
 ## 4. Finalização (Milestone 4)
 
