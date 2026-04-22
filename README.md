@@ -4,6 +4,7 @@
 | :--- | :---: | :--- |
 | Afonso Carvalho | 2023132594 | 4 |
 | Marcello Portugal | 2022136899 | 4 |
+
 ## Organização do Repositório
 A estrutura deste projeto segue as boas práticas de Ciência de Dados e Engenharia de Software:
 * **`data/`**: Armazenamento de dados (dados brutos em `raw/` e processados em `processed/`).
@@ -12,25 +13,28 @@ A estrutura deste projeto segue as boas práticas de Ciência de Dados e Engenha
 * **`src/`**: Código-fonte modular (scripts `.py`) para funções reutilizáveis.
 * **`reports/`**: Relatórios finais, apresentações e exportação de figuras (`figures/`).
 * **`requirements.txt`**: Ficheiro de configuração com as bibliotecas necessárias.
+
 ## 1. Iniciação (Milestone 1)
+
 ### Contexto e Problema de Negócio
 A avaliação da qualidade do vinho é tradicionalmente um processo sensorial, subjetivo e demorado. O problema de negócio consiste em otimizar este processo, utilizando dados de testes laboratoriais (propriedades físico-químicas) para prever de forma rápida e objetiva a qualidade final do vinho, auxiliando os produtores na tomada de decisão e no controlo de qualidade.
+
 ### Objetivos SMART
 Desenvolver um modelo de Aprendizagem Automática (baseado em algoritmos de regressão) para prever a qualidade sensorial do Vinho Verde (escala 0 a 10) utilizando variáveis físico-químicas, com a meta de atingir um Erro Médio Absoluto (MAE) inferior a 0.5 pontos até ao final da Milestone 3.
 
-### Perguntas de Investigação: 
+### Perguntas de Investigação:
 *PI 1: Qual é a capacidade de previsão de um modelo baseado apenas em dados físico-químicos?*
 
 *PI 2: Quais são as 3 variáveis físico-químicas que mais contribuem para a previsão de um vinho de "Alta Qualidade" (nota ≥ 7)?*
 
 *PI 3: Existem diferenças estatisticamente significativas nas variáveis que determinam a qualidade quando comparamos modelos treinados exclusivamente para vinhos tintos versus vinhos brancos?*
-  
+
 ### Fonte de Dados
 * **Dataset:** [UCI Wine Quality](https://archive.ics.uci.edu/dataset/186/wine+quality)
 * **Dataset Original:** 6.497 registos (1.599 tintos / 4.898 brancos) | 12 atributos.
 * **Dataset Processado:** 6.497 registos | 14 atributos.
 * **Variável Alvo:** `quality` (Pontuação de 0 a 10, onde valores mais altos indicam melhor qualidade sensorial).
-  
+
 ### Ferramentas e Bibliotecas Python
 * **Pandas & NumPy:** Para manipulação e tratamento estatístico dos dados.
 * **Seaborn & Matplotlib:** Para a criação de gráficos e análise visual.
@@ -47,27 +51,64 @@ A Fase 2 arrancou com o *dataset* unificado (`data/processed/wine_quality_unific
 > *Nota: Os detalhes técnicos e o dicionário de dados pós-processamento estão disponíveis no relatório completo: `docs/M2_exploracao.md`*
 
 ### Principais Conclusões da Análise Exploratória (*EDA*)
-
 * **Os Motores da Qualidade:** O teor alcoólico é o principal impulsionador de notas altas, enquanto a acidez volátil atua como a principal penalizadora.
 * **A Irrelevância da Cor:** A qualidade é ditada pela química do vinho; a categoria (tinto/branco) tem um impacto estatístico quase nulo na nota final.
 * **O Desafio da Modelação:** Os dados concentram-se fortemente nas notas médias (5, 6 e 7), havendo uma escassez de exemplos extremos (notas muito altas ou baixas) para o modelo aprender.
 > *Nota: Os principais gráficos e visualizações gerados durante a Análise Exploratória de Dados encontram-se disponíveis na pasta `reports/figures/`.*
-> 
+>
+
 ### Estado dos Dados:
 Após as análises e tratamentos descritos, os dados encontram-se totalmente limpos, normalizados e enriquecidos com atributos estratégicos. O *dataset* final (`wine_quality_model_ready.csv`) está, assim, 100% pronto para alimentar a fase de modelação.
+
 ## 3. Modelação (Milestone 3)
-### Abordagem Técnica
-* **Modelos:** [Ex: Random Forest e XGBoost]
-* **Métrica Principal:** [Ex: F1-Score ou RMSE]
+
+### Modelo Eleito
+
+O algoritmo selecionado é o Random Forest, otimizado com pesquisa aleatória de hiperparâmetros (`RandomizedSearchCV`, 100 combinações, validação cruzada de 5 partições). A configuração final usa 382 árvores de decisão com `max_features='sqrt'`.
+
+A escolha teve em conta três critérios: (1) desempenho preditivo no conjunto de teste, (2) estabilidade dos resultados entre partições de validação cruzada e (3) interpretabilidade dos factores que influenciam a previsão. O Random Forest foi superior aos restantes candidatos (XGBoost, SVR, Regressão Linear) em todos os critérios.
+
+### Desempenho
+
+| Métrica | Valor |
+| :--- | :---: |
+| **MAE (Teste)** | **0,4319** |
+| R² (Teste) | 0,512 |
+| MAE CV 5-Fold | 0,4431 ± 0,0135 |
+| Acertos exactos | 866 / 1.300 (66,6%) |
+
+O objetivo SMART do projeto era atingir um MAE inferior a 0,5. O modelo final obteve 0,4319, ficando 0,068 pontos abaixo do limiar definido.
+
+### Impacto Prático
+
+Um MAE de 0,43 significa que, em média, o modelo erra menos de meio ponto na escala de qualidade (3 a 9). Na prática, se um vinho tem nota real de 6, o modelo prevê entre 5,6 e 6,4 na maioria dos casos. Este nível de precisão é suficiente para servir como ferramenta de triagem rápida na linha de produção, complementando a avaliação sensorial humana sem a substituir.
+
+Das 1.300 previsões no conjunto de teste, apenas 133 (10,2%) erraram mais de 1 ponto e apenas 34 (2,6%) erraram mais de 1,5 pontos. Os erros maiores concentram-se nas notas extremas (3, 4, 8, 9), onde o conjunto de dados tem poucos exemplos.
+
+### Variáveis Mais Importantes
+
+O gráfico de importância de variáveis (disponível no notebook `notebooks/2.0_modelacao_treino.ipynb`, Secção 10) mostra que as 5 variáveis com maior peso na previsão são:
+
+1. **`alcohol`** (17,7%) — o teor alcoólico é o preditor dominante
+2. **`volatile_acidity_ratio`** (11,3%) — a acidez volátil relativa penaliza a qualidade
+3. **`density`** (10,9%) — a densidade do vinho
+4. **`so2_ratio`** (10,0%) — proporção entre dióxido de enxofre livre e total
+5. **`total sulfur dioxide`** (7,9%) — nível total de dióxido de enxofre
+
+A variável `is_red` (tipo de vinho) contribui menos de 0,1%, confirmando que a qualidade depende da composição química e não da cor.
+
+
+
 ## 4. Finalização (Milestone 4)
+
 ### Resposta ao Problema
 [Resumo da solução e como ela gera valor para o negócio.]
+
 ### Recomendações de Inovação
 1. [Sugestão prática baseada nos resultados]
 
 ## 5. Refêrencias
 1. P. Cortez, A. Cerdeira, F. Almeida, T. Matos and J. Reis. Modeling wine preferences by data mining from physicochemical properties. In Decision Support Systems, Elsevier, 47(4):547-553. ISSN: 0167-9236.
-
 
 ## Como Reproduzir este Projeto
 1. Clone o repositório: `git clone [url-do-repo]`
@@ -80,5 +121,4 @@ Após as análises e tratamentos descritos, os dados encontram-se totalmente lim
 
    **Unidade Curricular:** Projeto em Ciência de Dados
 
-   **Professor Responsável:** Dora Melo (dmelo@iscac.pt) 
-  
+   **Professor Responsável:** Dora Melo (dmelo@iscac.pt)
