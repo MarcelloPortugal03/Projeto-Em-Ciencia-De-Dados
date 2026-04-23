@@ -167,7 +167,7 @@ A engenharia destes atributos revelou-se eficaz, uma vez que as novas variáveis
 | `is_red` | Binária | Indicador matemático que categoriza o tipo de vinho (1 para Tinto, 0 para Branco). |
 | `so2_ratio` | Numérica | Proporção de SO2 livre face ao total, avalia a eficácia real da proteção química ativa do vinho. |
 | `volatile_acidity_ratio`| Numérica | Rácio entre acidez volátil e fixa, indicador fiável para detetar desequilíbrios estruturais ou potenciais defeitos. |
-| `quality` | Numérica | Classificação sensorial final atribuída por um júri de enólogos, medida numa escala discreta (3 a 9). |
+| `quality` | Numérica | Classificação sensorial final atribuída por um júri de enólogos, medida numa escala discreta (0 a 10). |
 
 
 ## 5. Conclusões da Fase de Exploração e Pré-processamento
