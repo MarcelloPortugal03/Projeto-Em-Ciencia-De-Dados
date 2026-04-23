@@ -25,7 +25,7 @@ Desenvolver um modelo de Aprendizagem Automática (baseado em algoritmos de regr
 ### Perguntas de Investigação:
 *PI 1: Qual é a capacidade de previsão de um modelo baseado apenas em dados físico-químicos?*
 
-*PI 2: Quais são as 3 variáveis físico-químicas que mais contribuem para a previsão de um vinho de "Alta Qualidade" (nota ≥ 7)?*
+*PI 2: Quais são as 3 variáveis físico-químicas que mais contribuem para a previsão de um vinho de qualidade superior (e.g., nota ≥ 7)?*
 
 *PI 3: Existem diferenças estatisticamente significativas nas variáveis que determinam a qualidade quando comparamos modelos treinados exclusivamente para vinhos tintos versus vinhos brancos?*
 
@@ -64,7 +64,7 @@ Após as análises e tratamentos descritos, os dados encontram-se totalmente lim
 
 ### Modelo Eleito
 
-O algoritmo selecionado é o Random Forest, otimizado com pesquisa aleatória de hiperparâmetros (`RandomizedSearchCV`, 100 combinações, validação cruzada de 5 partições). A configuração final usa 382 árvores de decisão com `max_features='sqrt'`.
+O algoritmo selecionado é o **Random Forest**, otimizado com pesquisa aleatória de hiperparâmetros (`RandomizedSearchCV`, 100 combinações, validação cruzada de 5 partições). A configuração final usa **382 árvores de decisão** com `max_features='sqrt'`.
 
 A escolha teve em conta três critérios: (1) desempenho preditivo no conjunto de teste, (2) estabilidade dos resultados entre partições de validação cruzada e (3) interpretabilidade dos factores que influenciam a previsão. O Random Forest foi superior aos restantes candidatos (XGBoost, SVR, Regressão Linear) em todos os critérios.
 
@@ -77,7 +77,7 @@ A escolha teve em conta três critérios: (1) desempenho preditivo no conjunto d
 | MAE CV 5-Fold | 0,4431 ± 0,0135 |
 | Acertos exactos | 866 / 1.300 (66,6%) |
 
-O objetivo SMART do projeto era atingir um MAE inferior a 0,5. O modelo final obteve 0,4319, ficando 0,068 pontos abaixo do limiar definido.
+O objetivo SMART do projeto era atingir um MAE inferior a 0,5. O modelo final obteve **0,4319**, ficando 0,068 pontos abaixo do limiar definido.
 
 ### Impacto Prático
 
@@ -91,7 +91,7 @@ Das 1.300 previsões no conjunto de teste, apenas 133 (10,2%) erraram mais de 1 
 
 ### Variáveis Mais Importantes
 
-O gráfico de importância de variáveis mostra que as 5 variáveis com maior peso na previsão são:
+O gráfico de importância de variáveis (disponível no notebook `notebooks/2.0_modelacao_treino.ipynb`) mostra que as 5 variáveis com maior peso na previsão são:
 
 1. **`alcohol`** (17,7%) — o teor alcoólico é o preditor dominante
 2. **`volatile_acidity_ratio`** (11,3%) — a acidez volátil relativa penaliza a qualidade
@@ -104,7 +104,6 @@ A variável `is_red` (tipo de vinho) contribui menos de 0,1%, confirmando que a 
 <div align="center">
   <img src="reports/figures/2.0_modelacao/M3_feature_importance_final.png" alt="Importância das Variáveis no Modelo Final" width="600">
 </div>
-
 ## 4. Finalização (Milestone 4)
 
 ### Resposta ao Problema
