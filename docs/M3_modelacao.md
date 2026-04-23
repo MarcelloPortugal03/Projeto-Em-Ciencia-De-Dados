@@ -43,7 +43,7 @@ X_test_sc  = scaler.transform(X_test)       # aplica os mesmos parametros ao tes
 
 ### 1.3. Métrica de Sucesso
 
-O problema é de regressão: pretendemos prever um valor numérico contínuo numa escala de 3 a 9. As métricas de classificação não se aplicam. Escolhemos três métricas:
+O problema é de regressão: pretendemos prever um valor numérico contínuo numa escala de 0 a 10 (embora os dados observados se situem entre 3 e 9). As métricas de classificação não se aplicam. Escolhemos três métricas:
 
 | Métrica | O que mede | Papel |
 | :--- | :--- | :--- |
@@ -52,6 +52,8 @@ O problema é de regressão: pretendemos prever um valor numérico contínuo num
 | Coeficiente de Determinação (R²) | Proporção da variância da qualidade explicada pelo modelo | Diagnóstico |
 
 O MAE foi escolhido como métrica principal porque está na mesma unidade da variável alvo: pontos de qualidade. É fácil de interpretar, tanto para nós como para quem não trabalha com estatística. Um MAE de 0,5 significa, concretamente, que o modelo erra em média meio ponto na escala de qualidade, o que pode fazer a diferença entre classificar um vinho como "bom" ou "médio" e tem impacto direto na decisão de produção.
+
+O limiar de 0,5 foi definido com base na granularidade da escala e no contexto prático do problema. A variável alvo (`quality`) é atribuída em valores inteiros por um painel de degustadores, o que significa que a diferença mínima entre duas avaliações é 1 ponto. Um MAE inferior a 0,5 garante que, em média, as previsões do modelo ficam mais próximas da nota correta do que da nota adjacente — ou seja, o modelo acerta a "vizinhança" certa da escala. Um limiar mais exigente (ex: 0,3) seria irrealista dado o grau de subjetividade inerente à avaliação sensorial humana, enquanto um limiar mais permissivo (ex: 1,0) não teria utilidade prática, pois o modelo erraria frequentemente por uma categoria inteira.
 
 O objetivo definido na Milestone 1 é atingir um MAE inferior a 0,5 no conjunto de teste.
 
@@ -297,7 +299,7 @@ A validação cruzada de 5 partições confirmou que o MAE é estável (0,4431 �
 
 Os pontos fracos do modelo são conhecidos: erra mais nas notas extremas (3, 4, 8 e 9) por falta de exemplos, e mantém algum grau de sobreajuste (diferença de 0,275 entre MAE de treino e teste). Estas limitações não podem ser resolvidas apenas com tuning. Para ir mais longe, seria necessário recolher mais dados nos extremos da escala ou aplicar técnicas de reamostragem.
 
-O modelo está pronto para ser apresentado como solução. O erro médio de 0,43 pontos numa escala de 1 a 10, com base em 12 variáveis (11 originais e 2 criadas por engenharia de atributos), é um resultado que responde à pergunta do projeto: as propriedades físico-químicas de um vinho permitem prever a sua qualidade com um grau de aproximação útil, embora não perfeito.
+O modelo está pronto para ser apresentado como solução. O erro médio de 0,43 pontos numa escala de 0 a 10, com base em 14 variáveis (11 originais e 3 criadas por engenharia de atributos), é um resultado que responde à pergunta do projeto: as propriedades físico-químicas de um vinho permitem prever a sua qualidade com um grau de aproximação útil, embora não perfeito.
 
 ---
-*Data de última atualização: 22/04/2026* 
+*Data de última atualização: 23/04/2026* 
