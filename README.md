@@ -64,7 +64,7 @@ Após as análises e tratamentos descritos, os dados encontram-se totalmente lim
 
 ### Modelo Eleito
 
-O algoritmo selecionado é o **Random Forest**, otimizado com pesquisa aleatória de hiperparâmetros (`RandomizedSearchCV`, 100 combinações, validação cruzada de 5 partições). A configuração final usa **382 árvores de decisão** com `max_features='sqrt'`.
+O algoritmo selecionado é o Random Forest, otimizado com pesquisa aleatória de hiperparâmetros (`RandomizedSearchCV`, 100 combinações, validação cruzada de 5 partições). A configuração final usa 382 árvores de decisão com `max_features='sqrt'`.
 
 A escolha teve em conta três critérios: (1) desempenho preditivo no conjunto de teste, (2) estabilidade dos resultados entre partições de validação cruzada e (3) interpretabilidade dos factores que influenciam a previsão. O Random Forest foi superior aos restantes candidatos (XGBoost, SVR, Regressão Linear) em todos os critérios.
 
@@ -77,7 +77,7 @@ A escolha teve em conta três critérios: (1) desempenho preditivo no conjunto d
 | MAE CV 5-Fold | 0,4431 ± 0,0135 |
 | Acertos exactos | 866 / 1.300 (66,6%) |
 
-O objetivo SMART do projeto era atingir um MAE inferior a 0,5. O modelo final obteve **0,4319**, ficando 0,068 pontos abaixo do limiar definido.
+O objetivo SMART do projeto era atingir um MAE inferior a 0,5. O modelo final obteve 0,4319, ficando 0,068 pontos abaixo do limiar definido.
 
 ### Impacto Prático
 
@@ -121,7 +121,7 @@ Desenvolvemos uma aplicação web onde se podem introduzir valores laboratoriais
 1. P. Cortez, A. Cerdeira, F. Almeida, T. Matos and J. Reis. Modeling wine preferences by data mining from physicochemical properties. In Decision Support Systems, Elsevier, 47(4):547-553. ISSN: 0167-9236.
 
 ## Como Reproduzir este Projeto
-1. Clone o repositório: `git clone [url-do-repo]`
+1. Clone o repositório: `git clone https://github.com/MarcelloPortugal03/Projeto-Em-Ciencia-De-Dados.git`
 2. Instale as dependências: `pip install -r requirements.txt`
 3. Execute os notebooks na pasta `notebooks/` seguindo a ordem numérica.
 
