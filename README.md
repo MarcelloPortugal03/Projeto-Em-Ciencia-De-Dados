@@ -104,15 +104,20 @@ A variável `is_red` (tipo de vinho) contribui menos de 0,1%, confirmando que a 
 <div align="center">
   <img src="reports/figures/2.0_modelacao/M3_feature_importance_final.png" alt="Importância das Variáveis no Modelo Final" width="600">
 </div>
+
 ## 4. Finalização (Milestone 4)
 
-### Resposta ao Problema
-[Resumo da solução e como ela gera valor para o negócio.]
+O modelo final (Random Forest, 382 árvores) atingiu um MAE de 0,4319, cumprindo o objetivo SMART definido na Milestone 1. As três perguntas de investigação foram respondidas: os dados físico-químicos permitem prever a qualidade com utilidade prática, o álcool e a acidez volátil são as variáveis mais influentes, e a cor do vinho é praticamente irrelevante para a nota.
 
-### Recomendações de Inovação
-1. [Sugestão prática baseada nos resultados]
+### Aplicação web
 
-## 5. Refêrencias
+Desenvolvemos uma aplicação web onde se podem introduzir valores laboratoriais e obter a previsão de qualidade: **[https://vinhos-app.onrender.com/](https://vinhos-app.onrender.com/)**
+
+> *Nota: Servidor gratuito. O primeiro acesso após inatividade pode demorar até 60 segundos.*
+
+> *A análise completa de resultados, limitações, considerações éticas e trabalhos futuros está disponível em `docs/M4_conclusoes.md`.*
+
+## 5. Referências
 1. P. Cortez, A. Cerdeira, F. Almeida, T. Matos and J. Reis. Modeling wine preferences by data mining from physicochemical properties. In Decision Support Systems, Elsevier, 47(4):547-553. ISSN: 0167-9236.
 
 ## Como Reproduzir este Projeto
