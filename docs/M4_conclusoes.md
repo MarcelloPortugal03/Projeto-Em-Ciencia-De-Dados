@@ -82,14 +82,25 @@ Todos os resultados são reprodutíveis — o notebook utiliza sementes fixas (`
 
 ## 4. Aplicação web
 
-Desenvolvemos uma aplicação web onde se podem introduzir os valores laboratoriais de um vinho e obter a previsão de qualidade em tempo real.
+Para tornar os resultados deste projeto acessíveis a qualquer pessoa, não apenas a quem trabalha com dados, desenvolvemos uma aplicação web interativa. Através dela, é possível obter uma previsão da qualidade de um vinho a partir das suas características laboratoriais, em tempo real e sem qualquer conhecimento técnico necessário.
 
-**Acesso:** [https://vinhos-app.onrender.com/](https://vinhos-app.onrender.com/)
+**Acesso:** https://vinhos-app.onrender.com/
 
-A aplicação recebe as 11 variáveis físico-químicas e o tipo de vinho, calcula automaticamente os rácios de engenharia de atributos (SO₂ e acidez volátil), normaliza os dados e devolve a previsão do modelo.
+### Como funciona
 
-> *Nota: A aplicação está alojada num servidor gratuito. Se não receber visitas durante alguns minutos, o primeiro acesso pode demorar até 60 segundos a carregar. Basta aguardar.*
+O utilizador introduz as 11 medições físico-químicas do vinho (como o teor alcoólico, a acidez ou o pH) e indica se se trata de um vinho tinto ou branco. A partir daí, a aplicação trata de tudo:
 
+- Calcula automaticamente os índices derivados (SO₂ e acidez volátil)
+- Normaliza os valores de entrada
+- Consulta o modelo e devolve uma previsão da nota de qualidade
+
+### Porquê esta aplicação?
+
+O objetivo foi construir uma ponte entre o modelo e o mundo real. Um enólogo, um produtor ou até um simples curioso pode agora usar o que desenvolvemos sem precisar de abrir uma linha de código.
+
+> *Nota: a aplicação está alojada num servidor gratuito. Se não tiver recebido visitas nos últimos minutos, o primeiro carregamento pode demorar até 60 segundos. Basta aguardar.*
+
+Nota: a aplicação está alojada num servidor gratuito. Se não tiver recebido visitas nos últimos minutos, o primeiro carregamento pode demorar até 60 segundos — basta aguardar que tudo funciona normalmente a partir daí.
 ---
 
 ## 5. Trabalhos futuros
