@@ -12,15 +12,15 @@ O modelo final é uma *Random Forest* com 382 árvores, otimizada via `Randomize
 
 ### 1.2. Respostas às perguntas de investigação
 
-**PI 1 — Qual é a capacidade de previsão de um modelo baseado apenas em dados físico-químicos?**
+**PI 1 : Qual é a capacidade de previsão de um modelo baseado apenas em dados físico-químicos?**
 
 O modelo atingiu um MAE de 0,4319 e um R² de 0,512. Em termos práticos, isto significa que as variáveis de laboratório permitem prever a qualidade com um erro médio inferior a meio ponto. Se um vinho tem nota real de 6, o modelo prevê tipicamente entre 5,6 e 6,4.
 
-Os dados químicos explicam cerca de metade da variação nas notas. A outra metade depende de fatores que o dataset não capta: a perceção subjetiva dos provadores, as condições da prova, ou variáveis sensoriais sem correspondência direta nas análises laboratoriais.
+Os dados químicos explicam cerca de metade da variação nas notas. A outra metade depende de fatores que o *dataset* não capta: a perceção subjetiva dos provadores, as condições da prova, ou variáveis sensoriais sem correspondência direta nas análises laboratoriais.
 
 Os dados físico-químicos têm, portanto, capacidade preditiva útil, embora limitada pela natureza subjetiva da variável alvo.
 
-**PI 2 — Quais são as 3 variáveis físico-químicas que mais contribuem para a previsão de um vinho de qualidade superior (e.g., nota ≥ 7)?**
+**PI 2 : Quais são as 3 variáveis físico-químicas que mais contribuem para a previsão de um vinho de qualidade superior (e.g., nota ≥ 7)?**
 
 A análise de importância de variáveis do modelo final identificou três atributos com maior peso: o teor alcoólico (`alcohol`, 17,7%), o rácio de acidez volátil (`volatile_acidity_ratio`, 11,3%) e a densidade (`density`, 10,9%).
 
@@ -28,7 +28,7 @@ Vinhos com graduação alcoólica mais alta tendem a receber notas superiores. A
 
 Já na análise exploratória da Milestone 2 o teor alcoólico aparecia como o principal preditor positivo e a acidez volátil como o maior detrator. O modelo confirmou esse padrão.
 
-**PI 3 — Existem diferenças nas variáveis que determinam a qualidade entre vinhos tintos e brancos?**
+**PI 3 : Existem diferenças nas variáveis que determinam a qualidade entre vinhos tintos e brancos?**
 
 A variável `is_red` (indicador do tipo de vinho) obteve uma importância de 0,1% no modelo final — o valor mais baixo de todos os atributos. Este resultado indica que, quando as variáveis físico-químicas estão presentes, saber se o vinho é tinto ou branco não acrescenta informação útil à previsão.
 
