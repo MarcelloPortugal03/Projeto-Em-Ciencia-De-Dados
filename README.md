@@ -31,6 +31,9 @@ Desenvolver um modelo de Aprendizagem Automática (baseado em algoritmos de regr
 
 ### Fonte de Dados
 * **Dataset:** [UCI Wine Quality](https://archive.ics.uci.edu/dataset/186/wine+quality)
+* **Notebook EDA:** [1.0_eda_limpeza — Kaggle](https://www.kaggle.com/code/marcelloportugal/projetofinalcdg)
+* **Notebook Modelação:** [2.0_modelacao — Kaggle](https://www.kaggle.com/code/marcelloportugal/2-0-modelacao-treino)
+* **Notebook Interpretação:** [3.0_interpretacao — Kaggle](https://www.kaggle.com/code/marcelloportugal/3-0-intepretacao)
 * **Dataset Original:** 6.497 registos (1.599 tintos / 4.898 brancos) | 12 atributos.
 * **Dataset Processado:** 6.497 registos | 14 atributos.
 * **Variável Alvo:** `quality` (Pontuação de 0 a 10, onde valores mais altos indicam melhor qualidade sensorial).
