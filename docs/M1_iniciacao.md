@@ -38,7 +38,7 @@ Embora bibliotecas como NumPy, Matplotlib e Seaborn já tenham sido importadas n
  * Marcello Portugal: Responsável pela Modelação Estatística e Documentação.
 ## 6. Estrutura e Preparação dos Dados
 
-Após a importação dos dados originais, o primeiro passo consistiu na unificação dos ficheiros de vinhos tintos e brancos através do comando `pd.concat()`. Esta junção resultou num conjunto de dados robusto com 6.497 amostras, consolidando todas as variáveis físico-químicas num único objeto de análise. Durante este processo, foi fundamental validar a integridade do dataset; a execução do comando `df.isnull().sum()` confirmou a ausência total de valores nulos, o que assegura que não haverá necessidade de realizar limpezas ou imputações de dados nas fases seguintes.
+Após a importação dos dados originais, o primeiro passo consistiu na unificação dos ficheiros de vinhos tintos e brancos através do comando `pd.concat()`. Esta junção resultou num conjunto de dados robusto com 6.497 amostras, consolidando todas as variáveis físico-químicas num único objeto de análise. Durante este processo, foi fundamental validar a integridade do *dataset*; a execução do comando `df.isnull().sum()` confirmou a ausência total de valores nulos, o que assegura que não haverá necessidade de realizar limpezas ou imputações de dados nas fases seguintes.
 
 Para organizar esta unificação, criámos duas variáveis distintas com propósitos diferentes. A variável categórica `type` foi mantida para facilitar a identificação visual e a análise exploratória (segmentando os vinhos como "red" ou "white"). Em paralelo, criámos a variável binária `is_red` (codificada como 1 para tinto e 0 para branco), uma etapa essencial de engenharia de dados que permite que os futuros algoritmos de Aprendizagem Automática processem a diferença entre os tipos de vinho de forma matemática. 
 
@@ -46,7 +46,7 @@ Através do comando `df.describe()`, observámos que a variável alvo (`quality`
 
 
 
-### Dicionário de Variáveis e Intervalos Observados (Dataset Original)
+### Dicionário de Variáveis e Intervalos Observados (*Dataset* Original)
 
 | Variável | Tipo | Natureza | Descrição | Intervalo [Mín - Máx] |
 | :--- | :--- | :--- | :--- | :--- |
@@ -75,4 +75,4 @@ Validada a estrutura dos dados no ponto anterior, a continuidade do trabalho é 
 | M3: Modelação | 21/04/2026 | Comparação de algoritmos e métricas. |
 | M4: Finalização| 21/05/2026 | Pitch e Relatório Final. |
 ---
-*Data de última atualização: [20/02/2026]*
+*Data de última atualização: 17/05/2026*
