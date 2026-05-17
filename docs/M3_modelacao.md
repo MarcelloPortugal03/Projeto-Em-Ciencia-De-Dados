@@ -53,7 +53,7 @@ O problema é de regressão: pretendemos prever um valor numérico contínuo num
 
 O MAE foi escolhido como métrica principal porque está na mesma unidade da variável alvo: pontos de qualidade. É fácil de interpretar, tanto para nós como para quem não trabalha com estatística. Um MAE de 0,5 significa, concretamente, que o modelo erra em média meio ponto na escala de qualidade, o que pode fazer a diferença entre classificar um vinho como "bom" ou "médio" e tem impacto direto na decisão de produção.
 
-O limiar de 0,5 foi definido com base na granularidade da escala e no contexto prático do problema. A variável alvo (`quality`) é atribuída em valores inteiros por um painel de degustadores, o que significa que a diferença mínima entre duas avaliações é 1 ponto. Um MAE inferior a 0,5 garante que, em média, as previsões do modelo ficam mais próximas da nota correta do que da nota adjacente — ou seja, o modelo acerta a "vizinhança" certa da escala. Um limiar mais exigente (ex: 0,3) seria irrealista dado o grau de subjetividade inerente à avaliação sensorial humana, enquanto um limiar mais permissivo (ex: 1,0) não teria utilidade prática, pois o modelo erraria frequentemente por uma categoria inteira.
+O limiar de 0,5 foi definido com base na granularidade da escala e no contexto prático do problema. A variável alvo (`quality`) é atribuída em valores inteiros por um painel de degustadores, o que significa que a diferença mínima entre duas avaliações é 1 ponto. Um MAE inferior a 0,5 garante que, em média, as previsões do modelo ficam mais próximas da nota correta do que da nota adjacente, ou seja, o modelo acerta a "vizinhança" certa da escala. Um limiar mais exigente (ex: 0,3) seria irrealista dado o grau de subjetividade inerente à avaliação sensorial humana, enquanto um limiar mais permissivo (ex: 1,0) não teria utilidade prática, pois o modelo erraria frequentemente por uma categoria inteira.
 
 O objetivo definido na Milestone 1 é atingir um MAE inferior a 0,5 no conjunto de teste.
 
@@ -61,13 +61,13 @@ O objetivo definido na Milestone 1 é atingir um MAE inferior a 0,5 no conjunto 
 
 ## 2. Experiências Realizadas
 
-### 2.1. Modelo Baseline
+### 2.1. Modelo *Baseline*
 
 Antes de avançar para algoritmos mais complexos, é necessário perceber qual é o patamar mínimo de desempenho, ou seja, quanto é que um modelo sem qualquer capacidade preditiva real consegue acertar simplesmente por usar a informação mais básica disponível. Treinaram-se dois modelos de referência com complexidades diferentes.
 
-#### B1 — Previsão pela Média
+#### B1 : Previsão pela Média
 
-O primeiro baseline prevê sempre a média da variável alvo calculada no conjunto de treino, independentemente das características do vinho. É o cenário de pior caso razoável: qualquer modelo que não supere este resultado não aprendeu nada útil dos dados.
+O primeiro *baseline* prevê sempre a média da variável alvo calculada no conjunto de treino, independentemente das características do vinho. É o cenário de pior caso razoável: qualquer modelo que não supere este resultado não aprendeu nada útil dos dados.
 
 | Parâmetro | Valor |
 | :--- | :--- |
@@ -87,9 +87,9 @@ O R² igual a zero confirma que este modelo não explica qualquer variação na 
 
 ---
 
-#### B2 — Regressão Linear
+#### B2 : Regressão Linear
 
-O segundo baseline é o modelo paramétrico mais simples que usa de facto as variáveis físico-químicas para fazer previsões. Ajusta uma relação linear entre cada atributo e a pontuação de qualidade, através do método dos mínimos quadrados ordinários.
+O segundo *baseline* é o modelo paramétrico mais simples que usa de facto as variáveis físico-químicas para fazer previsões. Ajusta uma relação linear entre cada atributo e a pontuação de qualidade, através do método dos mínimos quadrados ordinários.
 
 | Parâmetro | Valor |
 | :--- | :--- |
@@ -105,7 +105,7 @@ O segundo baseline é o modelo paramétrico mais simples que usa de facto as var
 | RMSE | 0,7314 | 0,7285 | |
 | R² | 0,3038 | 0,2814 | |
 
-Com um MAE de 0,561 no teste, este modelo já supera claramente o baseline B1, mas fica ainda 0,061 pontos acima do objetivo de 0,5. O R² de 0,28 indica que a regressão linear consegue explicar cerca de 28% da variação na qualidade dos vinhos. Os restantes 72% estão provavelmente associados a interações não lineares entre variáveis ou a padrões que um modelo linear não consegue captar.
+Com um MAE de 0,561 no teste, este modelo já supera claramente o *baseline* B1, mas fica ainda 0,061 pontos acima do objetivo de 0,5. O R² de 0,28 indica que a regressão linear consegue explicar cerca de 28% da variação na qualidade dos vinhos. Os restantes 72% estão provavelmente associados a interações não lineares entre variáveis ou a padrões que um modelo linear não consegue captar.
 
 Os coeficientes do modelo confirmam as conclusões da análise exploratória da Milestone 2: o teor alcoólico (coeficiente de 0,30) é o atributo com maior peso positivo, enquanto o rácio de acidez volátil (coeficiente de -0,23) e a densidade (-0,23) penalizam a qualidade prevista. A variável `total sulfur dioxide` tem um coeficiente de -0,001, praticamente nulo, o que sugere que pouco contribui para a previsão linear.
 
@@ -121,11 +121,11 @@ Os resultados dos dois baselines fixam os limites para a fase de experimentaçã
 
 ### 2.2. Modelos Candidatos
 
-Testaram-se três algoritmos. O Random Forest (Breiman, L., 2001, "Random Forests") e o *XGBoost* são métodos baseados em árvores de decisão que conseguem modelar relações não lineares entre variáveis — algo que a regressão linear não faz. O SVR usa uma abordagem diferente, com base em margens de tolerância. A escolha recaiu sobre estes três porque funcionam bem em dados tabulares e permitem comparar estratégias distintas face ao mesmo problema.
+Testaram-se três algoritmos. O *Random Forest* (Breiman, L., 2001, "Random Forests") e o *XGBoost* são métodos baseados em árvores de decisão que conseguem modelar relações não lineares entre variáveis — algo que a regressão linear não faz. O SVR usa uma abordagem diferente, com base em margens de tolerância. A escolha recaiu sobre estes três porque funcionam bem em dados tabulares e permitem comparar estratégias distintas face ao mesmo problema.
 
 Para cada um, testaram-se algumas configurações de hiperparâmetros antes de avançar para uma pesquisa mais sistemática.
 
-#### Random Forest
+#### *Random Forest*
 
 Testou-se a configuração com parâmetros base (`n_estimators=100`) e uma versão mais restrita (`n_estimators=300, max_depth=15, min_samples_split=5, min_samples_leaf=2`). A versão mais restrita reduziu visivelmente o erro de treino mas piorou o resultado no teste (MAE de 0.465 vs 0.441), pelo que se manteve a configuração base.
 
@@ -163,23 +163,23 @@ O diagnóstico é feito comparando o erro de treino com o erro de teste. Uma dif
 | *XGBoost* | 0,1835 | 0,4673 | 0,284 | Sobreajuste moderado |
 | SVR (C=10) | 0,3756 | 0,5061 | 0,131 | Sobreajuste leve |
 
-O Random Forest e o *XGBoost* ajustam-se ao ruído dos dados de treino mais do que o SVR, daí a diferença maior entre os dois erros. Mesmo assim, o Random Forest é o que dá melhores resultados no teste.
+O *Random Forest* e o *XGBoost* ajustam-se ao ruído dos dados de treino mais do que o SVR, daí a diferença maior entre os dois erros. Mesmo assim, o *Random Forest* é o que dá melhores resultados no teste.
 
 #### Curvas de Aprendizagem
 
-A curva de aprendizagem do Random Forest foi calculada com validação cruzada de 5 partições, entre 10% e 100% dos dados de treino (ver gráfico no notebook). Com mais dados, o erro no treino sobe ligeiramente e o erro de validação desce. As duas linhas mantêm uma distância considerável mesmo com o conjunto completo, o que confirma o sobreajuste. Mais regularização ou uma pesquisa mais fina de hiperparâmetros podem aproximar as curvas.
+A curva de aprendizagem do *Random Forest* foi calculada com validação cruzada de 5 partições, entre 10% e 100% dos dados de treino (ver gráfico no notebook). Com mais dados, o erro no treino sobe ligeiramente e o erro de validação desce. As duas linhas mantêm uma distância considerável mesmo com o conjunto completo, o que confirma o sobreajuste. Mais regularização ou uma pesquisa mais fina de hiperparâmetros podem aproximar as curvas.
 
 #### Seleção do Modelo
 
-O Random Forest (`n_estimators=100`) é o modelo escolhido para a fase de otimização: foi o único a cumprir o objetivo de MAE < 0,5 no teste, com 0,4408. O *XGBoost* ficou próximo (MAE = 0,467) e pode ser reconsiderado durante o tuning. O SVR não atingiu o objetivo.
+O *Random Forest* (`n_estimators=100`) é o modelo escolhido para a fase de otimização: foi o único a cumprir o objetivo de MAE < 0,5 no teste, com 0,4408. O *XGBoost* ficou próximo (MAE = 0,467) e pode ser reconsiderado durante o *tuning*. O SVR não atingiu o objetivo.
 
 ---
 
-## 3. Otimização (Tuning)
+## 3. Otimização (*Tuning*)
 
 ### 3.1. Pesquisa de Hiperparâmetros
 
-A partir do Random Forest base (`n_estimators=100`), usámos `RandomizedSearchCV` para testar 100 combinações aleatórias de hiperparâmetros com validação cruzada de 5 partições. A pesquisa aleatória foi preferida à pesquisa exaustiva (`GridSearchCV`) porque o espaço de configurações é grande e a pesquisa aleatória tende a encontrar boas soluções mais depressa (Bergstra & Bengio, 2012, "Random Search for Hyper-Parameter Optimization").
+A partir do *Random Forest* base (`n_estimators=100`), usámos `RandomizedSearchCV` para testar 100 combinações aleatórias de hiperparâmetros com validação cruzada de 5 partições. A pesquisa aleatória foi preferida à pesquisa exaustiva (`GridSearchCV`) porque o espaço de configurações é grande e a pesquisa aleatória tende a encontrar boas soluções mais depressa (Bergstra & Bengio, 2012, "Random Search for Hyper-Parameter Optimization").
 
 | Hiperparâmetro | Espaço de pesquisa |
 | :--- | :--- |
@@ -268,7 +268,7 @@ A variável `is_red` (tipo de vinho) contribui menos de 0,1% para a previsão. I
 
 A seleção do modelo final considerou três critérios: desempenho preditivo no conjunto de teste, estabilidade dos resultados entre partições e interpretabilidade para o contexto do problema.
 
-**Critério 1 — Desempenho preditivo**
+**Critério 1 : Desempenho preditivo**
 
 | Modelo | MAE Teste | R² Teste | Cumpre MAE < 0,5? |
 | :--- | :---: | :---: | :---: |
@@ -277,29 +277,29 @@ A seleção do modelo final considerou três critérios: desempenho preditivo no
 | SVR (C=10) | 0,5061 | 0,378 | Não |
 | Regressão Linear | 0,5607 | 0,281 | Não |
 
-O Random Forest otimizado apresenta o MAE mais baixo entre todos os candidatos (0,4319), 0,035 pontos abaixo do XGBoost e 0,129 abaixo do objetivo. É também o único modelo com R² acima de 0,5, o que significa que explica mais de metade da variação na qualidade dos vinhos.
+O *Random Forest* otimizado apresenta o MAE mais baixo entre todos os candidatos (0,4319), 0,035 pontos abaixo do *XGBoost* e 0,129 abaixo do objetivo. É também o único modelo com R² acima de 0,5, o que significa que explica mais de metade da variação na qualidade dos vinhos.
 
-**Critério 2 — Estabilidade**
+**Critério 2 : Estabilidade**
 
 A validação cruzada de 5 partições produziu um desvio padrão de 0,0135 entre os MAE dos folds. Todos os folds ficaram abaixo de 0,46 e acima de 0,41. Um desvio inferior a 0,02 é considerado estável, o que confirma que o resultado não depende de uma divisão particular dos dados.
 
-**Critério 3 — Interpretabilidade**
+**Critério 3 : Interpretabilidade**
 
-O Random Forest permite extrair a importância de cada variável através da média dos ganhos de informação em todas as árvores. Esta propriedade é relevante para o problema em questão: permite responder às perguntas de investigação sobre quais variáveis químicas mais influenciam a qualidade. O alcohol (17,7%), a acidez volátil relativa (11,3%) e a densidade (10,9%) são os três atributos mais determinantes, o que está alinhado com a literatura enológica e com as conclusões da análise exploratória.
+O *Random Forest* permite extrair a importância de cada variável através da média dos ganhos de informação em todas as árvores. Esta propriedade é relevante para o problema em questão: permite responder às perguntas de investigação sobre quais variáveis químicas mais influenciam a qualidade. O alcohol (17,7%), a acidez volátil relativa (11,3%) e a densidade (10,9%) são os três atributos mais determinantes, o que está alinhado com a literatura enológica e com as conclusões da análise exploratória.
 
-**Decisão:** O Random Forest otimizado (382 árvores, `max_features='sqrt'`) é o modelo de produção. Supera todos os candidatos em desempenho, é estável entre partições e permite interpretação directa dos factores que influenciam a previsão.
+**Decisão:** O *Random Forest* otimizado (382 árvores, `max_features='sqrt'`) é o modelo de produção. Supera todos os candidatos em desempenho, é estável entre partições e permite interpretação directa dos factores que influenciam a previsão.
 
 ---
 
 ## 5. Conclusão da Fase de Modelação
 
-O Random Forest foi o modelo que apresentou melhor capacidade de generalização ao longo de todas as fases de avaliação. O modelo base já cumpria o objetivo SMART do projeto (MAE < 0,5), e a pesquisa de hiperparâmetros com `RandomizedSearchCV` permitiu melhorá-lo: o MAE desceu de 0,4408 para 0,4319 e o R² subiu de 0,4902 para 0,5120, com uma configuração de 382 árvores e `max_features='sqrt'`.
+O *Random Forest* foi o modelo que apresentou melhor capacidade de generalização ao longo de todas as fases de avaliação. O modelo base já cumpria o objetivo SMART do projeto (MAE < 0,5), e a pesquisa de hiperparâmetros com `RandomizedSearchCV` permitiu melhorá-lo: o MAE desceu de 0,4408 para 0,4319 e o R² subiu de 0,4902 para 0,5120, com uma configuração de 382 árvores e `max_features='sqrt'`.
 
 A validação cruzada de 5 partições confirmou que o MAE é estável (0,4431 ± 0,0135), o que reduz a probabilidade de o resultado ser um artefacto de uma divisão particularmente favorável.
 
-Os pontos fracos do modelo são conhecidos: erra mais nas notas extremas (3, 4, 8 e 9) por falta de exemplos, e mantém algum grau de sobreajuste (diferença de 0,275 entre MAE de treino e teste). Estas limitações não podem ser resolvidas apenas com tuning. Para ir mais longe, seria necessário recolher mais dados nos extremos da escala ou aplicar técnicas de reamostragem.
+Os pontos fracos do modelo são conhecidos: erra mais nas notas extremas (3, 4, 8 e 9) por falta de exemplos, e mantém algum grau de sobreajuste (diferença de 0,275 entre MAE de treino e teste). Estas limitações não podem ser resolvidas apenas com *tuning*. Para ir mais longe, seria necessário recolher mais dados nos extremos da escala ou aplicar técnicas de reamostragem.
 
 O modelo está pronto para ser apresentado como solução. O erro médio de 0,43 pontos numa escala de 0 a 10, com base em 14 variáveis (11 originais e 3 criadas por engenharia de atributos), é um resultado que responde à pergunta do projeto: as propriedades físico-químicas de um vinho permitem prever a sua qualidade com um grau de aproximação útil, embora não perfeito.
 
 ---
-*Data de última atualização: 23/04/2026* 
+*Data de última atualização: 17/05/2026*
