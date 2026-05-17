@@ -30,7 +30,7 @@ Já na análise exploratória da Milestone 2 o teor alcoólico aparecia como o p
 
 **PI 3 : Existem diferenças nas variáveis que determinam a qualidade entre vinhos tintos e brancos?**
 
-A variável `is_red` (indicador do tipo de vinho) obteve uma importância de 0,1% no modelo final — o valor mais baixo de todos os atributos. Este resultado indica que, quando as variáveis físico-químicas estão presentes, saber se o vinho é tinto ou branco não acrescenta informação útil à previsão.
+A variável `is_red` (indicador do tipo de vinho) obteve uma importância de 0,1% no modelo final, que corresponde ao valor mais baixo de todos os atributos. Este resultado indica que, quando as variáveis físico-químicas estão presentes, saber se o vinho é tinto ou branco não acrescenta informação útil à previsão.
 
 O modelo foi treinado com o conjunto unificado de 6.497 registos (tintos + brancos). O facto de `is_red` ser praticamente irrelevante sugere que as variáveis que determinam a qualidade são as mesmas para ambos os tipos. A qualidade é determinada pela composição química do vinho, não pela sua cor.
 
