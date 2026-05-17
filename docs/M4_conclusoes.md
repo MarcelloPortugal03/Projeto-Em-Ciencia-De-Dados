@@ -8,7 +8,7 @@
 
 Na Milestone 1, definimos o seguinte objetivo: construir um modelo de regressão capaz de prever a qualidade sensorial do Vinho Verde a partir de variáveis físico-químicas, com um erro médio absoluto (MAE) inferior a 0,5 pontos numa escala de 0 a 10.
 
-O modelo final é um Random Forest com 382 árvores, otimizado via `RandomizedSearchCV`. No conjunto de teste obteve um MAE de 0,4319, cumprindo o objetivo com margem de 0,068 pontos.
+O modelo final é uma *Random Forest* com 382 árvores, otimizada via `RandomizedSearchCV`. No conjunto de teste obteve um MAE de **0,4319**, cumprindo o objetivo com margem de 0,068 pontos.
 
 ### 1.2. Respostas às perguntas de investigação
 
