@@ -119,6 +119,12 @@ Desenvolvemos uma aplicação web onde se podem introduzir valores laboratoriais
 
 > *A análise completa de resultados, limitações, considerações éticas e trabalhos futuros está disponível em `docs/M4_conclusoes.md`.*
 
+### Vídeo de Defesa
+
+Vídeo de apresentação do projeto, com narração em PT-PT e demonstração da aplicação web:
+
+🎬 **[Ver vídeo de defesa no Google Drive](https://drive.google.com/file/d/1dPra5HPLSJqgRzWAUbIehBXsI4gHJgsC/view?usp=sharing)**
+
 ## 5. Referências
 1. P. Cortez, A. Cerdeira, F. Almeida, T. Matos and J. Reis. Modeling wine preferences by data mining from physicochemical properties. In Decision Support Systems, Elsevier, 47(4):547-553. ISSN: 0167-9236.
 
